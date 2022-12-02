@@ -4,13 +4,32 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ktkir
  */
-private ArrayList<Customer> customerList;
+
 public class eateryCustomerManagement {
-    System.out.print("Hi");
-     System.out.print("Hi");
+    private ArrayList<customer> customerList;
+
+    public void setCustomerList(ArrayList<customer> customerList) {
+        this.customerList = customerList;
+    }
+
+    public ArrayList<customer> getCustomerList() {
+        return customerList;
+    }
+    public void addNewCustomer()
+    {
+        customer cust=new customer();
+        customerList.add(cust);
+        
+    }
+    public void deleteCustomer(customer cust)
+    {
+        customerList.remove(cust);
+    }
     
 }

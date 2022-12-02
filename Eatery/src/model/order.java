@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ktkir
@@ -13,7 +15,7 @@ public class order {
     private int restarauntId;
     private int customerId;
     private int deliveryPersonId;
-    private ArrayList<Food> foodList;
+    private ArrayList<food> foodList;
     private String status;
     private String deliveryInstructions;
     private int totalPrice;
