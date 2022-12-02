@@ -10,5 +10,5 @@ package model;
  */
 
 public class deliveryPartnerEnterprise {
-private deliveryPersonManagement deliveryPersonManagement;    
+private deliveryPersonManagement deliveryPersonManagement;  
 }

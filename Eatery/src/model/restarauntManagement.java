@@ -14,7 +14,6 @@ public class restarauntManagement {
       private ArrayList<Restaraunt> restarauntDirectory;  
   
   public restarauntManagement(){
-      
       this.restarauntDirectory=new ArrayList<Restaraunt>();
   }
 
