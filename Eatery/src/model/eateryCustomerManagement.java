@@ -4,11 +4,28 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ktkir
  */
-private ArrayList<Customer> customerList;
+
 public class eateryCustomerManagement {
-    
+  private ArrayList<Customer> customerDirectory;  
+  
+  public eateryCustomerManagement(){
+      
+      this.customerDirectory=new ArrayList<Customer>();
+  }
+
+    public ArrayList<Customer> getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(ArrayList<Customer> customerDirectory) {
+        this.customerDirectory = customerDirectory;
+    }
+  
+  
 }

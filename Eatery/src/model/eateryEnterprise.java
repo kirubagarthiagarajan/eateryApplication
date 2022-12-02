@@ -12,8 +12,12 @@ package model;
 
 public class eateryEnterprise {
     private eateryCustomerManagement eatCusManage;
+    private restarauntManagement restarauntManagement;
+    private deliveryPartnerEnterprise deliveryEnterPrise;
    
   public eateryEnterprise(){
-       
+      this.eatCusManage=new eateryCustomerManagement();
+      this.restarauntManagement=new restarauntManagement();
+      
   }
 }

@@ -8,6 +8,7 @@ package model;
  *
  * @author ktkir
  */
+
 public class deliveryPartnerEnterprise {
-    
+private deliveryPersonManagement deliveryPersonManagement;    
 }

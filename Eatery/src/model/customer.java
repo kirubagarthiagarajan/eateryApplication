@@ -11,13 +11,12 @@ import java.util.ArrayList;
  * @author ktkir
  */
 
-public class customer {
-   private int customerId;
+public class Customer {
+private int stateId;
 private String email;
 private String mobile;
 private String address;
 private String city;
-//private ArrayList<Order> pastOrders;
-//private Order activeOrder;
-private String coupon;
+private ArrayList<Order> pastOrders;
+private Order activeOrder;
 }
