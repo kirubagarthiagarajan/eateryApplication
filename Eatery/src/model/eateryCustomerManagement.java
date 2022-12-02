@@ -12,24 +12,32 @@ import java.util.ArrayList;
  */
 
 public class eateryCustomerManagement {
-    private ArrayList<customer> customerList;
+  private ArrayList<Customer> customerDirectory;  
+  
+  public eateryCustomerManagement(){
+      
+      this.customerDirectory=new ArrayList<Customer>();
+  }
 
-    public void setCustomerList(ArrayList<customer> customerList) {
-        this.customerList = customerList;
+    public ArrayList<Customer> getCustomerDirectory() {
+        return customerDirectory;
     }
 
-    public ArrayList<customer> getCustomerList() {
-        return customerList;
+    public void setCustomerDirectory(ArrayList<Customer> customerDirectory) {
+        this.customerDirectory = customerDirectory;
     }
+  
+
     public void addNewCustomer()
     {
-        customer cust=new customer();
-        customerList.add(cust);
+        Customer cust=new Customer();
+        customerDirectory.add(cust);
         
     }
-    public void deleteCustomer(customer cust)
+    public void deleteCustomer(Customer cust)
     {
-        customerList.remove(cust);
+        customerDirectory.remove(cust);
     }
     
+
 }

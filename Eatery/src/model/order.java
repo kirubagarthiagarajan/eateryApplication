@@ -10,12 +10,12 @@ import java.util.ArrayList;
  *
  * @author ktkir
  */
-public class order {
+public class Order {
     private int orderId;
     private int restarauntId;
     private int customerId;
     private int deliveryPersonId;
-    private ArrayList<food> foodList;
+    private ArrayList<Food> foodList;
     private String status;
     private String deliveryInstructions;
     private int totalPrice;

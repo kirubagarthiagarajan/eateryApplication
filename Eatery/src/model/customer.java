@@ -11,14 +11,16 @@ import java.util.ArrayList;
  * @author ktkir
  */
 
-public class customer {
-private int customerId;
+public class Customer {
+private int stateId;
 private String email;
 private String mobile;
 private String address;
-private String city;
-private String Name;
+private String name;
 private String password;
+private String city;
+private ArrayList<Order> pastOrders;
+private Order activeOrder;
 
     public void setPassword(String password) {
         this.password = password;
@@ -56,11 +58,10 @@ private String password;
         this.city = city;
     }
 
-//private ArrayList<Order> pastOrders;
     public void setCoupon(String coupon) {
         this.coupon = coupon;
     }
-//private Order activeOrder;
+
 private String coupon;
 
     public int getCustomerId() {
