@@ -16,6 +16,8 @@ private int stateId;
 private String email;
 private String mobile;
 private String address;
+private String name;
+private String password;
 private String city;
 private ArrayList<Order> pastOrders;
 private Order activeOrder;
