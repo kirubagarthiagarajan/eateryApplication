@@ -22,50 +22,8 @@ private String city;
 private ArrayList<Order> pastOrders;
 private Order activeOrder;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setCoupon(String coupon) {
-        this.coupon = coupon;
-    }
-
-private String coupon;
-
-    public int getCustomerId() {
-        return customerId;
+    public int getStateId() {
+        return stateId;
     }
 
     public String getEmail() {
@@ -80,11 +38,61 @@ private String coupon;
         return address;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public String getCity() {
         return city;
     }
 
-    public String getCoupon() {
-        return coupon;
+    public ArrayList<Order> getPastOrders() {
+        return pastOrders;
     }
+
+    public void setStateId(int stateId) {
+        this.stateId = stateId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setPastOrders(ArrayList<Order> pastOrders) {
+        this.pastOrders = pastOrders;
+    }
+
+    public void setActiveOrder(Order activeOrder) {
+        this.activeOrder = activeOrder;
+    }
+
+    public Order getActiveOrder() {
+        return activeOrder;
+    }
+
+  
 }
