@@ -10,5 +10,7 @@ package model;
  */
 private ArrayList<Customer> customerList;
 public class eateryCustomerManagement {
+    System.out.print("Hi");
+     System.out.print("Hi");
     
 }
