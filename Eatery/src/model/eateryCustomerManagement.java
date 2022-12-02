@@ -27,5 +27,17 @@ public class eateryCustomerManagement {
         this.customerDirectory = customerDirectory;
     }
   
-  
+
+    public void addNewCustomer()
+    {
+        Customer cust=new Customer();
+        customerDirectory.add(cust);
+        
+    }
+    public void deleteCustomer(Customer cust)
+    {
+        customerDirectory.remove(cust);
+    }
+    
+
 }
