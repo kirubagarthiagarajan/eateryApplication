@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ktkir
@@ -13,15 +15,40 @@ public class Restaraunt {
     private String restarauntName;
     private String city;
     private int rating;
+    private ArrayList<food> dishes;
+    private ArrayList<Order> currentOrders;
+
+    public void addToCurrentOrders(Order order) {
+        this.currentOrders.add(order);
+    }
+      public void removeFromCurrentOrders(int orderId) {
+       for(Order order :this.currentOrders) {
+        if(order.getOrderId()==orderId) {
+        this.currentOrders.remove(order);
+        return;
+      }
+    }
+    }
+
+    public ArrayList<Order> getCurrentOrders() {
+        return currentOrders;
+    }
+
+    public void setDishes(ArrayList<food> dishes) {
+        this.dishes = dishes;
+    }
 
     public Restaraunt(int restarauntId, String restarauntName,String city)
     {
+        
         this.restarauntId=restarauntId;
         this.restarauntName=restarauntName;
         this.city=city;
     }
    
-    
+    public void populateFoodForRestaraunt(){
+        
+    }
     public void setRestarauntName(String restarauntName) {
         this.restarauntName = restarauntName;
     }
