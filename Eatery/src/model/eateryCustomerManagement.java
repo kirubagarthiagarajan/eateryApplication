@@ -17,6 +17,7 @@ public class eateryCustomerManagement {
   public eateryCustomerManagement(){
       
       this.customerDirectory=new ArrayList<Customer>();
+      populateCustomerFromDb();
   }
 
     public ArrayList<Customer> getCustomerDirectory() {
@@ -26,17 +27,39 @@ public class eateryCustomerManagement {
     public void setCustomerDirectory(ArrayList<Customer> customerDirectory) {
         this.customerDirectory = customerDirectory;
     }
+    
+    //get customer from db
+    public void populateCustomerFromDb()
+    {
+        
+    }
+    
+     //replace db
+    public void replaceCustomerDb(){
+        
+    }
   
 
-    public void addNewCustomer()
+    public void addNewCustomer(Customer cust)
     {
-        Customer cust=new Customer();
+ 
         customerDirectory.add(cust);
-        
+
     }
     public void deleteCustomer(Customer cust)
     {
         customerDirectory.remove(cust);
+    }
+    
+    public Customer loginCustomer(int stateID, String password){
+        for(Customer cus:this.customerDirectory)
+        {
+            if(cus.getStateId()==stateID && cus.getPassword().equals(password))
+            {
+                return cus;
+            }
+        }
+        return null;
     }
     
 
