@@ -20,7 +20,8 @@ public class Deliverypersonmain extends javax.swing.JFrame {
     public Deliverypersonmain(eateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
-        
+   
+       //l,l
         setDefaultCloseOperation(Deliverypersonmain.DISPOSE_ON_CLOSE);
     }
 
