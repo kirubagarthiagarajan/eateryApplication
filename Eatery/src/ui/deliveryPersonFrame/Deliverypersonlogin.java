@@ -34,21 +34,26 @@ public class Deliverypersonlogin extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tfstateid = new javax.swing.JTextField();
+        tfpid = new javax.swing.JTextField();
         tfpswd = new javax.swing.JPasswordField();
         btnlogin = new javax.swing.JButton();
 
-        jLabel1.setText("STATEID");
+        jLabel1.setText("DELIVERYPERSONID");
 
         jLabel2.setText("PASSWORD");
 
-        tfstateid.addActionListener(new java.awt.event.ActionListener() {
+        tfpid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfstateidActionPerformed(evt);
+                tfpidActionPerformed(evt);
             }
         });
 
         btnlogin.setText("LOGIN");
+        btnlogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnloginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,11 +66,11 @@ public class Deliverypersonlogin extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfstateid)
+                    .addComponent(tfpid)
                     .addComponent(tfpswd, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(390, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnlogin)
                 .addGap(373, 373, 373))
         );
@@ -75,7 +80,7 @@ public class Deliverypersonlogin extends javax.swing.JPanel {
                 .addGap(92, 92, 92)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tfstateid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfpid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -97,9 +102,18 @@ public class Deliverypersonlogin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfstateidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfstateidActionPerformed
+    private void tfpidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfpidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfstateidActionPerformed
+    }//GEN-LAST:event_tfpidActionPerformed
+
+    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
+        // TODO add your handling code here:
+        int id=Integer.parseInt(tfpid.getText());
+        String pswd=tfpswd.getText();
+        
+        eatery.deliveryPersonLogin(id,pswd);
+        
+    }//GEN-LAST:event_btnloginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -107,7 +121,7 @@ public class Deliverypersonlogin extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField tfpid;
     private javax.swing.JPasswordField tfpswd;
-    private javax.swing.JTextField tfstateid;
     // End of variables declaration//GEN-END:variables
 }
