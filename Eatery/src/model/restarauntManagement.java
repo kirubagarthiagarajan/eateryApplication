@@ -12,11 +12,29 @@ import java.util.ArrayList;
  */
 public class restarauntManagement {
       private ArrayList<Restaraunt> restarauntDirectory;  
-  
+      private foodDirectory foodDirect;
   public restarauntManagement(){
       this.restarauntDirectory=new ArrayList<Restaraunt>();
+      this.foodDirect=new foodDirectory();
+      populateDishesInRestaraunt();
   }
 
+  
+   public void populateDishesInRestaraunt(){
+       
+       if(this.foodDirect.getFoodList().size() > 0 )
+       {
+         
+        for(Restaraunt res: this.restarauntDirectory)
+        {
+         res.setDishes(this.foodDirect.getFoodByRestaraunt(res.getRestarauntId()));  
+        } 
+       }
+        
+     
+   }
+   
+   
     public ArrayList<Restaraunt> getRestarauntDirectory() {
         return restarauntDirectory;
     }
@@ -55,5 +73,50 @@ public class restarauntManagement {
     }
 
   }
+    
+    void addFoodToRestaraunt(food f, int restarauntId){
+        this.foodDirect.addFood(f);
+        ArrayList<food> foodListForRestaraunt = new ArrayList<>();
+        for(food fo: this.foodDirect.getFoodList())
+        {
+            if(fo.getRestarauntId()==restarauntId)
+            {
+                foodListForRestaraunt.add(fo);
+            }
+        }
+        
+        
+        for(Restaraunt res: this.restarauntDirectory)
+        {
+            if(res.getRestarauntId()==restarauntId)
+            {
+                res.setDishes(foodListForRestaraunt);
+            }
+        } 
+    }
+    
+    
+    public void assingOrdertoRestaraunt(Order order, int restarauntId){
+        for(Restaraunt res : this.restarauntDirectory)
+        {
+            if(res.getRestarauntId()==restarauntId)
+            {
+                res.addToCurrentOrders(order);
+            }
+        }
+        
+    }
+    
+    public void removeOrderFromRestaraunt(int orderId, int restarauntId)
+    {
+        for(Restaraunt res :this.restarauntDirectory)
+        {
+            if(res.getRestarauntId()==restarauntId)
+            {
+               res.removeFromCurrentOrders(orderId);
+            }
+        }
+    }
+   
   
 }

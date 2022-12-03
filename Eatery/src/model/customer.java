@@ -20,7 +20,19 @@ private String name;
 private String password;
 private String city;
 private ArrayList<Order> pastOrders;
-private Order activeOrder;
+private ArrayList<Order> activeOrders;
+
+public Customer(int stateId, String name, String mobile, String email, String city, String password, String address)
+{
+    this.stateId=stateId;
+    this.name=name;
+    this.mobile=mobile;
+    this.email=email;
+    this.city=city;
+    this.password=password;
+    this.address=address;
+}
+
 
     public int getStateId() {
         return stateId;
@@ -86,12 +98,12 @@ private Order activeOrder;
         this.pastOrders = pastOrders;
     }
 
-    public void setActiveOrder(Order activeOrder) {
-        this.activeOrder = activeOrder;
+    public void setActiveOrders(ArrayList<Order> activeOrder) {
+        this.activeOrders = activeOrder;
     }
 
-    public Order getActiveOrder() {
-        return activeOrder;
+    public ArrayList<Order> getActiveOrders() {
+        return activeOrders;
     }
 
   
