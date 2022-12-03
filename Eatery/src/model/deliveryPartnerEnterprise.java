@@ -4,11 +4,27 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ktkir
  */
 
 public class deliveryPartnerEnterprise {
-private deliveryPersonManagement deliveryPersonManagement;  
+private deliveryPersonManagement deliveryPersonManagement; 
+//private orderHandlingDepartment 
+public deliveryPartnerEnterprise()
+{
+    this.deliveryPersonManagement=new deliveryPersonManagement();
+}
+
+
+public void addDeliveryPerson(DeliveryPerson delPer ){
+    this.deliveryPersonManagement.addNewDeliveryPerson(delPer);
+}
+
+   public DeliveryPerson loginDeliveryPerson(int stateID, String password){
+  return this.deliveryPersonManagement.loginDeliveryPerson(stateID, password);
+    }
 }

@@ -18,13 +18,15 @@ public class eateryEnterprise {
     private deliveryPartnerEnterprise deliveryEnterPrise;
     private orderDirectory orderList;
    
-  public eateryEnterprise(){
-      this.eatCusManage=new eateryCustomerManagement();
-      this.restarauntManagement=new restarauntManagement();  
-      this.orderList= new orderDirectory();
+  public eateryEnterprise(eateryCustomerManagement eatCusManage,restarauntManagement restarauntManagement,deliveryPartnerEnterprise deliveryEnterPrise,orderDirectory orderList){
+      this.eatCusManage=eatCusManage;
+      this.restarauntManagement=restarauntManagement;
+      this.deliveryEnterPrise=deliveryEnterPrise;
+      this.restarauntManagement=new restarauntManagement();
+      this.orderList=orderList;
   }
   
-  public void addCustomer(int stateId, String name, String mobile, String email, String city, String password, String address)
+  public void addCustomer(int stateId, String name, int mobile, String email, String city, String password, String address)
   {
       Customer cust= new Customer(stateId, name, mobile, email, city, password, address);
       this.eatCusManage.addNewCustomer(cust);
@@ -57,7 +59,7 @@ public class eateryEnterprise {
     public void placeOrder(Order order)
     {
         this.orderList.addOrder(order);
-        
+//       boolean  this.restarauntManagement.checkIfRestaurantAcceptsOrder()
         this.restarauntManagement.assingOrdertoRestaraunt(order,order.getRestarauntId());
     }
     
@@ -67,5 +69,25 @@ public class eateryEnterprise {
         this.restarauntManagement.removeOrderFromRestaraunt(order.getOrderId(),order.getRestarauntId());
     }
    
+    
+//    private int stateId;
+//private String email;
+//private int mobile;
+//private String address;
+//private String name;
+//private String password;
+//private String city;
+    
+     public void addDeliveryPerson(int stateId, String email, int mobile, String address, String name, String password, String city)
+  {
+      DeliveryPerson delPer= new DeliveryPerson(stateId,email,mobile, address, name,password,city);
+      this.deliveryEnterPrise.addDeliveryPerson(delPer);
+  }
+     
+     public DeliveryPerson deliveryPersonLogin(int stateId, String password)
+     {
+         return this.deliveryEnterPrise.loginDeliveryPerson(stateId, password);
+     }
+  
  
 }

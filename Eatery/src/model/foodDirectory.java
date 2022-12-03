@@ -4,7 +4,15 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.SQLConnection.SQLConnection;
 
 /**
  *
@@ -36,13 +44,49 @@ public void addFood(food f)
 
 public void replaceFoodList()
 {
-    //db replace old list  with new this.foodList;
-    populateFoodList();
+      try {
+          //db replace old list  with new this.foodList;
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+          String TruncQuery="Truncate table Food";
+          stmt.executeUpdate(TruncQuery);
+          for (food f: this.foodList)
+          {
+              String InsertQuery="Insert into Food (FoodId,FoodName,Price,RestaurantId) values ('"+f.getFoodId()+"','"+f.getName()+"','"+f.getPrice()+"','"+f.getRestarauntId()+"')";
+              stmt.executeUpdate(InsertQuery);
+          }
+          stmt.close();
+          con.close();
+          
+          
+          populateFoodList();
+      } catch (SQLException ex) {
+          Logger.getLogger(foodDirectory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      populateFoodList();
 }
 
 //db connection with getting food
 public void populateFoodList(){
-    
+      try {
+          Connection con=SQLConnection.dbconnector();
+          String sql="select * from Food";
+          PreparedStatement ps=con.prepareStatement(sql);
+          ResultSet st=ps.executeQuery();
+          while(st.next())
+             {
+                 int foodId=(st.getInt("FoodId"));
+                 int restaurantId=(st.getInt("RestaurantId"));
+                 String Name=(st.getString("FoodName"));
+                 int Price=st.getInt("Price");
+                 food f= new food(Name,Price,restaurantId,foodId);
+                 foodList.add(f);
+                 
+             }
+      } catch (SQLException ex) {
+          Logger.getLogger(foodDirectory.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      
 }
 
 public void removeFood(int foodId)

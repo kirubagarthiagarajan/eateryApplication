@@ -27,7 +27,7 @@ public class orderDirectory {
 }  
      
      public void populateOrderList(){
-         //populate order from db
+         
      }
      
      public void addOrder(Order order)

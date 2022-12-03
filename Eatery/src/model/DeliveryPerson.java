@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package model;
 
 import java.util.ArrayList;
@@ -11,7 +8,7 @@ import java.util.ArrayList;
  * @author ktkir
  */
 
-public class Customer {
+public class DeliveryPerson {
 private int stateId;
 private String email;
 private int mobile;
@@ -19,10 +16,9 @@ private String address;
 private String name;
 private String password;
 private String city;
-private ArrayList<Order> pastOrders;
-private ArrayList<Order> activeOrders;
+private Order activeOrder;
 
-public Customer(int stateId, String name, int mobile, String email, String city, String password, String address)
+public DeliveryPerson(int stateId, String name, int mobile, String email, String city, String password, String address)
 {
     this.stateId=stateId;
     this.name=name;
@@ -31,6 +27,7 @@ public Customer(int stateId, String name, int mobile, String email, String city,
     this.city=city;
     this.password=password;
     this.address=address;
+    this.activeOrder = null;
 }
 
 
@@ -61,11 +58,6 @@ public Customer(int stateId, String name, int mobile, String email, String city,
     public String getCity() {
         return city;
     }
-
-    public ArrayList<Order> getPastOrders() {
-        return pastOrders;
-    }
-
     public void setStateId(int stateId) {
         this.stateId = stateId;
     }
@@ -93,17 +85,15 @@ public Customer(int stateId, String name, int mobile, String email, String city,
     public void setCity(String city) {
         this.city = city;
     }
-
-    public void setPastOrders(ArrayList<Order> pastOrders) {
-        this.pastOrders = pastOrders;
+    public boolean isAvailable() {
+      return this.activeOrder != null;
+    }
+    public void setActiveOrder(Order activeOrder) {
+        this.activeOrder = activeOrder;
     }
 
-    public void setActiveOrders(ArrayList<Order> activeOrder) {
-        this.activeOrders = activeOrder;
-    }
-
-    public ArrayList<Order> getActiveOrders() {
-        return activeOrders;
+    public Order getActiveOrder() {
+        return activeOrder;
     }
 
   

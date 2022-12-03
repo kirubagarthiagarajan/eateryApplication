@@ -76,21 +76,12 @@ public class restarauntManagement {
     
     void addFoodToRestaraunt(food f, int restarauntId){
         this.foodDirect.addFood(f);
-        ArrayList<food> foodListForRestaraunt = new ArrayList<>();
-        for(food fo: this.foodDirect.getFoodList())
-        {
-            if(fo.getRestarauntId()==restarauntId)
-            {
-                foodListForRestaraunt.add(fo);
-            }
-        }
-        
-        
+                
         for(Restaraunt res: this.restarauntDirectory)
         {
             if(res.getRestarauntId()==restarauntId)
             {
-                res.setDishes(foodListForRestaraunt);
+                res.addToDishes(f);
             }
         } 
     }

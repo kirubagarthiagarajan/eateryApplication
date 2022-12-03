@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.SQLConnection.SQLConnection;
+import model.eateryEnterprise;
 
 /**
  *
@@ -21,8 +22,10 @@ public class CustomerSignUp extends javax.swing.JPanel {
     /**
      * Creates new form CustomerSignUp
      */
-    public CustomerSignUp() {
+    eateryEnterprise eatery;
+    public CustomerSignUp(eateryEnterprise eatery) {
         initComponents();
+        this.eatery=eatery;
     }
 
     /**
@@ -45,13 +48,13 @@ public class CustomerSignUp extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         txtNumber = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtCity = new javax.swing.JTextField();
-        txtCid = new javax.swing.JTextField();
+        txtStateId = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         txtCpassword = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         btnSignup = new javax.swing.JButton();
+        txtCity = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Name");
 
@@ -61,7 +64,7 @@ public class CustomerSignUp extends javax.swing.JPanel {
 
         jLabel4.setText("City");
 
-        jLabel5.setText("Customer ID:");
+        jLabel5.setText("Customer Id");
 
         jLabel6.setText("Address");
 
@@ -79,6 +82,8 @@ public class CustomerSignUp extends javax.swing.JPanel {
                 btnSignupActionPerformed(evt);
             }
         });
+
+        txtCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose City", "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -107,10 +112,10 @@ public class CustomerSignUp extends javax.swing.JPanel {
                         .addComponent(txtName)
                         .addComponent(txtNumber)
                         .addComponent(txtEmail)
-                        .addComponent(txtCity)
-                        .addComponent(txtCid)
-                        .addComponent(txtPassword)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                        .addComponent(txtStateId)
+                        .addComponent(txtPassword))
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,13 +133,13 @@ public class CustomerSignUp extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStateId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -143,31 +148,37 @@ public class CustomerSignUp extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSignup)
-                .addGap(11, 11, 11))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
-        try {
-            // TODO add your handling code here:
-            Connection con=SQLConnection.dbconnector();
-            Statement stmt=con.createStatement();
-            String insertQuery ="";
-            stmt.executeUpdate(insertQuery);
-            stmt.close();
-            con.close();
-            JOptionPane.showMessageDialog(this, "Registered Sucessfully");
-
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,"Failed");
+        
+        
+        int stateid=Integer.parseInt(txtStateId.getText());
+        String name=txtName.getText();
+        String email=txtEmail.getText();
+        String Address=txtAddress.getText();
+        String city=txtCity.getSelectedItem().toString();
+        int number=Integer.parseInt(txtNumber.getText());
+        String password=txtPassword.getText();
+        if (city.equals("Choose City"))
+                {
+                   JOptionPane.showMessageDialog(this, "Please Select a City", "Choose a city", HEIGHT);
+                }
+        else
+        {
+        eatery.addCustomer(stateid, name, number, email, city, password, Address);
+        
+        JOptionPane.showMessageDialog(this, "Registered Sucessfully", "Sign Up Sucess", HEIGHT);
         }
+       
         
     }//GEN-LAST:event_btnSignupActionPerformed
 
@@ -184,12 +195,12 @@ public class CustomerSignUp extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAddress;
-    private javax.swing.JTextField txtCid;
-    private javax.swing.JTextField txtCity;
+    private javax.swing.JComboBox<String> txtCity;
     private javax.swing.JPasswordField txtCpassword;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNumber;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtStateId;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,9 @@ public class Restaraunt {
     private int rating;
     private ArrayList<food> dishes;
     private ArrayList<Order> currentOrders;
+    private restarauntBillingDepartment billingDepartment;
+    private restarauntKitchenManagement kitchen;
+    private restarauntOnlineOrderManagement orderManager;
 
     public void addToCurrentOrders(Order order) {
         this.currentOrders.add(order);
@@ -30,10 +33,17 @@ public class Restaraunt {
     }
     }
 
+    public ArrayList<food> getDishes() {
+        return dishes;
+    }
+
     public ArrayList<Order> getCurrentOrders() {
         return currentOrders;
     }
 
+    public void addToDishes(food Food){
+        this.dishes.add(Food);
+    }
     public void setDishes(ArrayList<food> dishes) {
         this.dishes = dishes;
     }
@@ -80,7 +90,5 @@ public class Restaraunt {
     public int getRating() {
         return rating;
     }
-    private restarauntBillingDepartment billingDepartment;
-    private restarauntKitchenManagement kitchen;
-    private restarauntOnlineOrderManagement orderManager;
+    
 }
