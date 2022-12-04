@@ -25,6 +25,8 @@ public class eateryEnterprise {
       this.deliveryEnterPrise=deliveryEnterPrise;
       this.restarauntEnterprise=new restarauntEnterprise();
       this.orderList=orderList;
+      this.addRestarauntToDirectory("restaraunt1", 12345, "BOSTON");
+      this.addEmployeeToRestaraunt( "Kiruba",123, 12345, "Menu Manager");
       
   }
   
@@ -52,11 +54,44 @@ public class eateryEnterprise {
         return restarauntListForCity;
     }
    
+   //food starts
     public void addFoodToRestaraunt(String foodName,int price,int restarauntId,int foodId)
     {
         food f= new food(foodName, price, restarauntId, foodId);
         this.restarauntEnterprise.addFoodToRestaraunt(f, restarauntId);
     }
+    
+    public Boolean isFoodIdUnique(int foodId)
+    {
+         return this.restarauntEnterprise.isFoodIdUnique(foodId);
+    }
+    
+    public ArrayList<food> getFoodList(){
+        return this.restarauntEnterprise.getFoodList();
+    }
+    
+     public food getFoodById(int foodId)
+     {
+         return this.restarauntEnterprise.getFoodById(foodId);
+     }
+    public void removeFood(int restarauntId, int foodId)
+    {
+        this.restarauntEnterprise.removeFood(restarauntId,foodId);
+    }
+    
+    public ArrayList<food> getFoodListByRestaraunt(int restarauntId){
+        return this.restarauntEnterprise.getFoodByRestaraunt(restarauntId);  
+    }
+            
+    public void updatefood(int restarauntId, int foodId, String foodName, int price )
+    {
+        this.restarauntEnterprise.updateFood(restarauntId,foodId,foodName,price);
+      
+    }
+    
+
+    
+            //food ends
       
     //employee starts
     public void addEmployeeToRestaraunt(String name,int employeeId, int restarauntId, String role)
@@ -72,6 +107,10 @@ public class eateryEnterprise {
         this.restarauntEnterprise.removeEmployeeFromRestaraunt(restarauntId,employeeId);
     }
      
+      public Restaraunt employeeLogin(String role,int employeeId, int restarauntId)
+     {
+         return this.restarauntEnterprise.loginEmployee(role,employeeId, restarauntId);
+     }
      //employee ends
     
     

@@ -39,7 +39,7 @@ public foodDirectory(){
 public void addFood(food f)
 {
    this.foodList.add(f);
- replaceFoodList();
+// replaceFoodList();
 }
 
 public void replaceFoodList()
@@ -100,7 +100,7 @@ public void removeFood(int foodId)
       }
       index++;
     } 
-    replaceFoodList();
+//    replaceFoodList();
 }
 
 public ArrayList<food> getFoodByRestaraunt(int restarauntId){
@@ -117,6 +117,28 @@ public ArrayList<food> getFoodByRestaraunt(int restarauntId){
     return foodByRestaraunt;
 }
 
+public food getFoodById(int foodId)
+{
+   for(food f : this.foodList)
+   {
+       if(f.getFoodId()==foodId)
+       {
+           return f;
+       }
+   }
+   return null;
+}
 
+public void updateFood(int foodId, String foodName, int price)
+{
+    for(food f:this.foodList)
+    {
+        if(f.getFoodId()==foodId)
+        {
+            f.setName(foodName);
+            f.setPrice(price);
+        }
+    }
+}
 
 }

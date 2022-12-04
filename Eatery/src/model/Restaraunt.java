@@ -29,11 +29,11 @@ public class Restaraunt {
         this.restarauntId=restarauntId;
         this.restarauntName=restarauntName;
         this.city=city;
+        this.dishes=new ArrayList<>();
+        this.currentOrders=new ArrayList<>();
+        this.employeeList=new ArrayList<>();
     }
    
-    public void populateFoodForRestaraunt(){
-        
-    }
     public void setRestarauntName(String restarauntName) {
         this.restarauntName = restarauntName;
     }
@@ -123,6 +123,30 @@ public class Restaraunt {
 
     public void addToDishes(food Food){
         this.dishes.add(Food);
+    }
+    
+    public void removeFromDishes(int foodId){
+                 int index = 0;
+    for (food f :this.dishes) {
+
+      if (f.getFoodId()== foodId) {
+        this.dishes.remove(index);
+        return;
+      }
+      index++;
+    } 
+    }
+    
+    
+    public void updateDish( int foodId, String foodName, int price){
+        for(food f:this.dishes)
+        {
+            if(f.getFoodId()==foodId)
+            {
+                f.setName(foodName);
+                f.setPrice(price);
+            }
+        }
     }
     public void setDishes(ArrayList<food> dishes) {
         this.dishes = dishes;

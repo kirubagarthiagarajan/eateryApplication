@@ -79,6 +79,11 @@ public class restarauntEnterprise {
         } 
     }
     
+    public ArrayList<food> getFoodList()
+    {
+        return this.foodDirect.getFoodList();
+    }
+    
        public void populateDishesInRestaraunt(){
        
        if(this.foodDirect.getFoodList().size() > 0 )
@@ -90,6 +95,59 @@ public class restarauntEnterprise {
         } 
        }
    }
+       
+       public Boolean isFoodIdUnique(int foodId)
+       {
+             for(food food:this.foodDirect.getFoodList()) {
+          if(food.getFoodId()== foodId) {
+            return false;
+          }
+        }
+        return true;   
+       }
+       
+       public void removeFood(int restId, int foodId)
+       {
+           this.foodDirect.removeFood(foodId);
+           removeFoodFromRestaraunt(restId,foodId);
+       }
+       
+           public void removeFoodFromRestaraunt(int restarauntId,int foodId)
+    {
+        for(Restaraunt res :this.restarauntDirectory)
+        {
+            if(res.getRestarauntId()==restarauntId)
+            {
+               res.removeFromDishes(foodId);
+            }
+        }
+    }
+           
+           public food getFoodById(int foodId){
+               return this.foodDirect.getFoodById(foodId);
+           }
+           
+           public ArrayList<food> getFoodByRestaraunt(int restId)  
+           {
+              return this.foodDirect.getFoodByRestaraunt(restId);
+           }
+       
+           public void updateFood(int restarauntId, int foodId, String foodName, int price)
+           {
+               this.foodDirect.updateFood( foodId,  foodName,  price);
+                 updateFoodinRestaraunt( restarauntId,  foodId,  foodName,  price);
+           }
+       
+           public void updateFoodinRestaraunt(int restarauntId, int foodId, String foodName, int price)
+           {
+               for(Restaraunt res: this.restarauntDirectory)
+               {
+                   if(res.getRestarauntId()==restarauntId)
+                   {
+                       res.updateDish(foodId,foodName,price);
+                   }
+               }
+           }
        
        //food ends
        
@@ -126,6 +184,26 @@ public class restarauntEnterprise {
           }
       }
      }
+        
+        public Restaraunt loginEmployee(String role,int employeeId, int restarauntId)
+        {
+            
+            for(Restaraunt res : this.restarauntDirectory)
+            {
+                if(res.getRestarauntId()==restarauntId)
+                {
+                    for(Employee emp : res.getEmployeeList())
+                    {
+                        if(emp.getEmployeeId()==employeeId && emp.getRole()==role )
+                        {
+                            return res;
+                        }
+                    }
+                }
+            }
+            
+            return null;
+        }
      
      //employee ends 
     
