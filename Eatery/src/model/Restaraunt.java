@@ -17,36 +17,11 @@ public class Restaraunt {
     private int rating;
     private ArrayList<food> dishes;
     private ArrayList<Order> currentOrders;
+    private ArrayList<Employee> employeeList;
     private restarauntBillingDepartment billingDepartment;
     private restarauntKitchenManagement kitchen;
     private restarauntOnlineOrderManagement orderManager;
 
-    public void addToCurrentOrders(Order order) {
-        this.currentOrders.add(order);
-    }
-      public void removeFromCurrentOrders(int orderId) {
-       for(Order order :this.currentOrders) {
-        if(order.getOrderId()==orderId) {
-        this.currentOrders.remove(order);
-        return;
-      }
-    }
-    }
-
-    public ArrayList<food> getDishes() {
-        return dishes;
-    }
-
-    public ArrayList<Order> getCurrentOrders() {
-        return currentOrders;
-    }
-
-    public void addToDishes(food Food){
-        this.dishes.add(Food);
-    }
-    public void setDishes(ArrayList<food> dishes) {
-        this.dishes = dishes;
-    }
 
     public Restaraunt(int restarauntId, String restarauntName,String city)
     {
@@ -89,6 +64,68 @@ public class Restaraunt {
 
     public int getRating() {
         return rating;
+    }  
+
+    public ArrayList<Employee> getEmployeeList() {
+        return employeeList;
+    }
+    
+    
+    
+    
+        
+
+    public void addToCurrentOrders(Order order) {
+        this.currentOrders.add(order);
+    }
+     
+    public void removeFromCurrentOrders(int orderId) {
+    int index = 0;
+    for (Order order :this.currentOrders) {
+
+      if (order.getOrderId()== orderId) {
+        this.currentOrders.remove(index);
+        return;
+      }
+      index++;
+    } 
+  
+    }
+
+    public ArrayList<food> getDishes() {
+        return dishes;
+    }
+
+    public ArrayList<Order> getCurrentOrders() {
+        return currentOrders;
+    }
+    
+     public void addToEmployeeList(Employee emp){
+        this.employeeList.add(emp);
+    }
+     
+     public void removeFromEmployeeList(int EmployeeId){
+         int index = 0;
+    for (Employee emp :this.employeeList) {
+
+      if (emp.getEmployeeId()== EmployeeId) {
+        this.employeeList.remove(index);
+        return;
+      }
+      index++;
+    } 
+    }
+     
+    public void setEmployeeList(ArrayList<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+    
+
+    public void addToDishes(food Food){
+        this.dishes.add(Food);
+    }
+    public void setDishes(ArrayList<food> dishes) {
+        this.dishes = dishes;
     }
     
 }

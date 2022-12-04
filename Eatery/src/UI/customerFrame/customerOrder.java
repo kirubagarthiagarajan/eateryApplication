@@ -54,6 +54,11 @@ public class customerOrder extends javax.swing.JPanel {
         jLabel1.setText("Choose City");
 
         cityDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "New York", "Virginia", "New Jersey", "Buffalo" }));
+        cityDropDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityDropDownActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Restaraunts in your City");
@@ -213,6 +218,10 @@ public class customerOrder extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cityDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityDropDownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityDropDownActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

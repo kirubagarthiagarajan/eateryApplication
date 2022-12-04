@@ -14,16 +14,18 @@ import java.util.ArrayList;
 
 public class eateryEnterprise {
     private eateryCustomerManagement eatCusManage;
-    private restarauntManagement restarauntManagement;
+    private restarauntEnterprise restarauntEnterprise;
     private deliveryPartnerEnterprise deliveryEnterPrise;
     private orderDirectory orderList;
    
-  public eateryEnterprise(eateryCustomerManagement eatCusManage,restarauntManagement restarauntManagement,deliveryPartnerEnterprise deliveryEnterPrise,orderDirectory orderList){
+   
+  public eateryEnterprise(eateryCustomerManagement eatCusManage,restarauntEnterprise restarauntManagement,deliveryPartnerEnterprise deliveryEnterPrise,orderDirectory orderList){
       this.eatCusManage=eatCusManage;
-      this.restarauntManagement=restarauntManagement;
+      this.restarauntEnterprise=restarauntManagement;
       this.deliveryEnterPrise=deliveryEnterPrise;
-      this.restarauntManagement=new restarauntManagement();
+      this.restarauntEnterprise=new restarauntEnterprise();
       this.orderList=orderList;
+      
   }
   
   public void addCustomer(int stateId, String name, int mobile, String email, String city, String password, String address)
@@ -41,7 +43,7 @@ public class eateryEnterprise {
     {
         ArrayList<Restaraunt> restarauntListForCity=new ArrayList<>();
         
-        for (Restaraunt res : this.restarauntManagement.getRestarauntDirectory() )  
+        for (Restaraunt res : this.restarauntEnterprise.getRestarauntDirectory() )  
         {
             if(res.getCity()==cityName);
             restarauntListForCity.add(res);
@@ -53,30 +55,39 @@ public class eateryEnterprise {
     public void addFoodToRestaraunt(String foodName,int price,int restarauntId,int foodId)
     {
         food f= new food(foodName, price, restarauntId, foodId);
-        this.restarauntManagement.addFoodToRestaraunt(f, restarauntId);
+        this.restarauntEnterprise.addFoodToRestaraunt(f, restarauntId);
     }
+      
+    //employee starts
+    public void addEmployeeToRestaraunt(String name,int employeeId, int restarauntId, String role)
+    {
+        Employee emp= new Employee(name, employeeId, restarauntId, role);
+        this.restarauntEnterprise.addEmployeeToRestaraunt(emp);
+    }
+    
+     public void removeEmployeeFromRestaraunt(int restarauntId, int employeeId)
+    {
+        
+     
+        this.restarauntEnterprise.removeEmployeeFromRestaraunt(restarauntId,employeeId);
+    }
+     
+     //employee ends
+    
     
     public void placeOrder(Order order)
     {
         this.orderList.addOrder(order);
-//       boolean  this.restarauntManagement.checkIfRestaurantAcceptsOrder()
-        this.restarauntManagement.assingOrdertoRestaraunt(order,order.getRestarauntId());
+//       boolean  this.restarauntEnterprise.checkIfRestaurantAcceptsOrder()
+        this.restarauntEnterprise.assingOrdertoRestaraunt(order,order.getRestarauntId());
     }
     
     public void cancelOrder(Order order)
     {
         this.orderList.removeOrder(order.getOrderId());
-        this.restarauntManagement.removeOrderFromRestaraunt(order.getOrderId(),order.getRestarauntId());
+        this.restarauntEnterprise.removeOrderFromRestaraunt(order.getOrderId(),order.getRestarauntId());
     }
    
-    
-//    private int stateId;
-//private String email;
-//private int mobile;
-//private String address;
-//private String name;
-//private String password;
-//private String city;
     
      public void addDeliveryPerson(int stateId, String email, int mobile, String address, String name, String password, String city)
   {
@@ -88,6 +99,41 @@ public class eateryEnterprise {
      {
          return this.deliveryEnterPrise.loginDeliveryPerson(stateId, password);
      }
+     
+     public ArrayList<Restaraunt> getAllrestaraunts()
+     {
+         return this.restarauntEnterprise.getRestarauntDirectory();
+     }
+     
+     public void addRestarauntToDirectory(String restarauntName, int restarauntId, String cityName){
+         Restaraunt res= new Restaraunt(restarauntId, restarauntName, cityName);
+         this.restarauntEnterprise.addRestaraunt(res);
+         
+     }
+     
+     public Boolean isRestarauntIdUnique(int restarauntId)
+     {
+        return this.restarauntEnterprise.isRestarauntIdUnique(restarauntId);
+     }
+     
+     public Restaraunt getRestarauntById(int restarauntId){
+         return this.restarauntEnterprise.getRestarauntById(restarauntId);
+  
+     }
+     
+     public void removeRestaraunt(int restarauntId)
+     {
+         this.restarauntEnterprise.removeRestaraunt(restarauntId);
+     }
+     
+     public void updateRestaraunt(int restarauntId,String editCity,String cityName)
+     {
+         this.restarauntEnterprise.updateRestaraunt(restarauntId,editCity,cityName);
+     }
+     
+     
+  
+     
   
  
 }

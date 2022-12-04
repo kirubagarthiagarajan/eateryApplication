@@ -10,29 +10,20 @@ import java.util.ArrayList;
  *
  * @author ktkir
  */
-public class restarauntManagement {
+public class restarauntEnterprise {
       private ArrayList<Restaraunt> restarauntDirectory;  
       private foodDirectory foodDirect;
-  public restarauntManagement(){
+       private EmployeeDirectory employeeList;
+  public restarauntEnterprise(){
       this.restarauntDirectory=new ArrayList<Restaraunt>();
       this.foodDirect=new foodDirectory();
       populateDishesInRestaraunt();
+      this.employeeList=new EmployeeDirectory();
   }
 
   
-   public void populateDishesInRestaraunt(){
-       
-       if(this.foodDirect.getFoodList().size() > 0 )
-       {
-         
-        for(Restaraunt res: this.restarauntDirectory)
-        {
-         res.setDishes(this.foodDirect.getFoodByRestaraunt(res.getRestarauntId()));  
-        } 
-       }
-        
-     
-   }
+
+
    
    
     public ArrayList<Restaraunt> getRestarauntDirectory() {
@@ -74,6 +65,8 @@ public class restarauntManagement {
 
   }
     
+    //food starts
+    
     void addFoodToRestaraunt(food f, int restarauntId){
         this.foodDirect.addFood(f);
                 
@@ -85,6 +78,56 @@ public class restarauntManagement {
             }
         } 
     }
+    
+       public void populateDishesInRestaraunt(){
+       
+       if(this.foodDirect.getFoodList().size() > 0 )
+       {
+         
+        for(Restaraunt res: this.restarauntDirectory)
+        {
+         res.setDishes(this.foodDirect.getFoodByRestaraunt(res.getRestarauntId()));  
+        } 
+       }
+   }
+       
+       //food ends
+       
+         //employee starts 
+     public void populateEmployeeInRestaraunt(){
+       
+       if(this.employeeList.getEmployeeList().size() > 0 )
+       {
+         
+        for(Restaraunt res: this.restarauntDirectory)
+        {
+         res.setEmployeeList(this.employeeList.getEmployeeListByRestaraunt(res.getRestarauntId()));  
+        } 
+       }
+   }
+     
+     
+     public void addEmployeeToRestaraunt(Employee emp){
+      for(Restaraunt res :this.restarauntDirectory)
+      {
+          if(res.getRestarauntId()==emp.getRestarauntId())
+          {
+              res.addToEmployeeList(emp);
+          }
+      }
+     }
+     
+        public void removeEmployeeFromRestaraunt(int restarauntId,int employeeId){
+      for(Restaraunt res :this.restarauntDirectory)
+      {
+          if(res.getRestarauntId()==restarauntId)
+          {
+              res.removeFromEmployeeList(employeeId);
+          }
+      }
+     }
+     
+     //employee ends 
     
     
     public void assingOrdertoRestaraunt(Order order, int restarauntId){
@@ -108,6 +151,28 @@ public class restarauntManagement {
             }
         }
     }
+    
+    public Boolean isRestarauntIdUnique(int restId){
+      for(Restaraunt res:this.restarauntDirectory) {
+          if(res.getRestarauntId()== restId) {
+            return false;
+          }
+        }
+        return true;   
+    }
+    
+    public Restaraunt getRestarauntById (int restarauntId)
+    {
+          for(Restaraunt res:this.restarauntDirectory) {
+          if(res.getRestarauntId()== restarauntId) {
+            return res;
+          }
+        }
+          return null;
+    }
+    
+    
+     
    
   
 }

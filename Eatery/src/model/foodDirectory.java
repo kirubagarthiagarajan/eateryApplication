@@ -32,8 +32,8 @@ public class foodDirectory {
     }
   
 public foodDirectory(){
-    this.foodList=new ArrayList<food>();
-    populateFoodList();
+ this.foodList=new ArrayList<food>();
+ populateFoodList();
 }  
 
 public void addFood(food f)
@@ -68,24 +68,24 @@ public void replaceFoodList()
 
 //db connection with getting food
 public void populateFoodList(){
-      try {
-          Connection con=SQLConnection.dbconnector();
-          String sql="select * from Food";
-          PreparedStatement ps=con.prepareStatement(sql);
-          ResultSet st=ps.executeQuery();
-          while(st.next())
-             {
-                 int foodId=(st.getInt("FoodId"));
-                 int restaurantId=(st.getInt("RestaurantId"));
-                 String Name=(st.getString("FoodName"));
-                 int Price=st.getInt("Price");
-                 food f= new food(Name,Price,restaurantId,foodId);
-                 foodList.add(f);
-                 
-             }
-      } catch (SQLException ex) {
-          Logger.getLogger(foodDirectory.class.getName()).log(Level.SEVERE, null, ex);
-      }
+//      try {
+//          Connection con=SQLConnection.dbconnector();
+//          String sql="select * from Food";
+//          PreparedStatement ps=con.prepareStatement(sql);
+//          ResultSet st=ps.executeQuery();
+//          while(st.next())
+//             {
+//                 int foodId=(st.getInt("FoodId"));
+//                 int restaurantId=(st.getInt("RestaurantId"));
+//                 String Name=(st.getString("FoodName"));
+//                 int Price=st.getInt("Price");
+//                 food f= new food(Name,Price,restaurantId,foodId);
+//                 foodList.add(f);
+//                 
+//             }
+//      } catch (SQLException ex) {
+//          Logger.getLogger(foodDirectory.class.getName()).log(Level.SEVERE, null, ex);
+//      }
       
 }
 

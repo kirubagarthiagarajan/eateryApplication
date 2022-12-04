@@ -8,7 +8,8 @@ import model.deliveryPartnerEnterprise;
 import model.eateryCustomerManagement;
 import model.eateryEnterprise;
 import model.orderDirectory;
-import model.restarauntManagement;
+import model.restarauntEnterprise;
+import ui.customerFrame.CustomerLogin;
 import ui.systemAdmin.systemAdminLogin;
 
 /**
@@ -23,14 +24,14 @@ public class mainFrame extends javax.swing.JFrame {
     
     
         private eateryCustomerManagement eatCusManage;
-    private restarauntManagement restarauntManagement;
+    private restarauntEnterprise restarauntManagement;
     private deliveryPartnerEnterprise deliveryEnterPrise;
     private orderDirectory orderList;
     private eateryEnterprise eatery;
     public mainFrame() {
         initComponents();
         eatCusManage=new eateryCustomerManagement();
-        restarauntManagement=new restarauntManagement();
+        restarauntManagement=new restarauntEnterprise();
         deliveryEnterPrise=new deliveryPartnerEnterprise();
         orderList=new orderDirectory();
         eatery= new eateryEnterprise(eatCusManage,restarauntManagement,deliveryEnterPrise,orderList);
@@ -130,7 +131,8 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void btnCustomerFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerFrameActionPerformed
         // TODO add your handling code here:
-     
+        CustomerLogin custFrame= new CustomerLogin(eatery);
+        custFrame.setVisible(true);
     }//GEN-LAST:event_btnCustomerFrameActionPerformed
 
     private void btnDeliveryPersonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryPersonFrameActionPerformed
