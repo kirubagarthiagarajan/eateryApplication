@@ -4,7 +4,17 @@
  */
 package ui.customerFrame;
 
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import model.Customer;
+import model.Employee;
+import model.Order;
+import model.Restaraunt;
 import model.eateryEnterprise;
+import model.food;
 
 /**
  *
@@ -17,9 +27,31 @@ public class customerOrder extends javax.swing.JPanel {
      */
     
     eateryEnterprise eatery;
-    public customerOrder(eateryEnterprise eatery) {
+    ArrayList<Restaraunt> currentRestaruntList;
+    ArrayList<food> currentFoodList;
+    Customer currentCustomer;
+    ArrayList<food> orderFoodList;
+    int currentRestarautId;
+    int orderTotalprice;
+    
+    
+//      this.orderId=orderId;
+//          this.customerId=customerId;
+//          this.status=status;
+//          this.devlieryAddress=devlieryAddress;
+//          this.deliveryInstructions=deliveryInstructions;
+//          this.totalPrice=totalPrice;
+//          this.coupon=coupon;
+//          this.orderedFoodList=foodList;
+//          this.restarauntId=restarauntId;
+    public customerOrder(eateryEnterprise eatery, Customer currentCustomer) {
         initComponents();
         this.eatery=eatery;
+        this.currentRestaruntList=new ArrayList<>();
+        this.currentFoodList=new ArrayList<>();
+        this.currentCustomer=currentCustomer;
+        cityDropDown.setSelectedItem(null);
+        quantity.setText("");
     }
 
     /**
@@ -38,22 +70,30 @@ public class customerOrder extends javax.swing.JPanel {
         restarauntsTable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        orderTable = new javax.swing.JTable();
+        foodTable = new javax.swing.JTable();
         chooseRestaraunt = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        addToCart = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        orderTable = new javax.swing.JTable();
+        placeOrder = new javax.swing.JButton();
+        labelConfirmAddress = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        textConfirmAddress = new javax.swing.JTextArea();
+        confirmOrder = new javax.swing.JButton();
+        quantity = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        textOrderTotal = new javax.swing.JTextField();
+        textDeliveryInstructions = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        couponsDropdown = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Choose City");
 
-        cityDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "New York", "Virginia", "New Jersey", "Buffalo" }));
+        cityDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
         cityDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityDropDownActionPerformed(evt);
@@ -71,7 +111,7 @@ public class customerOrder extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Restaraunt Name", "Location", "City"
+                "Restaraunt Id", "Restaraunt Name", "City"
             }
         ));
         jScrollPane1.setViewportView(restarauntsTable);
@@ -79,32 +119,37 @@ public class customerOrder extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Your cart");
 
-        orderTable.setModel(new javax.swing.table.DefaultTableModel(
+        foodTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Food Name", "Food Price"
+                "Food Id", "Food Name", "Food Price"
             }
         ));
-        jScrollPane2.setViewportView(orderTable);
+        jScrollPane2.setViewportView(foodTable);
 
         chooseRestaraunt.setText("Choose Restaraunt");
-
-        jButton1.setText("Add to Cart");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        chooseRestaraunt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                chooseRestarauntActionPerformed(evt);
+            }
+        });
+
+        addToCart.setText("Add to Cart");
+        addToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToCartActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Choose your order");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -115,18 +160,39 @@ public class customerOrder extends javax.swing.JPanel {
                 "Food Name", "Food Price", "Quantity"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(orderTable);
 
-        jButton2.setText("Place Order");
+        placeOrder.setText("Checkout");
+        placeOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeOrderActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText(" Confirm Address");
+        labelConfirmAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelConfirmAddress.setText("Address in selected City");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        textConfirmAddress.setColumns(20);
+        textConfirmAddress.setRows(5);
+        jScrollPane4.setViewportView(textConfirmAddress);
 
-        jButton3.setText("Confirm and Place Order");
+        confirmOrder.setText("Confirm and Place Order");
+        confirmOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmOrderActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Quantity");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("Order Total ($):");
+
+        jLabel5.setText("Delivery Instructions");
+
+        couponsDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "50OFF", "25OFF" }));
+
+        jLabel8.setText("Coupons");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,45 +203,56 @@ public class customerOrder extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cityDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cityDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(136, 136, 136)
                                 .addComponent(chooseRestaraunt)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(labelConfirmAddress)
+                        .addGap(34, 34, 34)
+                        .addComponent(confirmOrder))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(397, 397, 397))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(146, 146, 146)
+                                        .addComponent(textDeliveryInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(17, 17, 17))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jButton3)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 343, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,54 +271,245 @@ public class customerOrder extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chooseRestaraunt)
-                    .addComponent(jButton1))
+                    .addComponent(addToCart)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(chooseRestaraunt)))
                 .addGap(57, 57, 57)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(textDeliveryInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(placeOrder))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(labelConfirmAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addComponent(jButton3)
-                .addContainerGap(105, Short.MAX_VALUE))
+                        .addGap(104, 104, 104)
+                        .addComponent(confirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+             int col= 0;
+        int row=restarauntsTable.getSelectedRow();
+        int foodId= Integer.parseInt(foodTable.getModel().getValueAt(row, col).toString());
+        food Food= eatery.getFoodById(foodId);
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+        }
+        if(quantity.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter the quantity of the selected food item, to add it toi your cart!");
+        }
+        else if(row > 0 && !quantity.getText().equals("" )){
+        orderFoodList.add(Food);
+         populateOrderTable();
+        }
+    }//GEN-LAST:event_addToCartActionPerformed
 
+ 
+     private void displayRestarauntTable() 
+     {
+        restarauntsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) restarauntsTable.getModel();
+        tableModel.setRowCount(0);
+        if (currentRestaruntList!=null) {
+            for (int i = 0; i < currentRestaruntList.size(); i++) {
+                Restaraunt res = currentRestaruntList.get(i);
+                Object[] tableRow = new Object[10];
+                tableRow[0] =res.getRestarauntId();
+                tableRow[1] =res.getRestarauntName();
+                tableRow[2]= res.getCity();
+                tableModel.addRow(tableRow);
+            }
+        }
+         
+     }
+    
+     
+     public void populateOrderTable(){
+             orderTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) orderTable.getModel();
+        tableModel.setRowCount(0);
+        if (orderFoodList!=null) {
+            for (int i = 0; i < orderFoodList.size(); i++) {
+                food Food = orderFoodList.get(i);
+                Object[] tableRow = new Object[10];
+                tableRow[0] =Food.getName();
+                tableRow[1]= Food.getPrice();
+                tableRow[2]= Food.getQuantity();
+                tableModel.addRow(tableRow);
+            }
+        }
+     }
+    
     private void cityDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityDropDownActionPerformed
         // TODO add your handling code here:
+        if(cityDropDown.getSelectedItem()!=null)
+        {
+           currentRestaruntList= eatery.getRestarauntByCity(cityDropDown.getSelectedItem().toString());
+        displayRestarauntTable();  
+        }
+       
     }//GEN-LAST:event_cityDropDownActionPerformed
 
+    private void chooseRestarauntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseRestarauntActionPerformed
+        // TODO add your handling code here:
+                                            
+        int col= 0;
+        int row=restarauntsTable.getSelectedRow();
+        int restarauntId= Integer.parseInt(restarauntsTable.getModel().getValueAt(row, col).toString());
+        currentRestarautId=restarauntId;
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+        } else {
+         this.currentFoodList=eatery.getFoodListByRestaraunt(restarauntId);
+         populateFoodTable();
+        }
+    }//GEN-LAST:event_chooseRestarauntActionPerformed
 
+    private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
+        // TODO add your handling code here:
+        int price=0;
+        for(food f : orderFoodList)
+        {
+            price+=f.getPrice();
+        }
+           
+        if(couponsDropdown.getSelectedItem()!=null)
+        {
+            if(couponsDropdown.getSelectedItem().toString()=="50OFF")
+            {
+             price=price/2;   
+            }
+            else if(couponsDropdown.getSelectedItem().toString()=="25OFF")
+            {
+              price=price*(3/4);     
+            }
+        }
+        orderTotalprice=price;
+        textOrderTotal.setText(String.valueOf(orderTotalprice));
+
+        if(currentCustomer.getCity()!=cityDropDown.getSelectedItem().toString())
+                {
+                    labelConfirmAddress.setVisible(true);
+                    textConfirmAddress.setVisible(true);
+                    confirmOrder.setVisible(true);
+                    placeOrder.setEnabled(false);
+                }
+        else
+        {
+            placeOrder(currentCustomer.getAddress());
+                    
+                                //  this.orderId=orderId;
+//          this.customerId=customerId;
+//          this.status=status;
+//          this.devlieryAddress=devlieryAddress;
+//          this.deliveryInstructions=deliveryInstructions;
+//          this.totalPrice=totalPrice;
+//          this.coupon=coupon;
+//          this.orderedFoodList=foodList;
+//          this.restarauntId=restarauntId;
+//          this.city=city;
+        }
+    }//GEN-LAST:event_placeOrderActionPerformed
+public void placeOrder(String deliveryAddress){
+    Random random = new Random();
+        int randomOrderId = random.nextInt(900) + 100;
+        String status="Ordered";
+        String delAddress=deliveryAddress;
+        String instructions=textDeliveryInstructions.getText();
+        
+Order ord= new Order(randomOrderId,currentCustomer.getStateId(),status,currentCustomer.getAddress(),instructions,orderTotalprice,orderFoodList,currentRestarautId,cityDropDown.getSelectedItem().toString());  
+}
+    private void confirmOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmOrderActionPerformed
+        // TODO add your handling code here:
+        
+        if(!textConfirmAddress.getText().equals(""))
+        {
+            
+        }
+    }//GEN-LAST:event_confirmOrderActionPerformed
+
+    
+    public void populateFoodTable(){
+     foodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) foodTable.getModel();
+        tableModel.setRowCount(0);
+        if (currentFoodList!=null) {
+            for (int i = 0; i < currentFoodList.size(); i++) {
+                food foo = currentFoodList.get(i);
+                Object[] tableRow = new Object[10];
+                tableRow[1] = foo.getFoodId();
+                tableRow[1] = foo.getName();
+                tableRow[2]= foo.getPrice();
+                tableModel.addRow(tableRow);
+            }
+        }
+        
+         
+    }
+    public void displayRestaraunts(){
+                  restarauntsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) restarauntsTable.getModel();
+        tableModel.setRowCount(0);
+        if (currentRestaruntList!=null) {
+            for (int i = 0; i < currentRestaruntList.size(); i++) {
+                Restaraunt res = currentRestaruntList.get(i);
+                Object[] tableRow = new Object[10];
+                tableRow[1] =res.getRestarauntName();
+                tableRow[2]= res.getCity();
+                tableModel.addRow(tableRow);
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToCart;
     private javax.swing.JButton chooseRestaraunt;
     private javax.swing.JComboBox<String> cityDropDown;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton confirmOrder;
+    private javax.swing.JComboBox<String> couponsDropdown;
+    private javax.swing.JTable foodTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelConfirmAddress;
     private javax.swing.JTable orderTable;
+    private javax.swing.JButton placeOrder;
+    private javax.swing.JTextField quantity;
     private javax.swing.JTable restarauntsTable;
+    private javax.swing.JTextArea textConfirmAddress;
+    private javax.swing.JTextField textDeliveryInstructions;
+    private javax.swing.JTextField textOrderTotal;
     // End of variables declaration//GEN-END:variables
 }

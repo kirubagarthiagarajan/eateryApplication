@@ -10,10 +10,10 @@ import java.util.ArrayList;
  *
  * @author ktkir
  */
-public class EmployeeDirectory {
+public class RestaurantEmployeeManagement {
     private ArrayList<Employee> employeeList;
 
-public EmployeeDirectory(){
+public RestaurantEmployeeManagement(){
  this.employeeList=new ArrayList<Employee>();
  populateEmployeeList();
 }  
@@ -59,6 +59,44 @@ public ArrayList<Employee> getEmployeeListByRestaraunt(int restarauntId){
     return employeeListByRestaraunt;
 }
 
+public Boolean isEmployeeIdUnique(int employeeId){
+      for(Employee emp : this.employeeList)
+        {
+            if(emp.getEmployeeId()==employeeId)
+            {
+                return false;
+            }
+        }
+        return true;
+}
+
+public Employee getEmployeeById(int employeeById){
+    for(Employee emp : this.employeeList)
+    {
+       if(emp.getEmployeeId()==employeeById)
+            {
+                return emp;
+            }
+        }
+        return null;
+}
+
+public void updateEmployee(int employeeId,  String employeeName,  String role)
+{
+    for(Employee emp : this.employeeList)
+    {
+        if(emp.getEmployeeId()==employeeId)
+        {
+            emp.setName(employeeName);
+            emp.setRole(role);
+        }
+    }
+}
+
+public void addEmployee(Employee emp)
+{
+    this.employeeList.add(emp);
+}
 
     
 }

@@ -4,6 +4,8 @@
  */
 package ui.restaurantFrame;
 
+import model.eateryEnterprise;
+
 /**
  *
  * @author BARATHI
@@ -13,8 +15,11 @@ public class restaurantLanding extends javax.swing.JFrame {
     /**
      * Creates new form restaurantLanding
      */
-    public restaurantLanding() {
+     private eateryEnterprise eatery;
+       
+    public restaurantLanding(eateryEnterprise eatery) {
         initComponents();
+        this.eatery=eatery;
     }
 
     /**
@@ -26,53 +31,77 @@ public class restaurantLanding extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnMenuManagement = new javax.swing.JButton();
+        btnEmployeeManagement = new javax.swing.JButton();
+        btnOrderManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Restaurant Employee Manager");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMenuManagement.setBackground(new java.awt.Color(255, 255, 0));
+        btnMenuManagement.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnMenuManagement.setText("MENU MANAGEMENT");
+        btnMenuManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMenuManagementActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Restaurant Food Manager");
+        btnEmployeeManagement.setBackground(new java.awt.Color(255, 255, 0));
+        btnEmployeeManagement.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnEmployeeManagement.setText("EMPLOYEE MANAGEMENT");
+        btnEmployeeManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeManagementActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Restaurant Order Manager");
+        btnOrderManagement.setBackground(new java.awt.Color(255, 255, 0));
+        btnOrderManagement.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnOrderManagement.setText("ORDER DELIVERY MANAGEMENT");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(205, 205, 205))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(btnOrderManagement))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(btnEmployeeManagement))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(391, 391, 391)
+                        .addComponent(btnMenuManagement)))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jButton1)
-                .addGap(28, 28, 28)
-                .addComponent(jButton2)
-                .addGap(32, 32, 32)
-                .addComponent(jButton3)
-                .addContainerGap(191, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(202, Short.MAX_VALUE)
+                .addComponent(btnOrderManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnEmployeeManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnMenuManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMenuManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuManagementActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        menuManagerLogin menuManagerLogin = new menuManagerLogin(eatery);
+        menuManagerLogin.setVisible(true);
+    }//GEN-LAST:event_btnMenuManagementActionPerformed
+
+    private void btnEmployeeManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeManagementActionPerformed
+        // TODO add your handling code here:
+        employeeManagerLogin empManageLogin = new employeeManagerLogin(eatery);
+        empManageLogin.setVisible(true);
+    }//GEN-LAST:event_btnEmployeeManagementActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,14 +133,14 @@ public class restaurantLanding extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new restaurantLanding().setVisible(true);
+//                new restaurantLanding().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnEmployeeManagement;
+    private javax.swing.JButton btnMenuManagement;
+    private javax.swing.JButton btnOrderManagement;
     // End of variables declaration//GEN-END:variables
 }

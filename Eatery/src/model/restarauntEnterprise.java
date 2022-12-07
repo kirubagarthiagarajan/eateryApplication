@@ -11,14 +11,14 @@ import java.util.ArrayList;
  * @author ktkir
  */
 public class restarauntEnterprise {
-      private ArrayList<Restaraunt> restarauntDirectory;  
-      private foodDirectory foodDirect;
-       private EmployeeDirectory employeeList;
-  public restarauntEnterprise(){
-      this.restarauntDirectory=new ArrayList<Restaraunt>();
-      this.foodDirect=new foodDirectory();
-      populateDishesInRestaraunt();
-      this.employeeList=new EmployeeDirectory();
+       private ArrayList<Restaraunt> restarauntDirectory;  
+       private RestaurantFoodManagement foodDirect;
+       private RestaurantEmployeeManagement employeeList;
+       public restarauntEnterprise(){
+       this.restarauntDirectory=new ArrayList<Restaraunt>();
+       this.foodDirect=new RestaurantFoodManagement();
+//       populateDishesInRestaraunt();
+       this.employeeList=new RestaurantEmployeeManagement();
   }
 
   
@@ -166,6 +166,7 @@ public class restarauntEnterprise {
      
      
      public void addEmployeeToRestaraunt(Employee emp){
+         this.employeeList.addEmployee(emp);
       for(Restaraunt res :this.restarauntDirectory)
       {
           if(res.getRestarauntId()==emp.getRestarauntId())
@@ -174,6 +175,7 @@ public class restarauntEnterprise {
           }
       }
      }
+     
      
         public void removeEmployeeFromRestaraunt(int restarauntId,int employeeId){
       for(Restaraunt res :this.restarauntDirectory)
@@ -187,7 +189,18 @@ public class restarauntEnterprise {
         
         public Restaraunt loginEmployee(String role,int employeeId, int restarauntId)
         {
-            
+            if(role=="Employee Manager")
+            {
+                for(Restaraunt res: this.restarauntDirectory)
+                {
+                    if(res.getRestarauntId()==restarauntId)
+                    {
+                        return res;
+                    }
+                }
+            }
+            else
+            {
             for(Restaraunt res : this.restarauntDirectory)
             {
                 if(res.getRestarauntId()==restarauntId)
@@ -201,10 +214,47 @@ public class restarauntEnterprise {
                     }
                 }
             }
+            }
+            return null;
+        }
+        
+        public ArrayList<Employee> getEmployeeByRestaraunt(int restarauntId)
+        {
+           
+            for(Restaraunt res :this.restarauntDirectory)
+            {
+                if(res.getRestarauntId()==restarauntId)
+                {
+                   return res.getEmployeeList();
+                }
+            }
+            
+            
             
             return null;
         }
      
+        public Employee getEmployeeById(int employeeId){
+            return this.employeeList.getEmployeeById(employeeId);
+        }
+        
+               
+           public void updateEmployee(int restarauntId, int employeeId, String employeeName, String role)
+           {
+               this.employeeList.updateEmployee( employeeId,  employeeName,  role);
+                 updateEmployeeInRestaraunt( restarauntId, employeeId,  employeeName,  role);
+           }
+       
+           public void updateEmployeeInRestaraunt(int restarauntId, int employeeId, String employeeName, String role)
+           {
+               for(Restaraunt res: this.restarauntDirectory)
+               {
+                   if(res.getRestarauntId()==restarauntId)
+                   {
+                       res.updateEmployee(employeeId,employeeName,role);
+                   }
+               }
+           }
      //employee ends 
     
     
@@ -249,6 +299,10 @@ public class restarauntEnterprise {
           return null;
     }
     
+    public Boolean isEmployeeIdUnique(int employeeId)
+    {
+      return this.employeeList.isEmployeeIdUnique(employeeId);
+    }
     
      
    

@@ -42,10 +42,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="393" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnSystemAdminFrame" min="-2" pref="188" max="-2" attributes="0"/>
+                      <Component id="btnCustomerFrame" min="-2" pref="188" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnCustomerFrame" pref="188" max="32767" attributes="0"/>
+                          <Component id="btnRestarauntFrame" pref="188" max="32767" attributes="0"/>
+                          <Component id="btnSystemAdminFrame" pref="188" max="32767" attributes="0"/>
                           <Component id="btnDeliveryPersonFrame" max="32767" attributes="0"/>
+                          <Component id="btnCustomerFrame1" alignment="0" pref="188" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -56,13 +58,17 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" pref="58" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                  <Component id="btnCustomerFrame" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="btnDeliveryPersonFrame" min="-2" pref="51" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                   <Component id="btnSystemAdminFrame" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="174" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnRestarauntFrame" min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnDeliveryPersonFrame" min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="btnCustomerFrame1" min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnCustomerFrame" min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="113" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,7 +111,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Copperplate Gothic Bold" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CUSTOMER"/>
+            <Property name="text" type="java.lang.String" value="Manage Customer"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCustomerFrameActionPerformed"/>
@@ -123,6 +129,34 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeliveryPersonFrameActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRestarauntFrame">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Bold" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="RESTARAUNT"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRestarauntFrameActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCustomerFrame1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Copperplate Gothic Bold" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="CUSTOMER"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCustomerFrame1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

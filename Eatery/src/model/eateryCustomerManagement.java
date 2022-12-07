@@ -61,6 +61,51 @@ public class eateryCustomerManagement {
         }
         return null;
     }
+    public Boolean isCustomerIdUnique(int CustomerId)
+    {
+        for (Customer cus:this.customerDirectory)
+        {
+            if (cus.getStateId()==CustomerId)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void updateCustomer(int CustomerId,String name,int mobile,String email,String City,String password,String address)
+    {
+        for (Customer c: this.customerDirectory)
+        {
+            if (c.getStateId()==CustomerId)
+            {
+                c.setName(name);
+                c.setAddress(address);
+                c.setCity(City);
+                c.setEmail(email);
+                c.setMobile(mobile);
+                c.setPassword(password);
+                
+            }
+        }
+    }
     
+    public Customer getCustomerById(int CustomerId)
+    {
+        for(Customer c:this.customerDirectory)
+        {
+            if (c.getStateId()==CustomerId)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    public void removeCustomer(Customer Cust)
+    {
+        
+            
+                this.customerDirectory.remove(Cust);
+           
+    }
 
 }

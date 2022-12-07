@@ -107,9 +107,39 @@ public class eateryEnterprise {
         this.restarauntEnterprise.removeEmployeeFromRestaraunt(restarauntId,employeeId);
     }
      
+      public Restaraunt employeeLogin(String role, int restarauntId)
+     {
+         return this.restarauntEnterprise.loginEmployee(role,123, restarauntId);
+     }
+     
       public Restaraunt employeeLogin(String role,int employeeId, int restarauntId)
      {
          return this.restarauntEnterprise.loginEmployee(role,employeeId, restarauntId);
+     }
+      
+      
+      
+      public ArrayList<Employee> getEmployeesByRestaraunt(int restarauntId){
+          return this.restarauntEnterprise.getEmployeeByRestaraunt(restarauntId);
+      }
+      
+      
+       public Employee getEmployeeId(int employeeId)
+     {
+         return this.restarauntEnterprise.getEmployeeById(employeeId);
+     }
+       
+       
+       
+          public void updateEmployee(int restarauntId, int employeeId, String employeeName, String role )
+    {
+        this.restarauntEnterprise.updateEmployee(restarauntId,employeeId,employeeName,role);
+      
+    }
+          
+           public Boolean isEmployeeIdUnique(int employeeId)
+     {
+         return this.restarauntEnterprise.isEmployeeIdUnique(employeeId);
      }
      //employee ends
     
@@ -170,9 +200,33 @@ public class eateryEnterprise {
          this.restarauntEnterprise.updateRestaraunt(restarauntId,editCity,cityName);
      }
      
+    public Boolean isCustomerIdUnique(int CustomerId)
+    {
+        return this.eatCusManage.isCustomerIdUnique(CustomerId);
+    }
+    
+     public void updateCustomer(int CustomerId,String name,int mobile,String email,String City,String password,String address)
+     {
+         this.eatCusManage.updateCustomer(CustomerId, name, mobile, email, City, password, address);
+         
+     }
+     
+     public Customer getCustomerById(int CustomerId)
+     {
+         return this.eatCusManage.getCustomerById(CustomerId);
+                 
+     }
+    public void removeCustomer(Customer Cust)
+    {
+        this.eatCusManage.removeCustomer(Cust);
+    }
+    public ArrayList<Customer> getCustomerList()
+    {
+        return this.eatCusManage.getCustomerDirectory();
+    }
      
   
-     
+}
   
  
-}
+

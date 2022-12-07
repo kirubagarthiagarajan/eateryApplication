@@ -14,12 +14,9 @@ public class Restaraunt {
     private int restarauntId;
     private String restarauntName;
     private String city;
-    private int rating;
     private ArrayList<food> dishes;
     private ArrayList<Order> currentOrders;
     private ArrayList<Employee> employeeList;
-    private restarauntBillingDepartment billingDepartment;
-    private restarauntKitchenManagement kitchen;
     private restarauntOnlineOrderManagement orderManager;
 
 
@@ -42,9 +39,7 @@ public class Restaraunt {
         this.city = city;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+
 
     public String getRestarauntName() {
         return restarauntName;
@@ -62,9 +57,7 @@ public class Restaraunt {
         return city;
     }
 
-    public int getRating() {
-        return rating;
-    }  
+
 
     public ArrayList<Employee> getEmployeeList() {
         return employeeList;
@@ -150,6 +143,18 @@ public class Restaraunt {
     }
     public void setDishes(ArrayList<food> dishes) {
         this.dishes = dishes;
+    }
+    
+    public void updateEmployee(int employeeId, String employeeName, String role)
+    {
+         for(Employee emp:this.employeeList)
+        {
+            if(emp.getEmployeeId()==employeeId)
+            {
+                emp.setName(employeeName);
+                emp.setRole(role);
+            }
+        } 
     }
     
 }

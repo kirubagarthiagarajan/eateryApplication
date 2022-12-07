@@ -13,6 +13,9 @@ public class food {
     private String name;
     private int price;
     private int restarauntId;
+    private int quantity;
+
+ 
 
     
     public food(String foodName,int price,int restarauntId,int foodId){
@@ -52,5 +55,13 @@ public class food {
 
     public int getPrice() {
         return price;
+    }
+    
+       public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

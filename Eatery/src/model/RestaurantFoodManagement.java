@@ -20,7 +20,7 @@ import model.SQLConnection.SQLConnection;
  */
 
 
-public class foodDirectory {
+public class RestaurantFoodManagement {
   private ArrayList<food> foodList;
 
     public void setFoodList(ArrayList<food> foodList) {
@@ -31,7 +31,7 @@ public class foodDirectory {
         return foodList;
     }
   
-public foodDirectory(){
+public RestaurantFoodManagement(){
  this.foodList=new ArrayList<food>();
  populateFoodList();
 }  
@@ -61,7 +61,7 @@ public void replaceFoodList()
           
           populateFoodList();
       } catch (SQLException ex) {
-          Logger.getLogger(foodDirectory.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
       }
       populateFoodList();
 }
@@ -84,7 +84,7 @@ public void populateFoodList(){
 //                 
 //             }
 //      } catch (SQLException ex) {
-//          Logger.getLogger(foodDirectory.class.getName()).log(Level.SEVERE, null, ex);
+//          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
 //      }
       
 }

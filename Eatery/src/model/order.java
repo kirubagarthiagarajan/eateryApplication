@@ -17,12 +17,12 @@ public class Order {
     private int deliveryPersonId;
     private String status;
     private String devlieryAddress;
+    private String city;
     private String deliveryInstructions;
     private int totalPrice;
-    private String coupon;
       private ArrayList<food> orderedFoodList;
       
-      public Order(int orderId, int customerId, int restarauntId, String status, String devlieryAddress, String deliveryInstructions,int totalPrice,String coupon,ArrayList<food>foodList)
+      public Order(int orderId, int customerId, int restarauntId, String status, String devlieryAddress, String deliveryInstructions,int totalPrice,ArrayList<food>foodList, String city)
       {
           this.orderId=orderId;
           this.customerId=customerId;
@@ -30,9 +30,9 @@ public class Order {
           this.devlieryAddress=devlieryAddress;
           this.deliveryInstructions=deliveryInstructions;
           this.totalPrice=totalPrice;
-          this.coupon=coupon;
           this.orderedFoodList=foodList;
           this.restarauntId=restarauntId;
+          this.city=city;
       }
 
     public int getOrderId() {
@@ -63,9 +63,7 @@ public class Order {
         return totalPrice;
     }
 
-    public String getCoupon() {
-        return coupon;
-    }
+ 
 
     public ArrayList<food> getOrderedFoodList() {
         return orderedFoodList;
@@ -99,9 +97,6 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public void setCoupon(String coupon) {
-        this.coupon = coupon;
-    }
 
     public void setOrderedFoodList(ArrayList<food> orderedFoodList) {
         this.orderedFoodList = orderedFoodList;

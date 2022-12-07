@@ -41,6 +41,7 @@ public class customerPortal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        btnEditProfile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,13 @@ public class customerPortal extends javax.swing.JFrame {
 
         jButton3.setText("CANCEL ORDER");
 
+        btnEditProfile.setText("EDIT PROFILE");
+        btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditProfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout togglePanelLayout = new javax.swing.GroupLayout(togglePanel);
         togglePanel.setLayout(togglePanelLayout);
         togglePanelLayout.setHorizontalGroup(
@@ -79,11 +87,15 @@ public class customerPortal extends javax.swing.JFrame {
             .addGroup(togglePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        togglePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditProfile, jButton1, jButton2, jButton3});
+
         togglePanelLayout.setVerticalGroup(
             togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePanelLayout.createSequentialGroup()
@@ -93,8 +105,12 @@ public class customerPortal extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(63, 63, 63)
+                .addComponent(btnEditProfile)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
+
+        togglePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditProfile, jButton1, jButton2, jButton3});
 
         splittedPane.setLeftComponent(togglePanel);
 
@@ -125,9 +141,16 @@ public class customerPortal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        customerOrder custOrder= new customerOrder(eatery);
-        
+        customerOrder custOrder= new customerOrder(eatery,currentCustomer);
+        splittedPane.setRightComponent(custOrder);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
+        // TODO add your handling code here:
+        CustomerProfile cp=new CustomerProfile(eatery,currentCustomer);
+        splittedPane.setRightComponent(cp);
+        
+    }//GEN-LAST:event_btnEditProfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,6 +188,7 @@ public class customerPortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditProfile;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

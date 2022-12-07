@@ -90,12 +90,13 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" max="32767" attributes="0"/>
-                              <Component id="jButton2" max="32767" attributes="0"/>
-                              <Component id="jButton3" alignment="0" pref="138" max="32767" attributes="0"/>
+                              <Component id="jButton1" linkSize="1" min="-2" pref="138" max="-2" attributes="0"/>
+                              <Component id="jButton2" linkSize="1" min="-2" pref="138" max="-2" attributes="0"/>
+                              <Component id="jButton3" linkSize="1" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                              <Component id="btnEditProfile" linkSize="1" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -105,12 +106,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jButton1" linkSize="2" min="-2" pref="36" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jButton2" linkSize="2" min="-2" pref="31" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace pref="194" max="32767" attributes="0"/>
+                          <Component id="jButton3" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="btnEditProfile" linkSize="2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="89" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -133,6 +136,14 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="CANCEL ORDER"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnEditProfile">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="EDIT PROFILE"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditProfileActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
