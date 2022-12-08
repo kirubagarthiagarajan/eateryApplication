@@ -11,9 +11,9 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Employee;
-import model.Restaraunt;
-import model.eateryEnterprise;
-import model.food;
+import model.Restaurant;
+import model.EateryEnterprise;
+import model.Food;
 
 /**
  *
@@ -24,16 +24,16 @@ public class employeeManagePanel extends javax.swing.JPanel {
     /**
      * Creates new form employeeManagePanel
      */
-    private eateryEnterprise eatery;
+    private EateryEnterprise eatery;
     private int currentRestarauntId;
-    private Restaraunt currentRestaraunt;
+    private Restaurant currentRestaraunt;
     private ArrayList<Employee> currentEmployeeList;
-    public employeeManagePanel(eateryEnterprise eatery,int restarauntId ) {
+    public employeeManagePanel(EateryEnterprise eatery,int restarauntId ) {
         initComponents();
         this.eatery=eatery;
         this.currentRestarauntId=restarauntId;
-        this.currentRestaraunt=eatery.getRestarauntById(restarauntId);
-        this.currentEmployeeList=eatery.getEmployeesByRestaraunt(restarauntId);
+        this.currentRestaraunt=eatery.getRestaurantById(restarauntId);
+        this.currentEmployeeList=eatery.getEmployeesByRestaurant(restarauntId);
         displayEmployeeTable();
     }
 
@@ -323,8 +323,8 @@ public class employeeManagePanel extends javax.swing.JPanel {
         }
         else
         {
-            eatery.removeEmployeeFromRestaraunt(currentRestarauntId, employeeId);
-            currentEmployeeList=eatery.getEmployeesByRestaraunt(currentRestarauntId);
+            eatery.removeEmployeeFromRestaurant(currentRestarauntId, employeeId);
+            currentEmployeeList=eatery.getEmployeesByRestaurant(currentRestarauntId);
             displayEmployeeTable();
             JOptionPane.showMessageDialog(this, "Employee Deleted");
         }
@@ -347,7 +347,7 @@ public class employeeManagePanel extends javax.swing.JPanel {
 
             else if(textEmployeeId.getText().matches("[0-9]+") && eatery.isEmployeeIdUnique(Integer.parseInt(textEmployeeId.getText())))
             {
-                eatery.addEmployeeToRestaraunt(textEmployeeName.getText(), Integer.parseInt(textEmployeeId.getText()) ,currentRestarauntId, roleDropdown.getSelectedItem().toString());
+                eatery.addEmployeeToRestaurant(textEmployeeName.getText(), Integer.parseInt(textEmployeeId.getText()) ,currentRestarauntId, roleDropdown.getSelectedItem().toString());
                 JOptionPane.showMessageDialog(this, "Employee added to Restaraunt's menu!");
                 displayEmployeeTable();
             }

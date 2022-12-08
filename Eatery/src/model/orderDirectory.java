@@ -5,12 +5,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author ktkir
  */
-public class orderDirectory {
+public class OrderDirectory {
      private ArrayList<Order> orderList; 
 
     public void setOrderList(ArrayList<Order> orderList) {
@@ -21,7 +22,7 @@ public class orderDirectory {
         return orderList;
     }
      
-     public orderDirectory(){
+     public OrderDirectory(){
     this.orderList=new ArrayList<Order>();
     populateOrderList();
 }  
@@ -73,5 +74,16 @@ public class orderDirectory {
     
     populateOrderList();
 }
+
+    public  List<Order> getOrdersThatOutForDelivery() {
+      List<Order> outForDeliveryOrders = new ArrayList<Order>();
+      for(Order order: this.orderList) {
+        if(order.getStatus().equals(OrderStatus.OUT_FOR_DELIVERY)) {
+          outForDeliveryOrders.add(order);
+        }
+      }
+      return outForDeliveryOrders;
+      
+    }
      
 }

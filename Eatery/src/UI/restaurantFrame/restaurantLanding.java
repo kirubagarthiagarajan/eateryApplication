@@ -4,7 +4,7 @@
  */
 package ui.restaurantFrame;
 
-import model.eateryEnterprise;
+import model.EateryEnterprise;
 
 /**
  *
@@ -15,9 +15,9 @@ public class restaurantLanding extends javax.swing.JFrame {
     /**
      * Creates new form restaurantLanding
      */
-     private eateryEnterprise eatery;
+     private EateryEnterprise eatery;
        
-    public restaurantLanding(eateryEnterprise eatery) {
+    public restaurantLanding(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
     }
@@ -58,6 +58,11 @@ public class restaurantLanding extends javax.swing.JFrame {
         btnOrderManagement.setBackground(new java.awt.Color(255, 255, 0));
         btnOrderManagement.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         btnOrderManagement.setText("ORDER DELIVERY MANAGEMENT");
+        btnOrderManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderManagementActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,6 +107,12 @@ public class restaurantLanding extends javax.swing.JFrame {
         employeeManagerLogin empManageLogin = new employeeManagerLogin(eatery);
         empManageLogin.setVisible(true);
     }//GEN-LAST:event_btnEmployeeManagementActionPerformed
+
+    private void btnOrderManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderManagementActionPerformed
+        // TODO add your handling code here:
+        orderManagerLogin orderManager= new orderManagerLogin(eatery);
+        orderManager.setVisible(true);
+    }//GEN-LAST:event_btnOrderManagementActionPerformed
 
     /**
      * @param args the command line arguments

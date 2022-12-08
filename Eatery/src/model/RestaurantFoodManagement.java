@@ -21,22 +21,22 @@ import model.SQLConnection.SQLConnection;
 
 
 public class RestaurantFoodManagement {
-  private ArrayList<food> foodList;
+  private ArrayList<Food> foodList;
 
-    public void setFoodList(ArrayList<food> foodList) {
+    public void setFoodList(ArrayList<Food> foodList) {
         this.foodList = foodList;
     }
 
-    public ArrayList<food> getFoodList() {
+    public ArrayList<Food> getFoodList() {
         return foodList;
     }
   
 public RestaurantFoodManagement(){
- this.foodList=new ArrayList<food>();
- populateFoodList();
+ this.foodList=new ArrayList<Food>();
+// populateFoodList();
 }  
 
-public void addFood(food f)
+public void addFood(Food f)
 {
    this.foodList.add(f);
 // replaceFoodList();
@@ -48,11 +48,11 @@ public void replaceFoodList()
           //db replace old list  with new this.foodList;
           Connection con=SQLConnection.dbconnector();
           Statement stmt=con.createStatement();
-          String TruncQuery="Truncate table Food";
+          String TruncQuery="delete from Food";
           stmt.executeUpdate(TruncQuery);
-          for (food f: this.foodList)
+          for (Food f: this.foodList)
           {
-              String InsertQuery="Insert into Food (FoodId,FoodName,Price,RestaurantId) values ('"+f.getFoodId()+"','"+f.getName()+"','"+f.getPrice()+"','"+f.getRestarauntId()+"')";
+              String InsertQuery="Insert into Food (FoodId,FoodName,Price,RestaurantId) values ('"+f.getFoodId()+"','"+f.getName()+"','"+f.getPrice()+"','"+f.getRestaurantId()+"')";
               stmt.executeUpdate(InsertQuery);
           }
           stmt.close();
@@ -66,33 +66,30 @@ public void replaceFoodList()
       populateFoodList();
 }
 
-//db connection with getting food
 public void populateFoodList(){
-//      try {
-//          Connection con=SQLConnection.dbconnector();
-//          String sql="select * from Food";
-//          PreparedStatement ps=con.prepareStatement(sql);
-//          ResultSet st=ps.executeQuery();
-//          while(st.next())
-//             {
-//                 int foodId=(st.getInt("FoodId"));
-//                 int restaurantId=(st.getInt("RestaurantId"));
-//                 String Name=(st.getString("FoodName"));
-//                 int Price=st.getInt("Price");
-//                 food f= new food(Name,Price,restaurantId,foodId);
-//                 foodList.add(f);
-//                 
-//             }
-//      } catch (SQLException ex) {
-//          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
-//      }
-      
-}
+      try {
+          Connection con=SQLConnection.dbconnector();
+          String sql="select * from Food";
+          PreparedStatement ps=con.prepareStatement(sql);
+          ResultSet st=ps.executeQuery();
+          while(st.next())
+             {
+                 int foodId=(st.getInt("FoodId"));
+                 int restaurantId=(st.getInt("RestaurantId"));
+                 String Name=(st.getString("FoodName"));
+                 int Price=st.getInt("Price");
+                 Food f= new Food(Name,Price,restaurantId,foodId);
+                foodList.add(f);
+                 
+             }
+      } catch (SQLException ex) {
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+      }}
 
 public void removeFood(int foodId)
 {
           int index = 0;
-    for (food r : this.foodList) {
+    for (Food r : this.foodList) {
 
       if (r.getFoodId()== foodId) {
         this.foodList.remove(index);
@@ -103,23 +100,23 @@ public void removeFood(int foodId)
 //    replaceFoodList();
 }
 
-public ArrayList<food> getFoodByRestaraunt(int restarauntId){
-    ArrayList<food> foodByRestaraunt = new ArrayList<>();
+public ArrayList<Food> getFoodByRestaurant(int restaurantId){
+    ArrayList<Food> foodByRestaurant = new ArrayList<>();
     
-    for(food f:this.foodList)
+    for(Food f:this.foodList)
     {
-        if(f.getRestarauntId()==restarauntId)
+        if(f.getRestaurantId()==restaurantId)
         {
-            foodByRestaraunt.add(f);
+            foodByRestaurant.add(f);
         }
     }
     
-    return foodByRestaraunt;
+    return foodByRestaurant;
 }
 
-public food getFoodById(int foodId)
+public Food getFoodById(int foodId)
 {
-   for(food f : this.foodList)
+   for(Food f : this.foodList)
    {
        if(f.getFoodId()==foodId)
        {
@@ -131,7 +128,7 @@ public food getFoodById(int foodId)
 
 public void updateFood(int foodId, String foodName, int price)
 {
-    for(food f:this.foodList)
+    for(Food f:this.foodList)
     {
         if(f.getFoodId()==foodId)
         {

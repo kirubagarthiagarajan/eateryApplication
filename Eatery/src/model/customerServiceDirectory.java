@@ -8,6 +8,6 @@ package model;
  *
  * @author ktkir
  */
-public class customerServiceDirectory {
+public class CustomerServiceDirectory {
     
 }

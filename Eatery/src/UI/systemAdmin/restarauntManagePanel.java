@@ -10,8 +10,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.Restaraunt;
-import model.eateryEnterprise;
+import model.Restaurant;
+import model.EateryEnterprise;
 
 /**
  *
@@ -22,12 +22,12 @@ public class restarauntManagePanel extends javax.swing.JPanel {
     /**
      * Creates new form restarauntManagePanel
      */
-       private eateryEnterprise eatery;
-       private ArrayList<Restaraunt> currentRestarauntList;
-    public restarauntManagePanel(eateryEnterprise eatery) {
+       private EateryEnterprise eatery;
+       private ArrayList<Restaurant> currentRestarauntList;
+    public restarauntManagePanel(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
-        this.currentRestarauntList=eatery.getAllrestaraunts();
+        this.currentRestarauntList=eatery.getAllrestaurants();
         displayRestaraunts();
     }
 
@@ -274,8 +274,8 @@ public class restarauntManagePanel extends javax.swing.JPanel {
             editRestarauntName.setEnabled(true);
             editCity.setEnabled(true);
             confirmUpdate.setEnabled(true);
-            Restaraunt res =eatery.getRestarauntById(restarauntId);
-            editRestarauntName.setText(res.getRestarauntName());
+            Restaurant res =eatery.getRestaurantById(restarauntId);
+            editRestarauntName.setText(res.getRestaurantName());
             editCity.setSelectedItem(res.getCity());
         }
     }//GEN-LAST:event_updateRestarauntActionPerformed
@@ -289,15 +289,15 @@ public class restarauntManagePanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Restaraunt id should be all numbers!");
             }
             
-            if(!eatery.isRestarauntIdUnique(Integer.parseInt(textRestarauntId.getText())))
+            if(!eatery.isRestaurantIdUnique(Integer.parseInt(textRestarauntId.getText())))
             {
                 JOptionPane.showMessageDialog(this, "Restaraunt id should be unique!");
             }
 
 
-            else if(textRestarauntId.getText().matches("[0-9]+") && eatery.isRestarauntIdUnique(Integer.parseInt(textRestarauntId.getText())))
+            else if(textRestarauntId.getText().matches("[0-9]+") && eatery.isRestaurantIdUnique(Integer.parseInt(textRestarauntId.getText())))
             {
-                eatery.addRestarauntToDirectory( textRestarauntName.getText(),Integer.parseInt(textRestarauntId.getText()),cityDropDown.getSelectedItem().toString());
+                eatery.addRestaurantToDirectory(textRestarauntName.getText(),Integer.parseInt(textRestarauntId.getText()),cityDropDown.getSelectedItem().toString());
               JOptionPane.showMessageDialog(this, "Restaraunt Created!");
                 displayRestaraunts();
             }
@@ -321,10 +321,10 @@ public class restarauntManagePanel extends javax.swing.JPanel {
         tableModel.setRowCount(0);
         if (currentRestarauntList!=null) {
             for (int i = 0; i < currentRestarauntList.size(); i++) {
-                Restaraunt res = currentRestarauntList.get(i);
+                Restaurant res = currentRestarauntList.get(i);
                 Object[] tableRow = new Object[10];
-                tableRow[0] = res.getRestarauntId();
-                tableRow[1]= res.getRestarauntName();
+                tableRow[0] = res.getRestaurantId();
+                tableRow[1]= res.getRestaurantName();
                 tableRow[2] = res.getCity();
                 tableModel.addRow(tableRow);
             }
@@ -341,20 +341,20 @@ public class restarauntManagePanel extends javax.swing.JPanel {
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "You should select atleast 1 row to delete!");
         } else {
-            if(eatery.getRestarauntById(restarauntId).getDishes()!=null &&eatery.getRestarauntById(restarauntId).getDishes().size()>0  )
+            if(eatery.getRestaurantById(restarauntId).getDishes()!=null &&eatery.getRestaurantById(restarauntId).getDishes().size()>0  )
             {
                 JOptionPane.showMessageDialog(this, "This restaraunt has some food dishes inside it. Please delete them first, and then delete the restaraunt!");
 
             }
-            else if(eatery.getRestarauntById(restarauntId).getEmployeeList()!=null &&  eatery.getRestarauntById(restarauntId).getEmployeeList().size()>0 )
+            else if(eatery.getRestaurantById(restarauntId).getEmployeeList()!=null &&  eatery.getRestaurantById(restarauntId).getEmployeeList().size()>0 )
             {
         JOptionPane.showMessageDialog(this, "This restaraunt has some employees inside it. Please delete them first, and then delete the restaraunt!");         
             }
             
             else
             {
-                eatery.removeRestaraunt(restarauntId);
-                currentRestarauntList=eatery.getAllrestaraunts();
+                eatery.removeRestaurant(restarauntId);
+                currentRestarauntList=eatery.getAllrestaurants();
                 displayRestaraunts();
 
                 JOptionPane.showMessageDialog(this, "City Deleted");
@@ -370,7 +370,7 @@ public class restarauntManagePanel extends javax.swing.JPanel {
         int restarauntId= Integer.parseInt(mngRestarauntTable.getModel().getValueAt(row, col).toString());
         if(!editRestarauntName.getText().equals("") && editCity.getSelectedItem()!=null)
         {
-                eatery.updateRestaraunt(restarauntId, editRestarauntName.getText(), editCity.getSelectedItem().toString());
+                eatery.updateRestaurant(restarauntId, editRestarauntName.getText(), editCity.getSelectedItem().toString());
                 editRestarauntName.setText("");
                 editRestarauntName.setEnabled(false);
                 editCity.setSelectedItem(null);

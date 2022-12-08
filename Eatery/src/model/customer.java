@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,8 +20,8 @@ private String address;
 private String name;
 private String password;
 private String city;
-private ArrayList<Order> pastOrders;
-private ArrayList<Order> activeOrders;
+private List<Order> pastOrders;
+private List<Order> activeOrders;
 
 public Customer(int stateId, String name, int mobile, String email, String city, String password, String address)
 {
@@ -31,6 +32,8 @@ public Customer(int stateId, String name, int mobile, String email, String city,
     this.city=city;
     this.password=password;
     this.address=address;
+    this.pastOrders = new ArrayList<>();
+    this.activeOrders = new ArrayList<>();
 }
 
 
@@ -62,7 +65,7 @@ public Customer(int stateId, String name, int mobile, String email, String city,
         return city;
     }
 
-    public ArrayList<Order> getPastOrders() {
+    public List<Order> getPastOrders() {
         return pastOrders;
     }
 
@@ -102,9 +105,19 @@ public Customer(int stateId, String name, int mobile, String email, String city,
         this.activeOrders = activeOrder;
     }
 
-    public ArrayList<Order> getActiveOrders() {
+    public List<Order> getActiveOrders() {
         return activeOrders;
     }
+
+
+    public boolean checkIfOrderPlacedByCustomer(Order order) {
+     return this.activeOrders.contains(order);
+      
+    }
+
+    void addToPastOrders(Order order) {
+        this.pastOrders.add(order);
+     }
 
   
 }

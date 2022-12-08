@@ -4,7 +4,7 @@
  */
 package ui.customerFrame;
 
-import model.eateryEnterprise;
+import model.EateryEnterprise;
 
 /**
  *
@@ -15,8 +15,8 @@ public class CustomerManageFrame extends javax.swing.JFrame {
     /**
      * Creates new form CustomerManageFrame
      */
-    eateryEnterprise eatery;
-    public CustomerManageFrame(eateryEnterprise eatery) {
+    EateryEnterprise eatery;
+    public CustomerManageFrame(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
     }

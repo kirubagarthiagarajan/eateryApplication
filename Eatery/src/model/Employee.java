@@ -11,14 +11,14 @@ package model;
 public class Employee {
     private String name;
     private int employeeId;
-    private int restarauntId;
+    private int restaurantId;
     private String role;
     
-    public Employee( String name,int employeeId,int restarauntId,String role)
+    public Employee( String name,int employeeId,int restaurantId,String role)
     {
         this.name=name;
         this.employeeId=employeeId;
-        this.restarauntId=restarauntId;
+        this.restaurantId=restaurantId;
         this.role=role;
     }
 
@@ -30,8 +30,8 @@ public class Employee {
         return employeeId;
     }
 
-    public int getRestarauntId() {
-        return restarauntId;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
     public String getRole() {
@@ -49,8 +49,8 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    public void setRestarauntId(int restarauntId) {
-        this.restarauntId = restarauntId;
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public void setRole(String role) {

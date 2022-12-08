@@ -5,16 +5,20 @@
 package model;
 
 import java.util.ArrayList;
+import java.sql.*;
+import java.util.List;
+import java.util.logging.*;
+import model.SQLConnection.SQLConnection;
 
 /**
  *
  * @author ktkir
  */
 
-public class eateryCustomerManagement {
+public class EateryCustomerManagement {
   private ArrayList<Customer> customerDirectory;  
   
-  public eateryCustomerManagement(){
+  public EateryCustomerManagement(){
       
       this.customerDirectory=new ArrayList<Customer>();
       populateCustomerFromDb();
@@ -28,16 +32,8 @@ public class eateryCustomerManagement {
         this.customerDirectory = customerDirectory;
     }
     
-    //get customer from db
-    public void populateCustomerFromDb()
-    {
-        
-    }
-    
-     //replace db
-    public void replaceCustomerDb(){
-        
-    }
+
+
   
 
     public void addNewCustomer(Customer cust)
@@ -89,6 +85,54 @@ public class eateryCustomerManagement {
         }
     }
     
+    public void populateCustomerFromDb()
+    {
+        try {
+          Connection con=SQLConnection.dbconnector();
+          String sql="select * from Customer";
+          PreparedStatement ps=con.prepareStatement(sql);
+          ResultSet st=ps.executeQuery();
+          while(st.next())
+             {
+                int stateId=st.getInt("CustomerId");
+                String email=st.getString("Email");
+                int mobile=st.getInt("Number");
+                String address=st.getString("Address");
+                String name=st.getString("CustomerName");
+                String password=st.getString("Password");
+                String city=st.getString("City");
+                 Customer c=new Customer(stateId, name, mobile,email,city, password, address);
+                this.customerDirectory.add(c);
+                 
+             }
+      } catch (SQLException ex) {
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+     }}
+    
+    
+    public void replaceCustomerDb(){
+         try {
+          //db replace old list  with new this.foodList;
+          System.out.print("Inside replace customer db");
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+          String TruncQuery="delete from Customer";
+          stmt.executeUpdate(TruncQuery);
+          for (Customer c: this.customerDirectory)
+          {
+              String InsertQuery="Insert into Customer (CustomerId,CustomerName,Number,Password,Email,City,Address) values ('"+c.getStateId()+"','"+c.getName()+"','"+c.getMobile()+"','"+c.getPassword()+"','"+c.getEmail()+"','"+c.getCity()+"','"+c.getAddress()+"')";
+              stmt.executeUpdate(InsertQuery);
+          }
+          stmt.close();
+          con.close();
+          populateCustomerFromDb();
+      } catch (SQLException ex) {
+           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+
+      }}
+    
+    
+    
     public Customer getCustomerById(int CustomerId)
     {
         for(Customer c:this.customerDirectory)
@@ -107,5 +151,32 @@ public class eateryCustomerManagement {
                 this.customerDirectory.remove(Cust);
            
     }
+
+    public void cancelOrderByCustomer(int custId, Order order) {
+      for(Customer cust : this.customerDirectory) {
+         if(cust.getStateId() == custId) {
+           cust.checkIfOrderPlacedByCustomer(order);
+         }
+      }
+      
+    }
+
+    public List<Order> getPastOrdersOfCustomer(int custId) {
+      for(Customer cust : this.customerDirectory){
+          if(cust.getStateId() == custId){
+              return cust.getActiveOrders();
+          }
+      }
+      return null;
+           }
+
+    void addOrderToPastOrdersOfCustomer(Order order) {
+        int custId = order.getCustomerId();
+        for(Customer cust: this.customerDirectory){
+            if(cust.getStateId() == custId){
+                cust.addToPastOrders(order);
+            }
+        }
+            }
 
 }

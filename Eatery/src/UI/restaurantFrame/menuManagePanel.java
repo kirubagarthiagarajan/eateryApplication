@@ -10,9 +10,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.Restaraunt;
-import model.eateryEnterprise;
-import model.food;
+import model.Restaurant;
+import model.EateryEnterprise;
+import model.Food;
 
 /**
  *
@@ -23,16 +23,16 @@ public class menuManagePanel extends javax.swing.JPanel {
     /**
      * Creates new form menuManagePanel
      */
-    private eateryEnterprise eatery;
+    private EateryEnterprise eatery;
         private int currentRestarauntId;
-    private Restaraunt currentRestaraunt;
-    private ArrayList<food> currentFoodList;
-    public menuManagePanel(eateryEnterprise eatery,int currentRestarauntId) {
+    private Restaurant currentRestaraunt;
+    private ArrayList<Food> currentFoodList;
+    public menuManagePanel(EateryEnterprise eatery,int currentRestarauntId) {
         initComponents();
         this.eatery=eatery;
         this.currentRestarauntId=currentRestarauntId;
-        this.currentRestaraunt=eatery.getRestarauntById(currentRestarauntId);
-        this.currentFoodList=eatery.getFoodListByRestaraunt(currentRestarauntId);
+        this.currentRestaraunt=eatery.getRestaurantById(currentRestarauntId);
+        this.currentFoodList=eatery.getFoodListByRestaurant(currentRestarauntId);
         displayFoodTable();
     }
 
@@ -301,7 +301,7 @@ public class menuManagePanel extends javax.swing.JPanel {
             editFoodName.setEnabled(true);
             editFoodPrice.setEnabled(true);
             confirmUpdate.setEnabled(true);
-            food foo =eatery.getFoodById(foodId);
+            Food foo =eatery.getFoodById(foodId);
             editFoodName.setText(foo.getName());
             editFoodPrice.setText(String.valueOf(foo.getPrice()));
         }
@@ -312,14 +312,14 @@ public class menuManagePanel extends javax.swing.JPanel {
         int col=0;
         int row=mngMenuTable.getSelectedRow();
         int foodId= Integer.parseInt(mngMenuTable.getModel().getValueAt(row, col).toString());
-        food currentFood= eatery.getFoodById(foodId);
+        Food currentFood= eatery.getFoodById(foodId);
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "You should select atleast 1 row to delete!");
         } 
             else
             {
-                eatery.removeFood(currentFood.getRestarauntId(),currentFood.getFoodId());
-                currentFoodList=eatery.getFoodListByRestaraunt(currentRestarauntId);
+                eatery.removeFood(currentFood.getRestaurantId(),currentFood.getFoodId());
+               
                 displayFoodTable();
 
                 JOptionPane.showMessageDialog(this, "City Deleted");
@@ -339,9 +339,10 @@ public class menuManagePanel extends javax.swing.JPanel {
          mngMenuTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultTableModel tableModel = (DefaultTableModel) mngMenuTable.getModel();
         tableModel.setRowCount(0);
+        currentFoodList=eatery.getFoodListByRestaurant(currentRestarauntId);
         if (currentFoodList!=null) {
             for (int i = 0; i < currentFoodList.size(); i++) {
-                food fo = currentFoodList.get(i);
+                Food fo = currentFoodList.get(i);
                 Object[] tableRow = new Object[10];
                 tableRow[0] = fo.getFoodId();
                 tableRow[1]= fo.getName();
@@ -367,7 +368,7 @@ public class menuManagePanel extends javax.swing.JPanel {
             {
                 JOptionPane.showMessageDialog(this, "Price id should be all numbers!");
             }
-            if(!eatery.isFoodIdUnique(Integer.parseInt(textFoodId.getText())))
+             else  if(!eatery.isFoodIdUnique(Integer.parseInt(textFoodId.getText())))
             {
                 JOptionPane.showMessageDialog(this, "Food id should be unique!");
             }
@@ -375,7 +376,8 @@ public class menuManagePanel extends javax.swing.JPanel {
 
             else if(textFoodId.getText().matches("[0-9]+")&& textFoodPrice.getText().matches("[0-9]+") && eatery.isFoodIdUnique(Integer.parseInt(textFoodId.getText())))
             {
-                eatery.addFoodToRestaraunt(textFoodName.getText(), Integer.parseInt(textFoodPrice.getText()) ,currentRestarauntId, Integer.parseInt(textFoodId.getText()));
+                eatery.addFoodToRestaurant(textFoodName.getText(), Integer.parseInt(textFoodPrice.getText()) ,currentRestarauntId, Integer.parseInt(textFoodId.getText()));
+              
                 JOptionPane.showMessageDialog(this, "Food added to Restaraunt's menu!");
                 displayFoodTable();
             }

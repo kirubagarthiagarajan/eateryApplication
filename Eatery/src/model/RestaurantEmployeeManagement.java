@@ -5,7 +5,9 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.sql.*;
+import java.util.logging.*;
+import model.SQLConnection.SQLConnection;
 /**
  *
  * @author ktkir
@@ -15,10 +17,52 @@ public class RestaurantEmployeeManagement {
 
 public RestaurantEmployeeManagement(){
  this.employeeList=new ArrayList<Employee>();
- populateEmployeeList();
+ populateEmployeeListDb();
 }  
-public void populateEmployeeList(){
-    
+
+public void populateEmployeeListDb(){
+    try {
+          Connection con=SQLConnection.dbconnector();
+          String sql="select * from Employee";
+          PreparedStatement ps=con.prepareStatement(sql);
+          ResultSet st=ps.executeQuery();
+          System.out.print("Inside populate Employee");
+          while(st.next())
+             {
+                 
+                String name=st.getString("Name");
+                int employeeId=st.getInt("EmployeeId");
+                int restarauntId=st.getInt("RestaurantId");
+                String role=st.getString("Role");
+                Employee e=new Employee(name,employeeId,restarauntId,role);
+                this.employeeList.add(e);
+             }
+      } catch (SQLException ex) {
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null,ex);}
+}
+
+
+public void replaceEmployeeDb()
+{
+    try {
+          //db replace old list  with new this.foodList;
+          System.out.print("Inside replace employee db");
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+          String TruncQuery="delete from Employee";
+          stmt.executeUpdate(TruncQuery);
+          for (Employee e:this.employeeList)
+          {
+              String InsertQuery="Insert into Employee (Name,EmployeeId,RestaurantId,Role) values ('"+e.getName()+"','"+e.getEmployeeId()+"','"+e.getRestaurantId()+"','"+e.getRole()+"')";
+              stmt.executeUpdate(InsertQuery);
+          }
+          stmt.close();
+          con.close();
+          
+          
+          populateEmployeeListDb();
+      } catch (SQLException ex) {
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null,ex);}
 }
 
     public ArrayList<Employee> getEmployeeList() {
@@ -45,18 +89,18 @@ public void removeEmployee(int employeeId)
 }    
 
 
-public ArrayList<Employee> getEmployeeListByRestaraunt(int restarauntId){
-    ArrayList<Employee> employeeListByRestaraunt = new ArrayList<>();
+public ArrayList<Employee> getEmployeeListByRestaurant(int restaurantId){
+    ArrayList<Employee> employeeListByRestaurant = new ArrayList<>();
     
     for(Employee f:this.employeeList)
     {
-        if(f.getRestarauntId()==restarauntId)
+        if(f.getRestaurantId()==restaurantId)
         {
-            employeeListByRestaraunt.add(f);
+            employeeListByRestaurant.add(f);
         }
     }
     
-    return employeeListByRestaraunt;
+    return employeeListByRestaurant;
 }
 
 public Boolean isEmployeeIdUnique(int employeeId){

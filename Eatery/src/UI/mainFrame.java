@@ -4,13 +4,15 @@
  */
 package ui;
 
-import model.deliveryPartnerEnterprise;
-import model.eateryCustomerManagement;
-import model.eateryEnterprise;
-import model.orderDirectory;
-import model.restarauntEnterprise;
+import model.DeliveryPartnerEnterprise;
+import model.EateryCustomerManagement;
+import model.EateryEnterprise;
+import model.GroceryEnterprise;
+import model.OrderDirectory;
+import model.RestaurantEnterprise;
 import ui.customerFrame.CustomerLogin;
 import ui.customerFrame.CustomerManageFrame;
+import ui.deliveryPersonFrame.deliveryLanding;
 import ui.restaurantFrame.restaurantLanding;
 import ui.systemAdmin.systemAdminLogin;
 
@@ -25,18 +27,20 @@ public class mainFrame extends javax.swing.JFrame {
      */
     
     
-        private eateryCustomerManagement eatCusManage;
-    private restarauntEnterprise restarauntManagement;
-    private deliveryPartnerEnterprise deliveryEnterPrise;
-    private orderDirectory orderList;
-    private eateryEnterprise eatery;
+        private EateryCustomerManagement eatCusManage;
+    private RestaurantEnterprise restarauntManagement;
+    private DeliveryPartnerEnterprise deliveryEnterPrise;
+    private OrderDirectory orderList;
+    private EateryEnterprise eatery;
+    private GroceryEnterprise groceryEnterprise;
     public mainFrame() {
         initComponents();
-        eatCusManage=new eateryCustomerManagement();
-        restarauntManagement=new restarauntEnterprise();
-        deliveryEnterPrise=new deliveryPartnerEnterprise();
-        orderList=new orderDirectory();
-        eatery= new eateryEnterprise(eatCusManage,restarauntManagement,deliveryEnterPrise,orderList);
+        eatCusManage=new EateryCustomerManagement();
+        restarauntManagement=new RestaurantEnterprise();
+        deliveryEnterPrise=new DeliveryPartnerEnterprise();
+        orderList=new OrderDirectory();
+        groceryEnterprise=new GroceryEnterprise();
+        eatery= new EateryEnterprise(eatCusManage,restarauntManagement,deliveryEnterPrise,orderList,groceryEnterprise);
         
     }
 
@@ -165,6 +169,8 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void btnDeliveryPersonFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryPersonFrameActionPerformed
         // TODO add your handling code here:
+        deliveryLanding delMain= new deliveryLanding(eatery);
+        delMain.setVisible(true);
     }//GEN-LAST:event_btnDeliveryPersonFrameActionPerformed
 
     private void btnSystemAdminFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemAdminFrameActionPerformed

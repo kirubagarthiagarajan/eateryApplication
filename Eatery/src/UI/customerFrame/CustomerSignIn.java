@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Customer;
 import model.SQLConnection.SQLConnection;
-import model.eateryEnterprise;
+import model.EateryEnterprise;
 
 /**
  *
@@ -25,8 +25,8 @@ public class CustomerSignIn extends javax.swing.JPanel {
     /**
      * Creates new form CustomerSignIn
      */
-    eateryEnterprise eatery;
-    public CustomerSignIn(eateryEnterprise eatery) {
+    EateryEnterprise eatery;
+    public CustomerSignIn(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
     }

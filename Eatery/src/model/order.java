@@ -12,17 +12,17 @@ import java.util.ArrayList;
  */
 public class Order {
     private int orderId;
-    private int restarauntId;
+    private int restaurantId;
     private int customerId;
     private int deliveryPersonId;
-    private String status;
+    private OrderStatus status;
     private String devlieryAddress;
     private String city;
     private String deliveryInstructions;
     private int totalPrice;
-      private ArrayList<food> orderedFoodList;
+      private ArrayList<Food> orderedFoodList;
       
-      public Order(int orderId, int customerId, int restarauntId, String status, String devlieryAddress, String deliveryInstructions,int totalPrice,ArrayList<food>foodList, String city)
+      public Order(int orderId, int customerId, int restaurantId, OrderStatus status, String devlieryAddress, String deliveryInstructions,int totalPrice,ArrayList<Food>foodList, String city)
       {
           this.orderId=orderId;
           this.customerId=customerId;
@@ -31,7 +31,7 @@ public class Order {
           this.deliveryInstructions=deliveryInstructions;
           this.totalPrice=totalPrice;
           this.orderedFoodList=foodList;
-          this.restarauntId=restarauntId;
+          this.restaurantId=restaurantId;
           this.city=city;
       }
 
@@ -39,8 +39,8 @@ public class Order {
         return orderId;
     }
 
-    public int getRestarauntId() {
-        return restarauntId;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
     public int getCustomerId() {
@@ -51,7 +51,7 @@ public class Order {
         return deliveryPersonId;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
@@ -65,7 +65,7 @@ public class Order {
 
  
 
-    public ArrayList<food> getOrderedFoodList() {
+    public ArrayList<Food> getOrderedFoodList() {
         return orderedFoodList;
     }
 
@@ -73,8 +73,8 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public void setRestarauntId(int restarauntId) {
-        this.restarauntId = restarauntId;
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public void setCustomerId(int customerId) {
@@ -85,7 +85,7 @@ public class Order {
         this.deliveryPersonId = deliveryPersonId;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
@@ -98,8 +98,12 @@ public class Order {
     }
 
 
-    public void setOrderedFoodList(ArrayList<food> orderedFoodList) {
+    public void setOrderedFoodList(ArrayList<Food> orderedFoodList) {
         this.orderedFoodList = orderedFoodList;
+    }
+
+    public String getCity() {
+      return this.city;
     }
     
   

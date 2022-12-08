@@ -12,8 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Customer;
 import model.Employee;
-import model.eateryEnterprise;
-import model.food;
+import model.EateryEnterprise;
+import model.Food;
 
 /**
  *
@@ -24,9 +24,9 @@ public class CustomerManagePanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerManagePanel
      */
-    eateryEnterprise eatery;
+    EateryEnterprise eatery;
     ArrayList<Customer> custList;
-    public CustomerManagePanel(eateryEnterprise eatery) {
+    public CustomerManagePanel(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
         this.custList=eatery.getCustomerList();

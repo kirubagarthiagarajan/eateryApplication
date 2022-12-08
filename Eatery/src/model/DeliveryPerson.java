@@ -88,8 +88,16 @@ public DeliveryPerson(int stateId, String name, int mobile, String email, String
     public boolean isAvailable() {
       return this.activeOrder != null;
     }
-    public void setActiveOrder(Order activeOrder) {
+    public boolean setActiveOrder(Order activeOrder) {
+      if(this.isAvailable() == true && activeOrder.getCity().equals(this.city)) {
         this.activeOrder = activeOrder;
+        return true;
+        }else {
+          return false;
+        }
+    }
+    public void completeActiveOrder() {
+      this.activeOrder = null;
     }
 
     public Order getActiveOrder() {

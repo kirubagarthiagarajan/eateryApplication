@@ -5,7 +5,7 @@
 package ui.customerFrame;
 
 import model.Customer;
-import model.eateryEnterprise;
+import model.EateryEnterprise;
 
 /**
  *
@@ -17,9 +17,9 @@ public class customerPortal extends javax.swing.JFrame {
      * Creates new form customerPortal
      */
     
-    eateryEnterprise eatery;
+    EateryEnterprise eatery;
     Customer currentCustomer;
-    public customerPortal(eateryEnterprise eatery,Customer customer) {
+    public customerPortal(EateryEnterprise eatery,Customer customer) {
         initComponents();
         this.eatery=eatery;
         this.currentCustomer=customer;

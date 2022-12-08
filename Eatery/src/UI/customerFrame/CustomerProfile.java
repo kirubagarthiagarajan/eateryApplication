@@ -5,7 +5,7 @@
 package ui.customerFrame;
 import javax.swing.JOptionPane;
 import model.Customer;
-import model.eateryEnterprise;
+import model.EateryEnterprise;
 
 /**
  *
@@ -16,9 +16,9 @@ public class CustomerProfile extends javax.swing.JPanel {
     /**
      * Creates new form CustomerProfile
      */
-    eateryEnterprise eatery;
+    EateryEnterprise eatery;
     Customer customer;
-    public CustomerProfile(eateryEnterprise eatery,Customer cust) {
+    public CustomerProfile(EateryEnterprise eatery,Customer cust) {
         initComponents();
         this.eatery=eatery;
         btnSave.setVisible(false);

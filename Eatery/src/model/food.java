@@ -8,20 +8,20 @@ package model;
  *
  * @author ktkir
  */
-public class food {
+public class Food {
     private int foodId;
     private String name;
     private int price;
-    private int restarauntId;
+    private int restaurantId;
     private int quantity;
 
  
 
     
-    public food(String foodName,int price,int restarauntId,int foodId){
+    public Food(String foodName,int price,int restaurantId,int foodId){
         this.name=foodName;
         this.price=price;
-        this.restarauntId=restarauntId;
+        this.restaurantId=restaurantId;
         this.foodId=foodId;
     }
     public void setName(String name) {
@@ -41,12 +41,12 @@ public class food {
         return foodId;
     }
 
-    public void setRestarauntId(int restarauntId) {
-        this.restarauntId = restarauntId;
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
-    public int getRestarauntId() {
-        return restarauntId;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
     public String getName() {
