@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 
 /**
@@ -18,6 +19,7 @@ public class CustomerManageFrame extends javax.swing.JFrame {
     EateryEnterprise eatery;
     public CustomerManageFrame(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

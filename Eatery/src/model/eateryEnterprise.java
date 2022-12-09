@@ -28,18 +28,6 @@ public class EateryEnterprise {
     this.setGroceryEnterprise(groceryEnterprise);
     this.restaurantEnterprise = new RestaurantEnterprise();
     this.orderList = orderList;
-    this.addRestaurantToDirectory("restaurant1", 12345, "BOSTON");
-    this.addFoodToRestaurant("idly", 24, 12345, 1);
-    this.addFoodToRestaurant("paruppu", 14, 12345, 2);
-    this.addRestaurantToDirectory("restaurant2", 6789, "NEW YORK");
-        this.addFoodToRestaurant("pizaa", 24, 6789, 3);
-    this.addFoodToRestaurant("burger", 14, 6789, 4);
-    this.addDeliveryPerson(123, "kirubagar", 12312312, "asdasdasd", "Kirubagar", "123", "BOSTON");
-    this.addEmployeeToRestaurant("Kiruba", 123, 12345, "Menu Manager");
-    this.addCustomer(123, "Kirubagar", 12345678, "kirubagarthiaga@gmail.com", "BOSTON", "123",
-        "Addres11213");
-    this.addCustomer(456, "Nandhini", 12345678, "kirubagarthiaga@gmail.com", "NEW YORK", "456",
-        "Addres11213");
 
   }
 
@@ -57,7 +45,7 @@ public class EateryEnterprise {
     List<Restaurant> restaurantListForCity = new ArrayList<>();
 
     for (Restaurant res : this.restaurantEnterprise.getRestaurantDirectory()) {
-      if (res.getCity() == cityName) {
+      if (res.getCity().equals(cityName)) {
         restaurantListForCity.add(res);
       }
     }
@@ -167,7 +155,7 @@ public class EateryEnterprise {
   }
 
   public void addRestaurantToDirectory(String restaurantName, int restaurantId, String cityName) {
-    Restaurant res = new Restaurant(restaurantId, restaurantName, cityName,0);
+    Restaurant res = new Restaurant(restaurantId, restaurantName, cityName, 0);
     this.restaurantEnterprise.addRestaurant(res);
 
   }
@@ -216,6 +204,10 @@ public class EateryEnterprise {
   public List<Order> getOrdersThatOutForDelivery() {
     return this.orderList.getOrdersThatOutForDelivery();
   }
+  
+    public List<Order> getOrdersThatReadyForDelivery() {
+    return this.orderList.getOrdersThatOutForDelivery();
+  }
 
   public List<DeliveryPerson> getDeliveryPersonThatAreFree() {
     return this.deliveryEnterPrise.getDeliveryPersonThatAreFree();
@@ -236,12 +228,11 @@ public class EateryEnterprise {
 
   public void deliveryBoyCompleteOrder(int deliveryBoyId, int orderId) {
     this.deliveryEnterPrise.deliveryBoyCompleteOrder(deliveryBoyId);
-    
+
     Order order = this.orderList.getOrderId(orderId);
+    order.setStatus(OrderStatus.DELIVERED);
     this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
   }
-  
-
 
   public void cancelOrderByCustomer(int custId, int orderId) {
 
@@ -252,8 +243,7 @@ public class EateryEnterprise {
       this.eatCusManage.cancelOrderByCustomer(custId, order);
     order.setStatus(OrderStatus.CANCELLED);
     this.restaurantEnterprise.setOrderStatusCancelled(order.getRestaurantId(), orderId);
-    
-  
+
     this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
   }
 
@@ -289,6 +279,10 @@ public class EateryEnterprise {
     this.groceryEnterprise.addGrocery(new Grocery(groceryId, name, price, quantity));
   }
 
+  public Grocery getGroceryById(int groceryId) {
+    return this.groceryEnterprise.getGroceryById(groceryId);
+  }
+
   public void removeGrocery(int groceryId) {
     this.groceryEnterprise.removeGrocery(groceryId);
   }
@@ -296,7 +290,7 @@ public class EateryEnterprise {
   public void updateGrocery(int groceryId, String name, double price, int quantity) {
     this.groceryEnterprise.updateGrocery(groceryId, name, price, quantity);
   }
-  
+
   public void checkIfQuantityStoreHasGroceryQuantity(int groceryId, int quantity) {
     this.groceryEnterprise.checkIfQuantityStoreHasGroceryQuantity(groceryId, quantity);
   }
@@ -308,36 +302,61 @@ public class EateryEnterprise {
   public void setGroceryEnterprise(GroceryEnterprise groceryEnterprise) {
     this.groceryEnterprise = groceryEnterprise;
   }
+
+  public void replaceCustomerDb() {
+    this.eatCusManage.replaceCustomerDb();
+  }
+
+  public void replaceRestaurantDb() {
+    this.restaurantEnterprise.replaceRestaurantDb();
+  }
+
+  public void replaceDeliveryPersonDb() {
+
+    this.deliveryEnterPrise.replaceDeliveryPersonDb();
+  }
+
+  public void replaceEmployeeDb() {
+    this.restaurantEnterprise.replaceEmployeeDb();
+  }
+
+  public void replacefoodDb() {
+    this.restaurantEnterprise.replacefoodDb();
+  }
+
+  public void replaceOrderDb() {
+    this.orderList.replaceOrderListInDB();
+  }
+
+  public List<Order> getPastOrdersOfCustomer(int custId) {
+    return this.eatCusManage.getPastOrdersOfCustomer(custId);
+  }
+
+  public void processOrderByRestaurant(int orderId) {
+    Order order = this.orderList.getOrderId(orderId);
+    order.setStatus(OrderStatus.READY_FOR_DELIVERY);
+    this.restaurantEnterprise.removeOrderFromRestaurant(orderId, order.getRestaurantId());
+  }
   
-  public void replaceCustomerDb()
-     {
-         this.eatCusManage.replaceCustomerDb();
-     }
-    public void replaceRestaurantDb()
-    {
-        this.restaurantEnterprise.replaceRestaurantDb();
-    }
-    public void replaceDeliveryPersonDb()
-    {
-        
-        this.deliveryEnterPrise.replaceDeliveryPersonDb();
-    }
-    public void replaceEmployeeDb()
-    {
-        this.restaurantEnterprise.replaceEmployeeDb();
-    }
-    public void replacefoodDb()
-    {
-        this.restaurantEnterprise.replacefoodDb();
-    }
-    public void replaceOrderDb()
-    {
-        this.orderList.replaceOrderListInDB();
-    }
-    
-    public List<Order> getPastOrdersOfCustomer(int custId)
-    {
-        return this.eatCusManage.getPastOrdersOfCustomer(custId);
-    }
+  public List<Order> getOrdersByRestaurant(int restaurantId){
+   return this.orderList.getOrdersFromRestaurant(restaurantId);
+  }
+  
+  public List<Grocery> getGroceries(){
+    return this.groceryEnterprise.getGroceryDirectory();
+  }
+  
+  public List<Order> getOrderByDeliveryBoyId(int deliveryBoyId){
+      return this.orderList.getOrderByDeliveryBoyId(deliveryBoyId);
+  }
+  
+  public Order getOrderWithOrderId(int orderId)
+  {
+      return this.orderList.getOrderId(orderId);
+  }
+  
+  public void sendQueryToCustomer(String query,  int deliveryPersonId) {
+    this.deliveryEnterPrise.sendQueryToCustomer(deliveryPersonId,  query);
+  }
 
 }

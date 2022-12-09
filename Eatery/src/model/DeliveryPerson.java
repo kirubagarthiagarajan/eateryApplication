@@ -86,7 +86,7 @@ public DeliveryPerson(int stateId, String name, int mobile, String email, String
         this.city = city;
     }
     public boolean isAvailable() {
-      return this.activeOrder != null;
+      return this.activeOrder == null;
     }
     public boolean setActiveOrder(Order activeOrder) {
       if(this.isAvailable() == true && activeOrder.getCity().equals(this.city)) {
@@ -102,6 +102,12 @@ public DeliveryPerson(int stateId, String name, int mobile, String email, String
 
     public Order getActiveOrder() {
         return activeOrder;
+    }
+
+
+    public void sendQueryToCustomer(String query) {
+       this.activeOrder.setQueryFromDeliveryBoy(query);
+      
     }
 
   

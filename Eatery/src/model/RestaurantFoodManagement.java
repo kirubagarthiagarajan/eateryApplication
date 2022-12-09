@@ -33,7 +33,7 @@ public class RestaurantFoodManagement {
   
 public RestaurantFoodManagement(){
  this.foodList=new ArrayList<Food>();
-// populateFoodList();
+ populateFoodList();
 }  
 
 public void addFood(Food f)

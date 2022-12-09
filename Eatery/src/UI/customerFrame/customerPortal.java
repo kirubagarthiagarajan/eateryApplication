@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import javax.swing.JFrame;
 import model.Customer;
 import model.EateryEnterprise;
 
@@ -21,6 +22,7 @@ public class customerPortal extends javax.swing.JFrame {
     Customer currentCustomer;
     public customerPortal(EateryEnterprise eatery,Customer customer) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         this.currentCustomer=customer;
     }
@@ -39,19 +41,20 @@ public class customerPortal extends javax.swing.JFrame {
         displayPanel = new javax.swing.JPanel();
         togglePanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnPastOrders = new javax.swing.JButton();
+        currentOrderScreen = new javax.swing.JButton();
         btnEditProfile = new javax.swing.JButton();
+        btnGroceryOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        splittedPane.setDividerLocation(150);
+        splittedPane.setDividerLocation(180);
 
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 866, Short.MAX_VALUE)
+            .addGap(0, 836, Short.MAX_VALUE)
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,21 +65,33 @@ public class customerPortal extends javax.swing.JFrame {
 
         togglePanel.setPreferredSize(new java.awt.Dimension(300, 596));
 
-        jButton1.setText("MAKE ORDER");
+        jButton1.setText("MAKE FOOD ORDER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("PAST ORDERS");
+        btnPastOrders.setText("PAST ORDERS");
+        btnPastOrders.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPastOrdersActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("CANCEL ORDER");
+        currentOrderScreen.setText("CANCEL ORDER");
 
         btnEditProfile.setText("EDIT PROFILE");
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditProfileActionPerformed(evt);
+            }
+        });
+
+        btnGroceryOrder.setText("MAKE GROCERY ORDER");
+        btnGroceryOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGroceryOrderActionPerformed(evt);
             }
         });
 
@@ -87,30 +102,32 @@ public class customerPortal extends javax.swing.JFrame {
             .addGroup(togglePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGroceryOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPastOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(togglePanelLayout.createSequentialGroup()
+                        .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(currentOrderScreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        togglePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditProfile, jButton1, jButton2, jButton3});
-
         togglePanelLayout.setVerticalGroup(
             togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePanelLayout.createSequentialGroup()
-                .addGap(183, 183, 183)
+                .addGap(149, 149, 149)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(27, 27, 27)
+                .addComponent(btnGroceryOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnPastOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(currentOrderScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
                 .addComponent(btnEditProfile)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
-        togglePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditProfile, jButton1, jButton2, jButton3});
+        togglePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditProfile, btnPastOrders, currentOrderScreen, jButton1});
 
         splittedPane.setLeftComponent(togglePanel);
 
@@ -141,7 +158,7 @@ public class customerPortal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        customerOrder custOrder= new customerOrder(eatery,currentCustomer);
+        customerFoodOrder custOrder= new customerFoodOrder(eatery,currentCustomer);
         splittedPane.setRightComponent(custOrder);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -151,6 +168,17 @@ public class customerPortal extends javax.swing.JFrame {
         splittedPane.setRightComponent(cp);
         
     }//GEN-LAST:event_btnEditProfileActionPerformed
+
+    private void btnGroceryOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroceryOrderActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnGroceryOrderActionPerformed
+
+    private void btnPastOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPastOrdersActionPerformed
+        // TODO add your handling code here:
+        customerPastOrders custPast = new customerPastOrders(eatery,currentCustomer );
+         splittedPane.setRightComponent(custPast);
+    }//GEN-LAST:event_btnPastOrdersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,10 +217,11 @@ public class customerPortal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditProfile;
+    private javax.swing.JButton btnGroceryOrder;
+    private javax.swing.JButton btnPastOrders;
+    private javax.swing.JButton currentOrderScreen;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane splittedPane;
     private javax.swing.JPanel togglePanel;

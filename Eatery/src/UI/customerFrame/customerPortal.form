@@ -50,7 +50,7 @@
       <SubComponents>
         <Container class="javax.swing.JSplitPane" name="splittedPane">
           <Properties>
-            <Property name="dividerLocation" type="int" value="150"/>
+            <Property name="dividerLocation" type="int" value="180"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
@@ -65,7 +65,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="866" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="836" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -93,10 +93,14 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" linkSize="1" min="-2" pref="138" max="-2" attributes="0"/>
-                              <Component id="jButton2" linkSize="1" min="-2" pref="138" max="-2" attributes="0"/>
-                              <Component id="jButton3" linkSize="1" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                              <Component id="btnEditProfile" linkSize="1" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                              <Component id="btnGroceryOrder" pref="168" max="32767" attributes="0"/>
+                              <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnPastOrders" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnEditProfile" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="currentOrderScreen" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -105,13 +109,15 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                           <Component id="jButton1" linkSize="2" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="jButton2" linkSize="2" min="-2" pref="31" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="jButton3" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="btnGroceryOrder" min="-2" pref="36" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="btnPastOrders" linkSize="2" min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="currentOrderScreen" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                           <Component id="btnEditProfile" linkSize="2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="89" max="32767" attributes="0"/>
                       </Group>
@@ -121,18 +127,21 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="MAKE ORDER"/>
+                    <Property name="text" type="java.lang.String" value="MAKE FOOD ORDER"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnPastOrders">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="PAST ORDERS"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPastOrdersActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="currentOrderScreen">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="CANCEL ORDER"/>
                   </Properties>
@@ -143,6 +152,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditProfileActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnGroceryOrder">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="MAKE GROCERY ORDER"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGroceryOrderActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

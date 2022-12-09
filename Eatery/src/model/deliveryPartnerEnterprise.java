@@ -77,6 +77,12 @@ public void addDeliveryPerson(DeliveryPerson delPer ){
    {
        this.deliveryPersonManagement.replaceDeliveryPersonDb();
    }
+
+
+    public void sendQueryToCustomer(int deliveryPersonId, String query) {
+      this.deliveryPersonManagement.sendQueryToCustomer(deliveryPersonId, query);
+      
+    }
     
     
 }

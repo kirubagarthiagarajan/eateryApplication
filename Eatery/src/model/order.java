@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,9 +21,13 @@ public class Order {
     private String city;
     private String deliveryInstructions;
     private int totalPrice;
-      private ArrayList<Food> orderedFoodList;
+      private List<Food> orderedFoodList;
+      private String queryFromDeliveryBoy;
+      private boolean isGroceryOrder;
+      private List<Grocery> orderedGroceryList;
       
-      public Order(int orderId, int customerId, int restaurantId, OrderStatus status, String devlieryAddress, String deliveryInstructions,int totalPrice,ArrayList<Food>foodList, String city)
+      public Order(int orderId, int customerId, int restaurantId, OrderStatus status, String devlieryAddress, String deliveryInstructions,int totalPrice,ArrayList<Food>foodList, String city, 
+        boolean  isGroceryOrder, List<Grocery> orderedGroceryList)
       {
           this.orderId=orderId;
           this.customerId=customerId;
@@ -33,7 +38,22 @@ public class Order {
           this.orderedFoodList=foodList;
           this.restaurantId=restaurantId;
           this.city=city;
+          this.queryFromDeliveryBoy = "";
+          this.isGroceryOrder = isGroceryOrder;
+          this.orderedGroceryList = orderedGroceryList;
       }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setDevlieryAddress(String devlieryAddress) {
+        this.devlieryAddress = devlieryAddress;
+    }
+
+    public String getDevlieryAddress() {
+        return devlieryAddress;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -65,7 +85,7 @@ public class Order {
 
  
 
-    public ArrayList<Food> getOrderedFoodList() {
+    public List<Food> getOrderedFoodList() {
         return orderedFoodList;
     }
 
@@ -98,12 +118,36 @@ public class Order {
     }
 
 
-    public void setOrderedFoodList(ArrayList<Food> orderedFoodList) {
+    public void setOrderedFoodList(List<Food> orderedFoodList) {
         this.orderedFoodList = orderedFoodList;
     }
 
     public String getCity() {
       return this.city;
+    }
+
+    public String getQueryFromDeliveryBoy() {
+      return queryFromDeliveryBoy;
+    }
+
+    public void setQueryFromDeliveryBoy(String queryFromDeliveryBoy) {
+      this.queryFromDeliveryBoy = queryFromDeliveryBoy;
+    }
+
+    public boolean isGroceryOrder() {
+      return isGroceryOrder;
+    }
+
+    public void setGroceryOrder(boolean isGroceryOrder) {
+      this.isGroceryOrder = isGroceryOrder;
+    }
+
+    public List<Grocery> getOrderedGroceryList() {
+      return orderedGroceryList;
+    }
+
+    public void setOrderedGroceryList(List<Grocery> orderedGroceryList) {
+      this.orderedGroceryList = orderedGroceryList;
     }
     
   

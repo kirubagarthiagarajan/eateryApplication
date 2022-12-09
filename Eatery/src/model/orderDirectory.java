@@ -78,12 +78,52 @@ public class OrderDirectory {
     public  List<Order> getOrdersThatOutForDelivery() {
       List<Order> outForDeliveryOrders = new ArrayList<Order>();
       for(Order order: this.orderList) {
-        if(order.getStatus().equals(OrderStatus.OUT_FOR_DELIVERY)) {
+        if(order.getStatus().equals(OrderStatus.READY_FOR_DELIVERY)) {
           outForDeliveryOrders.add(order);
         }
       }
       return outForDeliveryOrders;
       
     }
+    
+        public  List<Order> getOrdersThatReadyForDelivery() {
+      List<Order> outForDeliveryOrders = new ArrayList<Order>();
+      for(Order order: this.orderList) {
+        if(order.getStatus().equals(OrderStatus.READY_FOR_DELIVERY)) {
+          outForDeliveryOrders.add(order);
+        }
+      }
+      return outForDeliveryOrders;
+      
+    }
+
+ 
+
+    public List<Order> getOrdersFromRestaurant(int restaurantId) {
+      List<Order> orders = new ArrayList<Order>();
+      for(Order order: this.orderList) {
+        if(order.getRestaurantId() == restaurantId && order.getStatus().equals(OrderStatus.ORDER_PLACED)) {
+          orders.add(order);
+        }
+      }
+      return orders;
+    }
+    
+    public List<Order> getOrderByDeliveryBoyId(int delId)
+    {
+        List<Order> orderForDeliveryPerson= new ArrayList<>();
+        for(Order ord : this.orderList)
+        {
+            if(ord.getDeliveryPersonId()==delId)
+            {
+                orderForDeliveryPerson.add(ord);
+            }
+        }
+        return orderForDeliveryPerson;
+    }
+
+  
+      
+    
      
 }

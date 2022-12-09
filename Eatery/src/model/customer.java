@@ -22,6 +22,7 @@ private String password;
 private String city;
 private List<Order> pastOrders;
 private List<Order> activeOrders;
+private String deliveryQuery;
 
 public Customer(int stateId, String name, int mobile, String email, String city, String password, String address)
 {

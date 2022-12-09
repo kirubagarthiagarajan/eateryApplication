@@ -22,6 +22,7 @@ public class RestaurantEnterprise {
        this.foodDirect=new RestaurantFoodManagement();
        this.employeeList=new RestaurantEmployeeManagement();
        populateDishesInRestaurant();
+       populateRestaurantDb();
   }
        
        public void populateRestaurantDb()
@@ -262,6 +263,16 @@ public class RestaurantEnterprise {
                     }
                 }
             }
+            else if (role=="Order Manager")
+            {
+             for(Restaurant res: this.restaurantDirectory)
+                {
+                    if(res.getRestaurantId()==restaurantId)
+                    {
+                        return res;
+                    }
+                }   
+            }
             else
             {
             for(Restaurant res : this.restaurantDirectory)
@@ -404,6 +415,7 @@ public class RestaurantEnterprise {
         this.foodDirect.replaceFoodList();  
     }
      
+  
     
    
   

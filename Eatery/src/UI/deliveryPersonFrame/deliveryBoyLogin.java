@@ -118,6 +118,8 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
         if(a != null)
         {
             JOptionPane.showMessageDialog(this, "Delivery person login successfully");
+            deliveryBoyFrames delPer = new deliveryBoyFrames(eatery,a.getStateId());
+            delPer.setVisible(true);
         }
         else
         {

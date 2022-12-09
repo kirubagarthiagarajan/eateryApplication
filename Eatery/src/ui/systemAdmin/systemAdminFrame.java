@@ -4,6 +4,7 @@
  */
 package ui.systemAdmin;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 
 /**
@@ -19,6 +20,7 @@ public class systemAdminFrame extends javax.swing.JFrame {
        
     public systemAdminFrame(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

@@ -4,8 +4,18 @@
  */
 package model;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import model.SQLConnection.SQLConnection;
 
 /**
  *
@@ -31,13 +41,52 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
     //get deliveryPerson from db
     public void populateDeliveryPersonFromDb()
     {
+      try {
+      Connection con=SQLConnection.dbconnector();
+      String sql="select * from DeliveryPerson";
+      PreparedStatement ps=con.prepareStatement(sql);
+      ResultSet st=ps.executeQuery();
+      while(st.next())
+         {
+            int stateId=st.getInt("DeliveryPersonId");
+            String email=st.getString("Email");
+            int mobile=st.getInt("Mobile");
+            String address=st.getString("Address");
+            String name=st.getString("Name");
+            String password=st.getString("Password");
+            String city=st.getString("City");
+            DeliveryPerson d=new DeliveryPerson(stateId,name,mobile,email,city,password,address);
+            this.deliveryPersonDirectory.add(d);
+            
+         }
+  } catch (SQLException ex) {
+      Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+ }
         
     }
     
-     //replace db
     public void replaceDeliveryPersonDb(){
+      try {
+        //db replace old list  with new this.foodList;
+        System.out.print("Inside replace customer db");
+        Connection con=SQLConnection.dbconnector();
+        Statement stmt=con.createStatement();
+        String TruncQuery="delete from DeliveryPerson";
+        stmt.executeUpdate(TruncQuery);
+        for (DeliveryPerson d: this.deliveryPersonDirectory)
+        {
+            String InsertQuery="Insert into Customer (DeliveryPersonId,Name,Mobile,Password,Email,City,Address) values ('"+d.getStateId()+"','"+d.getName()+"','"+d.getMobile()+"','"+d.getPassword()+"','"+d.getEmail()+"','"+d.getCity()+"','"+d.getAddress()+"')";
+            stmt.executeUpdate(InsertQuery);
+        }
+        stmt.close();
+        con.close();
         
+       populateDeliveryPersonFromDb();
+    } catch (SQLException ex) {
+         Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+
     }
+  }
   
 
     public void addNewDeliveryPerson(DeliveryPerson delPerson)
@@ -142,6 +191,17 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
                  
              }
          }
+    }
+
+    public void sendQueryToCustomer(int deliveryPersonId, String query) {
+       
+      for (DeliveryPerson dp:this.deliveryPersonDirectory) {
+        
+        if(dp.getStateId()== deliveryPersonId)
+        {
+            dp.sendQueryToCustomer(query);
+        }
+    }
     }
     
 }
