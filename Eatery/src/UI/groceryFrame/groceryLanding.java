@@ -81,8 +81,8 @@ public class groceryLanding extends javax.swing.JFrame {
 
     private void btnGroceryOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroceryOrderActionPerformed
         // TODO add your handling code here:
-//        menuManagerLogin menuManagerLogin = new menuManagerLogin(eatery);
-//        menuManagerLogin.setVisible(true);
+        groceryOrderManagerLogin grocManageLogin = new groceryOrderManagerLogin(eatery);
+        grocManageLogin.setVisible(true);
     }//GEN-LAST:event_btnGroceryOrderActionPerformed
 
     private void btnGroceryManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroceryManagementActionPerformed

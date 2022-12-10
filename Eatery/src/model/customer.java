@@ -22,7 +22,6 @@ private String password;
 private String city;
 private List<Order> pastOrders;
 private List<Order> activeOrders;
-private String deliveryQuery;
 
 public Customer(int stateId, String name, int mobile, String email, String city, String password, String address)
 {
@@ -118,6 +117,21 @@ public Customer(int stateId, String name, int mobile, String email, String city,
 
     void addToPastOrders(Order order) {
         this.pastOrders.add(order);
+     }
+    void addToActiveOrders(Order order) {
+        this.activeOrders.add(order);
+     }
+    
+            
+ void removeFromActiveOrdersOfCustomer(Order order) {
+ int index = 0;
+    for (Order ord : this.activeOrders) {
+         if (ord.getOrderId() == order.getOrderId()) {
+         this.activeOrders.remove(index);
+         return;
+           }
+      index++;
+    }
      }
 
   

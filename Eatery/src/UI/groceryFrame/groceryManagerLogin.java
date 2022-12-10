@@ -17,7 +17,7 @@ public class groceryManagerLogin extends javax.swing.JFrame {
     /**
      * Creates new form groceryManagerLogin
      */
-    private String passCode= "sysadmin@123";
+    private String passCode= "grocMng";
     private EateryEnterprise eatery;
     
     public groceryManagerLogin(EateryEnterprise eatery) {

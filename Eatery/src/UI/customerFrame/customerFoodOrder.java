@@ -47,6 +47,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
         quantity.setText("");
         labelConfirmAddress.setVisible(false);
         textConfirmAddress.setVisible(false);
+        couponsDropdown.setSelectedItem(null);
     }
 
     /**
@@ -252,18 +253,18 @@ public class customerFoodOrder extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cityDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -271,7 +272,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addComponent(chooseRestaraunt))
                     .addComponent(addToCart))
-                .addGap(57, 57, 57)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,7 +290,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelConfirmAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,7 +307,11 @@ public class customerFoodOrder extends javax.swing.JPanel {
 
         int row=foodTable.getSelectedRow();
         int col=0;
-        int foodId= Integer.parseInt(foodTable.getModel().getValueAt(row, col).toString());
+        
+           if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+        } else {
+               int foodId= Integer.parseInt(foodTable.getModel().getValueAt(row, col).toString());
         Food foo= eatery.getFoodById(foodId);
         System.out.print(foodId);
         if(quantity.getText().equals(""))
@@ -315,17 +320,12 @@ public class customerFoodOrder extends javax.swing.JPanel {
         }else if(!quantity.getText().equals(""))
         {
               changefoodQuantity(foo,Integer.parseInt(quantity.getText()));
+              populateOrderTable();
         }
-      
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
-        }
+           }
         
-        else if(row >= 0 && !quantity.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Added to Cart!");
-      
-         populateOrderTable();
-        }
+        
+        
     }//GEN-LAST:event_addToCartActionPerformed
 
     public void changefoodQuantity(Food f,int quantity)
@@ -336,7 +336,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
         {
             if(food.getFoodId()==f.getFoodId())
             {
-                food.setQuantity(food.getQuantity()+quantity);
+                food.setQuantity(quantity);
                 return;
             }
         }
@@ -412,29 +412,28 @@ public class customerFoodOrder extends javax.swing.JPanel {
         {
             price+=(f.getPrice()* f.getQuantity());
         }
-           
+
         if(couponsDropdown.getSelectedItem()!=null)
         {
             if(couponsDropdown.getSelectedItem().toString()=="50OFF")
             {
-             price=price/2;   
+                price=price/2;
             }
             else if(couponsDropdown.getSelectedItem().toString()=="25OFF")
             {
-              price=(int) ((int)price*0.75);     
+                price=(int) ((int)price*0.75);
             }
         }
         orderTotalprice=price;
         textOrderTotal.setText(String.valueOf(orderTotalprice));
-
         if(currentCustomer.getCity()!=cityDropDown.getSelectedItem().toString())
-                {
-                    JOptionPane.showMessageDialog(this, "The chosen City, does not match with your registered city. Please enter an alternate address in the chosen city!");
-                    labelConfirmAddress.setVisible(true);
-                    textConfirmAddress.setVisible(true);
-                    confirmOrder.setVisible(true);
-                    placeOrder.setEnabled(false);
-                }
+        {
+            JOptionPane.showMessageDialog(this, "The chosen City, does not match with your registered city. Please enter an alternate address in the chosen city!");
+            labelConfirmAddress.setVisible(true);
+            textConfirmAddress.setVisible(true);
+            confirmOrder.setVisible(true);
+            placeOrder.setEnabled(false);
+        }
         else
         {
             if(!textDeliveryInstructions.getText().equals(""))
@@ -446,10 +445,24 @@ public class customerFoodOrder extends javax.swing.JPanel {
             {
                 JOptionPane.showMessageDialog(this, "Please enter the delivery instructions, to palce your order!");
             }
-            
 
         }
+
     }//GEN-LAST:event_placeOrderActionPerformed
+
+    private void confirmOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmOrderActionPerformed
+        // TODO add your handling code here:
+
+        if(textConfirmAddress.getText().equals("") || textDeliveryInstructions.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter the delivery instructions, and alternate address to place your order!");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Order Placed in restaraunt!");
+            placeOrder(textConfirmAddress.getText().toString());
+        }
+    }//GEN-LAST:event_confirmOrderActionPerformed
 public void placeOrder(String deliveryAddress){
     Random random = new Random();
         int randomOrderId = random.nextInt(900) + 100;
@@ -457,9 +470,10 @@ public void placeOrder(String deliveryAddress){
         String delAddress=deliveryAddress;
         String instructions=textDeliveryInstructions.getText();
 
-    Order ord= new Order(randomOrderId,currentCustomer.getStateId(),currentRestarautId,OrderStatus.ORDER_PLACED,delAddress,instructions,orderTotalprice,orderFoodList,cityDropDown.getSelectedItem().toString(),false,null);  
+    Order ord= new Order(randomOrderId,currentCustomer.getStateId(),currentRestarautId,OrderStatus.ORDER_PLACED,delAddress,instructions,orderTotalprice,orderFoodList,cityDropDown.getSelectedItem().toString(),false,null,-1);  
     
     if(eatery.checkIfRestaurantAcceptsOrder(currentRestarautId)){
+         JOptionPane.showMessageDialog(this, "Your total order price is $"+orderTotalprice +"!");
          eatery.placeOrder(ord); 
     }
     else
@@ -468,20 +482,6 @@ public void placeOrder(String deliveryAddress){
     }
   
 }
-    private void confirmOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmOrderActionPerformed
-        // TODO add your handling code here:
-        
-        if(textConfirmAddress.getText().equals("") || textDeliveryInstructions.getText().equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "Please enter the delivery instructions, and alternate address to place your order!");
-        }
-        else
-        {
-             JOptionPane.showMessageDialog(this, "Order Placed in restaraunt!");
-             placeOrder(textConfirmAddress.getText().toString());
-        }
-    }//GEN-LAST:event_confirmOrderActionPerformed
-
     
     public void populateFoodTable(){
      foodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

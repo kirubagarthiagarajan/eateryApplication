@@ -96,13 +96,14 @@
                               <Component id="btnGroceryOrder" pref="168" max="32767" attributes="0"/>
                               <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnPastOrders" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="btnEditProfile" min="-2" pref="138" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
                               <Component id="currentOrderScreen" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="btnEditProfile" min="-2" pref="138" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -113,13 +114,13 @@
                           <Component id="jButton1" linkSize="2" min="-2" pref="36" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="btnGroceryOrder" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnPastOrders" linkSize="2" min="-2" pref="31" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="currentOrderScreen" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnEditProfile" linkSize="2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="89" max="32767" attributes="0"/>
+                          <EmptySpace pref="186" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -143,8 +144,11 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="currentOrderScreen">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="CANCEL ORDER"/>
+                    <Property name="text" type="java.lang.String" value="CURRENT ORDER"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="currentOrderScreenActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEditProfile">
                   <Properties>

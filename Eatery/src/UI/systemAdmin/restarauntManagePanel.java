@@ -266,11 +266,12 @@ public class restarauntManagePanel extends javax.swing.JPanel {
     private void updateRestarauntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRestarauntActionPerformed
         int col= 0;
         int row=mngRestarauntTable.getSelectedRow();
-        int restarauntId= Integer.parseInt(mngRestarauntTable.getModel().getValueAt(row, col).toString());
+       
 
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
         } else {
+             int restarauntId= Integer.parseInt(mngRestarauntTable.getModel().getValueAt(row, col).toString());
             editRestarauntName.setEnabled(true);
             editCity.setEnabled(true);
             confirmUpdate.setEnabled(true);

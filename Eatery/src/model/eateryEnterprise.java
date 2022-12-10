@@ -28,6 +28,9 @@ public class EateryEnterprise {
     this.setGroceryEnterprise(groceryEnterprise);
     this.restaurantEnterprise = new RestaurantEnterprise();
     this.orderList = orderList;
+    
+     this.addGrocery(123, "rice", 15.00, 10);
+      this.addGrocery(456, "banana", 20.00, 20);
 
   }
 
@@ -62,7 +65,17 @@ public class EateryEnterprise {
   public Boolean isFoodIdUnique(int foodId) {
     return this.restaurantEnterprise.isFoodIdUnique(foodId);
   }
+  
+  public List<Order> getGroceryOrders()
+  {
+      return this.groceryEnterprise.getCurrentOrders();
+  }
+  public Boolean isGroceryIdUnique(int groceryId)
+  {
+      return this.groceryEnterprise.checkIfGroceryIdIsUnique(groceryId);
+  }
 
+  
   public ArrayList<Food> getFoodList() {
     return this.restaurantEnterprise.getFoodList();
   }
@@ -125,19 +138,22 @@ public class EateryEnterprise {
 
   public void placeOrder(Order order) {
     this.orderList.addOrder(order);
-//       boolean  this.restaurantEnterprise.checkIfRestaurantAcceptsOrder()
-    this.restaurantEnterprise.assingOrdertoRestaurant(order, order.getRestaurantId());
+     this.eatCusManage.addOrderToActiveOrdersOfCustomer(order);
+    if(order.isGroceryOrder())
+    {
+        this.groceryEnterprise.assingOrdertoGrocery(order);
+    }
+    else
+    {
+         this.restaurantEnterprise.assingOrdertoRestaurant(order, order.getRestaurantId());
+    }
+   
   }
 
   public Boolean checkIfRestaurantAcceptsOrder(int restaurantId) {
     return this.restaurantEnterprise.checkIfRestaurantAcceptsOrder(restaurantId);
   }
 
-  public void cancelOrder(Order order) {
-    this.orderList.removeOrder(order.getOrderId());
-    this.restaurantEnterprise.removeOrderFromRestaurant(order.getOrderId(),
-        order.getRestaurantId());
-  }
 
   public void addDeliveryPerson(int stateId, String email, int mobile, String address, String name,
       String password, String city) {
@@ -215,6 +231,8 @@ public class EateryEnterprise {
 
   public boolean assignOrderToDeliveryBoy(int orderId, int deliveryPersonId) {
     Order currOrder = this.orderList.getOrderId(orderId);
+    currOrder.setDeliveryPersonId(deliveryPersonId);
+    currOrder.setStatus(OrderStatus.OUT_FOR_DELIVERY);
     if (currOrder != null) {
       return this.deliveryEnterPrise.assignOrderToDeliveryPerson(currOrder, deliveryPersonId);
     } else {
@@ -231,6 +249,7 @@ public class EateryEnterprise {
 
     Order order = this.orderList.getOrderId(orderId);
     order.setStatus(OrderStatus.DELIVERED);
+    this.eatCusManage.removeFromActiveOrdersOfCustomer(order);
     this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
   }
 
@@ -240,11 +259,14 @@ public class EateryEnterprise {
     if (order != null && order.getCustomerId() == custId
         && !(order.getStatus().equals(OrderStatus.DELIVERED)
             || order.getStatus().equals(OrderStatus.CANCELLED)))
-      this.eatCusManage.cancelOrderByCustomer(custId, order);
-    order.setStatus(OrderStatus.CANCELLED);
+      if(this.eatCusManage.cancelOrderByCustomer(custId, order))
+      {
+              order.setStatus(OrderStatus.CANCELLED);
     this.restaurantEnterprise.setOrderStatusCancelled(order.getRestaurantId(), orderId);
-
+    this.eatCusManage.removeFromActiveOrdersOfCustomer(order);
     this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
+      }
+
   }
 
   public void cancelOrderByRestaurant(int restaurantId, int orderId) {
@@ -254,8 +276,26 @@ public class EateryEnterprise {
             || order.getStatus().equals(OrderStatus.CANCELLED)))
       this.restaurantEnterprise.cancelOrderByRestaurant(restaurantId, orderId);
     order.setStatus(OrderStatus.CANCELLED);
-    this.eatCusManage.cancelOrderByCustomer(order.getCustomerId(), order);
-    this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
+    if(this.eatCusManage.cancelOrderByCustomer(order.getCustomerId(), order))
+    {
+        this.eatCusManage.removeFromActiveOrdersOfCustomer(order);
+         this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
+    }
+   
+  }
+  
+    public void cancelOrderByGrocery(int orderId) {
+    Order order = this.orderList.getOrderId(orderId);
+    if (order != null 
+        && !(order.getStatus().equals(OrderStatus.DELIVERED) || order.getStatus().equals(OrderStatus.CANCELLED)))
+        this.groceryEnterprise.cancelOrderByGrocery(orderId);
+       order.setStatus(OrderStatus.CANCELLED);
+     if(this.eatCusManage.cancelOrderByCustomer(order.getCustomerId(), order))
+    {
+        this.eatCusManage.removeFromActiveOrdersOfCustomer(order);
+        this.eatCusManage.addOrderToPastOrdersOfCustomer(order);
+    }
+   
   }
 
   public ArrayList<DeliveryPerson> getAllDeliveryPerson() {
@@ -336,6 +376,12 @@ public class EateryEnterprise {
     Order order = this.orderList.getOrderId(orderId);
     order.setStatus(OrderStatus.READY_FOR_DELIVERY);
     this.restaurantEnterprise.removeOrderFromRestaurant(orderId, order.getRestaurantId());
+  }
+  
+   public void processOrderByGrocery(int orderId) {
+    Order order = this.orderList.getOrderId(orderId);
+    order.setStatus(OrderStatus.READY_FOR_DELIVERY);
+    this.groceryEnterprise.removeOrderFromGrocery(orderId);
   }
   
   public List<Order> getOrdersByRestaurant(int restaurantId){

@@ -79,7 +79,12 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
-        currentOrderScreen.setText("CANCEL ORDER");
+        currentOrderScreen.setText("CURRENT ORDER");
+        currentOrderScreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentOrderScreenActionPerformed(evt);
+            }
+        });
 
         btnEditProfile.setText("EDIT PROFILE");
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -105,11 +110,12 @@ public class customerPortal extends javax.swing.JFrame {
                     .addComponent(btnGroceryOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPastOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(togglePanelLayout.createSequentialGroup()
-                        .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(currentOrderScreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(togglePanelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         togglePanelLayout.setVerticalGroup(
             togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,13 +124,13 @@ public class customerPortal extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnGroceryOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(btnPastOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(currentOrderScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addGap(18, 18, 18)
                 .addComponent(btnEditProfile)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         togglePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditProfile, btnPastOrders, currentOrderScreen, jButton1});
@@ -171,7 +177,8 @@ public class customerPortal extends javax.swing.JFrame {
 
     private void btnGroceryOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroceryOrderActionPerformed
         // TODO add your handling code here:
-        
+        customerGroceryOrder custGrocery = new customerGroceryOrder(eatery,currentCustomer );
+         splittedPane.setRightComponent(custGrocery);
     }//GEN-LAST:event_btnGroceryOrderActionPerformed
 
     private void btnPastOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPastOrdersActionPerformed
@@ -179,6 +186,12 @@ public class customerPortal extends javax.swing.JFrame {
         customerPastOrders custPast = new customerPastOrders(eatery,currentCustomer );
          splittedPane.setRightComponent(custPast);
     }//GEN-LAST:event_btnPastOrdersActionPerformed
+
+    private void currentOrderScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentOrderScreenActionPerformed
+        // TODO add your handling code here:
+        customerCurrentOrder custCurrent = new customerCurrentOrder(eatery,currentCustomer);
+        splittedPane.setRightComponent(custCurrent);
+    }//GEN-LAST:event_currentOrderScreenActionPerformed
 
     /**
      * @param args the command line arguments

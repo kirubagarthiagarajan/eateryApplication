@@ -152,19 +152,20 @@ public class EateryCustomerManagement {
            
     }
 
-    public void cancelOrderByCustomer(int custId, Order order) {
+    public Boolean cancelOrderByCustomer(int custId, Order order) {
       for(Customer cust : this.customerDirectory) {
          if(cust.getStateId() == custId) {
-           cust.checkIfOrderPlacedByCustomer(order);
+           return cust.checkIfOrderPlacedByCustomer(order);
          }
       }
+      return false;
       
     }
 
     public List<Order> getPastOrdersOfCustomer(int custId) {
       for(Customer cust : this.customerDirectory){
           if(cust.getStateId() == custId){
-              return cust.getActiveOrders();
+              return cust.getPastOrders();
           }
       }
       return null;
@@ -175,6 +176,24 @@ public class EateryCustomerManagement {
         for(Customer cust: this.customerDirectory){
             if(cust.getStateId() == custId){
                 cust.addToPastOrders(order);
+            }
+        }
+            }
+    
+      void addOrderToActiveOrdersOfCustomer(Order order) {
+        int custId = order.getCustomerId();
+        for(Customer cust: this.customerDirectory){
+            if(cust.getStateId() == custId){
+                cust.addToActiveOrders(order);
+            }
+        }
+            }
+      
+        void removeFromActiveOrdersOfCustomer(Order order) {
+        int custId = order.getCustomerId();
+        for(Customer cust: this.customerDirectory){
+            if(cust.getStateId() == custId){
+                cust.removeFromActiveOrdersOfCustomer(order);
             }
         }
             }

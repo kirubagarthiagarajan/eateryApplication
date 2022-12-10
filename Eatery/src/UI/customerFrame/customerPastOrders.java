@@ -44,21 +44,21 @@ public class customerPastOrders extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        pastOrdersTable = new javax.swing.JTable();
+        tblCurrentOrders = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
-        pastOrdersTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblCurrentOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Order Id", "Restaraunt Id", "Delivery Person Id", "Total Price"
+                "Order Id", "Restaraunt/Grocery Id", "Delivery Person Id", "Total Price", "Order Status"
             }
         ));
-        jScrollPane1.setViewportView(pastOrdersTable);
+        jScrollPane1.setViewportView(tblCurrentOrders);
 
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,8 +70,8 @@ public class customerPastOrders extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,17 +85,27 @@ public class customerPastOrders extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void populatePastOrdersTable(){
-        pastOrdersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        DefaultTableModel tableModel = (DefaultTableModel) pastOrdersTable.getModel();
+        tblCurrentOrders.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) tblCurrentOrders.getModel();
         tableModel.setRowCount(0);
         if (pastOrders!=null) {
             for (int i = 0; i < pastOrders.size(); i++) {
                 Order ord = pastOrders.get(i);
                 Object[] tableRow = new Object[10];
                 tableRow[0] = ord.getOrderId();
-                tableRow[1] = ord.getRestaurantId();
-                tableRow[2]= ord.getDeliveryPersonId();
+                if(ord.getRestaurantId()==-1)
+                {
+                   tableRow[1] = "GROCERY STORE, BOSTON";
+                }
+                else tableRow[1] = ord.getRestaurantId();
+            
+                if(ord.getDeliveryPersonId()==-1)
+                {
+                  tableRow[2]= "Not Assigned Yet";  
+                }
+                else tableRow[2]=ord.getDeliveryPersonId();
                 tableRow[3]= ord.getTotalPrice();
+                tableRow[4]= ord.getStatus();
                 tableModel.addRow(tableRow);
             }
         }
@@ -104,6 +114,6 @@ public class customerPastOrders extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable pastOrdersTable;
+    private javax.swing.JTable tblCurrentOrders;
     // End of variables declaration//GEN-END:variables
 }

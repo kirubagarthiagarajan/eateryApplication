@@ -45,12 +45,20 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
                 Order o = currentOrderList.get(i);
                 Object[] tableRow = new Object[10];
                 tableRow[0] = o.getOrderId();
-                tableRow[1]= o.getRestaurantId();
-                tableRow[2] = o.getCustomerId();
+                if(o.getRestaurantId()==-1)
+                {
+                     tableRow[1]= "GROCERY STORE BOSTON";
+                        tableRow[2] = o.getCustomerId();
                 tableRow[3] = o.getCity();
                 tableModel.addRow(tableRow);
-                
-            //    name,mobile,email,city,password,address,
+                }
+                else
+                {
+                    tableRow[1]= o.getRestaurantId();
+                     tableRow[2] = o.getCustomerId();
+                tableRow[3] = o.getCity();
+                tableModel.addRow(tableRow);
+                }
             }
         }
     }
@@ -70,8 +78,6 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
                 tableRow[2] =d.getCity();
                 tableRow[3] = d.getAddress();
                 tableModel.addRow(tableRow);
-                
-            //    name,mobile,email,city,password,address,
             }
         }
     }
@@ -88,11 +94,11 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrders = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        getFreeDelivery = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDeliveryBoy = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        assignOrder = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Delivery Person Available");
@@ -109,15 +115,15 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Order Id", "Restaraunt Id", "Customer Id", "City"
+                "Order Id", "Restaraunt/Grocery Store Id", "Customer Id", "City"
             }
         ));
         jScrollPane1.setViewportView(tblOrders);
 
-        jButton1.setText("Get Free Delivery Person in this City");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        getFreeDelivery.setText("Get Free Delivery Person in this City");
+        getFreeDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                getFreeDeliveryActionPerformed(evt);
             }
         });
 
@@ -140,10 +146,10 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Orders waiting to be delivered");
 
-        jButton2.setText("Assign Order");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        assignOrder.setText("Assign Order");
+        assignOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                assignOrderActionPerformed(evt);
             }
         });
 
@@ -156,10 +162,7 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(getFreeDelivery)
                         .addGap(364, 364, 364))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,8 +174,11 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(403, 403, 403))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(431, 431, 431))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(assignOrder)
+                        .addGap(430, 430, 430))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,55 +189,70 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(getFreeDelivery)
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(assignOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void getFreeDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getFreeDeliveryActionPerformed
         // TODO add your handling code here:
          int col= 0;
         int row=tblOrders.getSelectedRow();
+        
+              if(row < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a order to retrieve delivery personnel!");
+        }
+        else
+           {
         orderId= Integer.parseInt(tblOrders.getModel().getValueAt(row, col).toString());
         Order currentOrder=eatery.getOrderWithOrderId(orderId);
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
-        } else {
+       
          this.deliveryPersonList=(ArrayList<DeliveryPerson>) eatery.getDeliveryBoyThatAreFreeInSameCity(currentOrder.getCity());
          populateDeliveryBoyTable();
-        }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+           }
+        
+    }//GEN-LAST:event_getFreeDeliveryActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void assignOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignOrderActionPerformed
         // TODO add your handling code here:
          int col= 0;
         int row=tblDeliveryBoy.getSelectedRow();
-        int deliveryPersonId= Integer.parseInt(tblDeliveryBoy.getModel().getValueAt(row, col).toString());
-        String deliveryPersonName= tblDeliveryBoy.getModel().getValueAt(row, 1).toString();
-        //Order currentOrder=eatery.getOrderWithOrderId(orderId);
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+           if(row < 0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a delivery boy to assign order!");
         }
         else
-        {
+           {
+               int deliveryPersonId= Integer.parseInt(tblDeliveryBoy.getModel().getValueAt(row, col).toString());
+        String deliveryPersonName= tblDeliveryBoy.getModel().getValueAt(row, 1).toString();
+        //Order currentOrder=eatery.getOrderWithOrderId(orderId);
+  
+       
              JOptionPane.showMessageDialog(this, "Assigned is "+eatery.assignOrderToDeliveryBoy(orderId,deliveryPersonId) );
             
         eatery.assignOrderToDeliveryBoy(orderId,deliveryPersonId);
         JOptionPane.showMessageDialog(this, "Order assigned to"+deliveryPersonName );
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.currentOrderList=eatery.getOrdersThatReadyForDelivery();
+        this.deliveryPersonList.clear();
+       populateOrders();
+       populateDeliveryBoyTable();
+        
+           }
+        
+    }//GEN-LAST:event_assignOrderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton assignOrder;
+    private javax.swing.JButton getFreeDelivery;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -18,6 +18,32 @@ public class GroceryEnterprise {
     this.currentOrders = new ArrayList<Order>();
   }
 
+    public List<Order> getCurrentOrders() {
+        return currentOrders;
+    } 
+
+    public void setIsAcceptingOrders(boolean isAcceptingOrders) {
+        this.isAcceptingOrders = isAcceptingOrders;
+    }
+
+    public void setCurrentOrders(List<Order> currentOrders) {
+        this.currentOrders = currentOrders;
+    }
+    
+       public void removeOrderFromGrocery(int orderId)
+    {
+         int index = 0;
+    for (Order order : this.currentOrders) {
+      if (order.getOrderId() == orderId) {
+        this.currentOrders.remove(index);
+        return;
+      }
+      index++;
+    }
+
+    }
+    
+
   public List<Grocery> getGroceryDirectory() {
     return groceryDirectory;
   }
@@ -28,6 +54,18 @@ public class GroceryEnterprise {
 
   public void addGrocery(Grocery grocery) {
     this.groceryDirectory.add(grocery);
+  }
+  
+  public Boolean checkIfGroceryIdIsUnique(int groceryId)
+  {
+      for(Grocery gc :this.groceryDirectory)
+      {
+          if(gc.getGroceryId()==groceryId)
+          {
+              return false;
+          }
+      }
+      return true;
   }
 
   public void removeGrocery(int groceryId) {
@@ -100,6 +138,7 @@ public class GroceryEnterprise {
       if (order.getOrderId() == orderId) {
         this.currentOrders.remove(index);
         order.setStatus(OrderStatus.CANCELLED);
+        return;
       }
       index++;
     }

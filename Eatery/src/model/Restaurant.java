@@ -17,7 +17,6 @@ public class Restaurant {
   private ArrayList<Food> dishes;
   private ArrayList<Order> currentOrders;
   private ArrayList<Employee> employeeList;
-  private RestaurantOnlineOrderManagement orderManager;
   private  Boolean acceptingOrders;
   private int rating=0;
 

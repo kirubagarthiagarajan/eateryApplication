@@ -25,9 +25,11 @@ public class Order {
       private String queryFromDeliveryBoy;
       private boolean isGroceryOrder;
       private List<Grocery> orderedGroceryList;
+
+
       
       public Order(int orderId, int customerId, int restaurantId, OrderStatus status, String devlieryAddress, String deliveryInstructions,int totalPrice,ArrayList<Food>foodList, String city, 
-        boolean  isGroceryOrder, List<Grocery> orderedGroceryList)
+        boolean  isGroceryOrder, List<Grocery> orderedGroceryList,int deliveryPersonId)
       {
           this.orderId=orderId;
           this.customerId=customerId;
@@ -41,6 +43,7 @@ public class Order {
           this.queryFromDeliveryBoy = "";
           this.isGroceryOrder = isGroceryOrder;
           this.orderedGroceryList = orderedGroceryList;
+          this.deliveryPersonId=-1;
       }
 
     public void setCity(String city) {

@@ -285,27 +285,71 @@ public class groceryManagePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
          int col=0;
         int row=mngMenuTable.getSelectedRow();
+         if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+        } else {
         int groceryId= Integer.parseInt(mngMenuTable.getModel().getValueAt(row, col).toString());
+     if(!tfgrocerynames.getText().equals("") && !tfquantitys.getText().equals("")&& !tfprices.getText().equals("") )
+        {
+            if(!tfquantitys.getText().matches("[0-9]+"))
+                {
+                    JOptionPane.showMessageDialog(this, "Quantity should be a number!");
+                }
+             if(!tfprices.getText().matches("[0-9]+"))
+                {
+                    JOptionPane.showMessageDialog(this, "Price should be a number!");
+                }
+           
+             if(tfquantitys.getText().matches("[0-9]+") && tfprices.getText().matches("[0-9]+"))
+                {
         
-        eatery.updateGrocery(groceryId,tfgrocerynames.getText(),Double.parseDouble(tfprices.getText()),Integer.parseInt(tfquantitys.getText()));
-        
-displayFoodTable();// (int groceryId, String name, double price, int quantity)
+                    eatery.updateGrocery(groceryId,tfgrocerynames.getText(),Double.parseDouble(tfprices.getText()),Integer.parseInt(tfquantitys.getText()));
         
         tfgroceryids.setText("");
          tfgrocerynames.setText("");
          tfquantitys.setText("");
          tfprices.setText("");
+         displayFoodTable();
+                }
         
+
+         }
+                }
     }//GEN-LAST:event_btncupdateActionPerformed
 
     private void btnaddgroceryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddgroceryActionPerformed
         // TODO add your handling code here:
         if(!tfgroceryid.getText().equals("") && !tfgroceryname.getText().equals("") && !tfquantity.getText().equals("")&& !tfprice.getText().equals("") )
         {
-            eatery.addGrocery(Integer.parseInt(tfgroceryid.getText()),tfgroceryname.getText(),Double.parseDouble(tfprice.getText()) , Integer.parseInt(tfquantity.getText()));
-                JOptionPane.showMessageDialog(this, "Food added to Restaraunt's menu!");
-               
-                displayFoodTable();
+            if(!tfquantity.getText().matches("[0-9]+"))
+                {
+                    JOptionPane.showMessageDialog(this, "Quantity should be a number!");
+                }
+             if(!tfprice.getText().matches("[0-9]+"))
+                {
+                    JOptionPane.showMessageDialog(this, "Price should be a number!");
+                }
+            
+                if(!tfgroceryid.getText().matches("[0-9]+"))
+                {
+                    JOptionPane.showMessageDialog(this, "Grocery ID should be a number!");
+                }
+                else
+                {
+                    if(!eatery.isGroceryIdUnique(Integer.parseInt(tfgroceryid.getText())) )
+                    {
+                        JOptionPane.showMessageDialog(this, "Grocery ID should be unique!");
+                    }
+                }
+                
+                if(tfquantity.getText().matches("[0-9]+") && tfprice.getText().matches("[0-9]+") && tfgroceryid.getText().matches("[0-9]+") && eatery.isGroceryIdUnique(Integer.parseInt(tfgroceryid.getText())) )
+                {
+                 eatery.addGrocery(Integer.parseInt(tfgroceryid.getText()),tfgroceryname.getText(),Double.parseDouble(tfprice.getText()) , Integer.parseInt(tfquantity.getText()));
+                JOptionPane.showMessageDialog(this, "Grocery Added to Stock!");
+        
+                displayFoodTable(); 
+                }
+        
         }   
         else
         {
@@ -353,15 +397,11 @@ displayFoodTable();// (int groceryId, String name, double price, int quantity)
          btncupdate.setEnabled(true);
          
          Grocery foo = eatery.getGroceryById(groceryId);
-       
-         // editFoodName.setText(foo.getName());
+    
          tfgroceryids.setText(Integer.toString(foo.getGroceryId()));
          tfgrocerynames.setText(foo.getGroceryName());
          tfquantitys.setText(Integer.toString(foo.getQuantity()));
          tfprices.setText(Double.toString(foo.getPrice()));
-      /*   
-        
-         */
          
         }
         

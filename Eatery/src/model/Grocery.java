@@ -6,6 +6,15 @@ public class Grocery {
   private String groceryName;
   private int quantity;
   private double price;
+
+    public void setOrderQuantity(int orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+  private int orderQuantity;
   
   public Grocery(int groceryId, String groceryName, double price, int quantity ) {
     this.groceryId = groceryId;

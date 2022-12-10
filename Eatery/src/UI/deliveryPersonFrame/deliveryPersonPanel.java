@@ -70,7 +70,7 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Order Id", "Restaurant Id", "Customer Id", "Total Price", "Address", "Delivery Instructions"
+                "Order Id", "Restaurant/Grocery  Id", "Customer Id", "Total Price", "Address", "Delivery Instructions"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -128,7 +128,7 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(60, 60, 60))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,12 +202,26 @@ public void displayOrdersTable(){
                 Order order=currentOrders.get(i);
                 Object[] tableRow = new Object[10];
                 tableRow[0] = order.getOrderId();
-                tableRow[1]= order.getRestaurantId();
+                 if(order.getRestaurantId()==-1)
+                {
+                tableRow[1]= "GROCERY STORE BOSTON";
                 tableRow[2] = order.getCustomerId();
                 tableRow[3] = order.getTotalPrice();
                 tableRow[4] = order.getDevlieryAddress();
                 tableRow[5]= order.getDeliveryInstructions();
                 tableModel.addRow(tableRow);
+                }
+                else
+                {
+                  tableRow[1]= order.getRestaurantId();
+                tableRow[2] = order.getCustomerId();
+                tableRow[3] = order.getTotalPrice();
+                tableRow[4] = order.getDevlieryAddress();
+                tableRow[5]= order.getDeliveryInstructions();
+                tableModel.addRow(tableRow);
+                }
+                
+             
             }
         }
          
