@@ -1,7 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.sql.*;
 import java.util.List;
+import java.util.logging.*;
+import model.SQLConnection.SQLConnection;
 
 /**
  *
@@ -16,6 +19,7 @@ public class GroceryEnterprise {
     this.groceryDirectory = new ArrayList<Grocery>();
     this.isAcceptingOrders = true;
     this.currentOrders = new ArrayList<Order>();
+    populateGroceryDb();
   }
 
     public List<Order> getCurrentOrders() {
@@ -152,6 +156,52 @@ for(Grocery grocery: this.groceryDirectory) {
 }
 return false;
     
+  }
+  
+  public void populateGroceryDb()
+  {
+      try {
+          Connection con=SQLConnection.dbconnector();
+          String sql="select * from Grocery";
+          PreparedStatement ps=con.prepareStatement(sql);
+          ResultSet st=ps.executeQuery();
+          this.groceryDirectory=new ArrayList<>();
+          while(st.next())
+             {
+                int groceryId=st.getInt("GroceryId");
+                String groceryName=st.getString("Name");
+                int quantity=st.getInt("Quantity");
+                double price=st.getDouble("Price");
+                Grocery g= new Grocery(groceryId, groceryName,price,quantity);
+                this.groceryDirectory.add(g);
+                 
+                 
+             }
+      } catch (SQLException ex) {
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+     }
+  }
+  public void replaceGrocerDb()
+  {
+      try
+      {
+       System.out.print("Inside replace customer db");
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+          String TruncQuery="delete from Grocery";
+          stmt.executeUpdate(TruncQuery);
+          for(Grocery g: this.groceryDirectory)
+          {
+              String InsertQuery="Insert into Grocery (Name,GroceryId,Price,Quantity) values ('"+g.getGroceryId()+"','"+g.getGroceryName()+"','"+g.getPrice()+"','"+g.getQuantity()+"')";
+              stmt.executeUpdate(InsertQuery);
+          }
+          stmt.close();
+          con.close();
+          populateGroceryDb();
+      } catch (SQLException ex) {
+           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+
+      }
   }
 
 }
