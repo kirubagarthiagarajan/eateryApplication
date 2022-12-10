@@ -12,7 +12,9 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Customer;
 import model.SQLConnection.SQLConnection;
+import model.EateryEnterprise;
 
 /**
  *
@@ -23,8 +25,10 @@ public class CustomerSignIn extends javax.swing.JPanel {
     /**
      * Creates new form CustomerSignIn
      */
-    public CustomerSignIn() {
+    EateryEnterprise eatery;
+    public CustomerSignIn(EateryEnterprise eatery) {
         initComponents();
+        this.eatery=eatery;
     }
 
     /**
@@ -36,7 +40,7 @@ public class CustomerSignIn extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtUname = new javax.swing.JTextField();
+        txtStateId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -64,7 +68,7 @@ public class CustomerSignIn extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUname, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                    .addComponent(txtStateId, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                     .addComponent(txtPassword))
                 .addGap(128, 128, 128))
             .addGroup(layout.createSequentialGroup()
@@ -77,7 +81,7 @@ public class CustomerSignIn extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStateId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -90,7 +94,23 @@ public class CustomerSignIn extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+       Customer loggedCustomer=eatery.customerLogin(Integer.parseInt(txtStateId.getText()),txtPassword.getText());
+       if (loggedCustomer != null)
+       {
+           customerPortal cp=new customerPortal(eatery,loggedCustomer);
+           cp.setVisible(true);
+           
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(this, "Login Failed", "Login Failed", HEIGHT);
+           txtStateId.setText("");
+           txtPassword.setText("");
+       }
+        
+        
+        
+        /* try {
             // TODO add your handling code here:
             Connection con=SQLConnection.dbconnector();
             Statement stmt=con.createStatement();
@@ -104,7 +124,7 @@ public class CustomerSignIn extends javax.swing.JPanel {
             txtPassword.setText("");
         } catch (SQLException ex) {
             Logger.getLogger(CustomerSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -113,6 +133,6 @@ public class CustomerSignIn extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUname;
+    private javax.swing.JTextField txtStateId;
     // End of variables declaration//GEN-END:variables
 }

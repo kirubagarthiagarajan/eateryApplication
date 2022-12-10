@@ -4,6 +4,9 @@
  */
 package ui.systemAdmin;
 
+import javax.swing.JFrame;
+import model.EateryEnterprise;
+
 /**
  *
  * @author ktkir
@@ -13,8 +16,12 @@ public class systemAdminFrame extends javax.swing.JFrame {
     /**
      * Creates new form systemAdminFrame
      */
-    public systemAdminFrame() {
+       private EateryEnterprise eatery;
+       
+    public systemAdminFrame(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.eatery=eatery;
     }
 
     /**
@@ -90,7 +97,7 @@ public class systemAdminFrame extends javax.swing.JFrame {
 
     private void btnMngRestarauntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMngRestarauntActionPerformed
         // TODO add your handling code here:
-        restarauntManage restManage = new restarauntManage();
+        restarauntManagePanel restManage = new restarauntManagePanel(eatery);
         splittedPane.setRightComponent(restManage);
     }//GEN-LAST:event_btnMngRestarauntActionPerformed
 
@@ -124,7 +131,7 @@ public class systemAdminFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new systemAdminFrame().setVisible(true);
+//                new systemAdminFrame().setVisible(true);
             }
         });
     }

@@ -19,7 +19,6 @@ public class SQLConnection {
         {
             Class.forName("org.sqlite.JDBC");
             Connection con=DriverManager.getConnection("jdbc:sqlite:C:\\Users\\BARATHI\\Eatery.db");
-            //System.out("Connection Sucessfull");
             return con;
             
         }

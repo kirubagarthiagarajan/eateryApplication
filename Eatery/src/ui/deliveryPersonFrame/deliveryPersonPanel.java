@@ -5,8 +5,11 @@
 package ui.deliveryPersonFrame;
 
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import model.DeliveryPerson;
 import model.EateryEnterprise;
 import model.Food;
 import model.Order;
@@ -21,11 +24,23 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
      * Creates new form deliveryPersonPanel
      */
     EateryEnterprise eatery;
-    ArrayList<Order> currentOrders;
-    public deliveryPersonPanel(EateryEnterprise eatery) {
+    List<Order> currentOrders;
+    int currentDeliveryPersonId;
+    DeliveryPerson currentDeliveryPerson;
+    public deliveryPersonPanel(EateryEnterprise eatery,int deliveryPersonId) {
         initComponents();
         this.eatery=eatery;
-//        this.currentOrders=eatery;
+        this.currentDeliveryPersonId=deliveryPersonId;
+         currentDeliveryPerson=eatery.getDeliveryBoyById(currentDeliveryPersonId);
+    this.currentOrders=new ArrayList<>();
+    if(currentDeliveryPerson.getActiveOrder()!=null)
+    {
+        this.currentOrders.add(currentDeliveryPerson.getActiveOrder());
+    }
+        
+        
+        
+//        JOptionPane.showMessageDialog(this, "Delivery Person"+currentDeliveryPerson.getActiveOrder().getCity()+".."+currentDeliveryPerson.isAvailable());
         displayOrdersTable();
     }
 
@@ -55,7 +70,7 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Order Id", "Restaurant Id", "Customer Id", "Total Price", "Address", "Delivery Instructions"
+                "Order Id", "Restaurant/Grocery  Id", "Customer Id", "Total Price", "Address", "Delivery Instructions"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,29 +114,28 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(customerMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sendQuery)
-                        .addGap(0, 463, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(customerMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(sendQuery)
+                .addContainerGap(469, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(deliverOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(349, 349, 349))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,39 +146,84 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
                     .addComponent(sendQuery))
                 .addGap(36, 36, 36)
                 .addComponent(deliverOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void deliverOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliverOrderActionPerformed
         // TODO add your handling code here:
-       // eatery.deliveryBoyCompleteOrder(currentOrder.deliveryBoyId, currentOrder.orderId);
-//         this.currentOrders=refresh();
-        
+    int col= 0;
+        int row=ordersTable.getSelectedRow();
+
+
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to deliver order!");
+        } else {
+            int orderId= Integer.parseInt(ordersTable.getModel().getValueAt(row, col).toString());
+            eatery.deliveryBoyCompleteOrder(currentDeliveryPersonId, orderId);
+              JOptionPane.showMessageDialog(this, "Congrats on completing your order!");
+              this.currentOrders.remove(0);
+              displayOrdersTable();
+        }
     }//GEN-LAST:event_deliverOrderActionPerformed
 
     private void sendQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendQueryActionPerformed
         // TODO add your handling code here:
         //attach message to the current order so customer can see it when he logs in!
-       // eatery.sendQueryToCustomer(int orderId);
+
+        int col= 0;
+        int row=ordersTable.getSelectedRow();
+        int orderId= Integer.parseInt(ordersTable.getModel().getValueAt(row, col).toString());
+
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to send query to customer!");
+        } else {
+            if(!customerMessage.getText().equals(""))
+            {
+           eatery.sendQueryToCustomer(customerMessage.getText(), currentDeliveryPersonId);
+           JOptionPane.showMessageDialog(this, "Query sent to Customer!");
+           displayOrdersTable();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Please enter message, that you want to send to the customer!");
+            }
+    
+        }
     }//GEN-LAST:event_sendQueryActionPerformed
 
 public void displayOrdersTable(){
 
-        // ordersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-       // DefaultTableModel tableModel = (DefaultTableModel) ordersTable.getModel();
-      //  tableModel.setRowCount(0);
-//        currentFoodList=eatery.getFoodListByRestaurant(currentRestarauntId);
-        //if (currentFoodList!=null) {
-          //  for (int i = 0; i currentFoodList.get(i);< currentFoodList.size(); i++) {
-//                Order order;
-            //    Object[] tableRow = new Object[10];
-            //    tableRow[0] = order.get();
-            //    tableRow[1]= fo.getName();
-          //      tableRow[2] = fo.getPrice();
-            //    tableModel.addRow(tableRow);
-            //}
-       // }
+         ordersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) ordersTable.getModel();
+        tableModel.setRowCount(0);    
+        if (currentOrders!=null) {
+            for (int i = 0; i < currentOrders.size(); i++) {
+                Order order=currentOrders.get(i);
+                Object[] tableRow = new Object[10];
+                tableRow[0] = order.getOrderId();
+                 if(order.getRestaurantId()==-1)
+                {
+                tableRow[1]= "GROCERY STORE BOSTON";
+                tableRow[2] = order.getCustomerId();
+                tableRow[3] = order.getTotalPrice();
+                tableRow[4] = order.getDevlieryAddress();
+                tableRow[5]= order.getDeliveryInstructions();
+                tableModel.addRow(tableRow);
+                }
+                else
+                {
+                  tableRow[1]= order.getRestaurantId();
+                tableRow[2] = order.getCustomerId();
+                tableRow[3] = order.getTotalPrice();
+                tableRow[4] = order.getDevlieryAddress();
+                tableRow[5]= order.getDeliveryInstructions();
+                tableModel.addRow(tableRow);
+                }
+                
+             
+            }
+        }
          
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 
 /**
@@ -19,6 +20,7 @@ public class deliveryPersonFrame extends javax.swing.JFrame {
      */
     public deliveryPersonFrame(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
    
        //l,l

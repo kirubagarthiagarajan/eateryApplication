@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
 import model.Restaurant;
@@ -20,6 +21,7 @@ public class orderManagerLogin extends javax.swing.JFrame {
     EateryEnterprise eatery;
     public orderManagerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         //String passCode="ordMng";
     }

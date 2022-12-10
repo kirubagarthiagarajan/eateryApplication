@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
 
@@ -21,6 +22,7 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
     String passcodeString= "delMng@123";
     public deliveryOrderManagerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

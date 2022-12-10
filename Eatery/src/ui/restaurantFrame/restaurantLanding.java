@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 import ui.systemAdmin.systemAdminLogin;
 
@@ -20,6 +21,7 @@ public class restaurantLanding extends javax.swing.JFrame {
        
     public restaurantLanding(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

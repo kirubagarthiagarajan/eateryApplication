@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 import ui.restaurantFrame.menuManagePanel;
 
@@ -19,6 +20,7 @@ public class deliveryOrderManager extends javax.swing.JFrame {
     EateryEnterprise eatery;
     public deliveryOrderManager( EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

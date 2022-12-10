@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,15 +15,15 @@ import java.util.ArrayList;
 public class Customer {
 private int stateId;
 private String email;
-private String mobile;
+private int mobile;
 private String address;
 private String name;
 private String password;
 private String city;
-private ArrayList<Order> pastOrders;
-private ArrayList<Order> activeOrders;
+private List<Order> pastOrders;
+private List<Order> activeOrders;
 
-public Customer(int stateId, String name, String mobile, String email, String city, String password, String address)
+public Customer(int stateId, String name, int mobile, String email, String city, String password, String address)
 {
     this.stateId=stateId;
     this.name=name;
@@ -31,6 +32,8 @@ public Customer(int stateId, String name, String mobile, String email, String ci
     this.city=city;
     this.password=password;
     this.address=address;
+    this.pastOrders = new ArrayList<>();
+    this.activeOrders = new ArrayList<>();
 }
 
 
@@ -42,7 +45,7 @@ public Customer(int stateId, String name, String mobile, String email, String ci
         return email;
     }
 
-    public String getMobile() {
+    public int getMobile() {
         return mobile;
     }
 
@@ -62,7 +65,7 @@ public Customer(int stateId, String name, String mobile, String email, String ci
         return city;
     }
 
-    public ArrayList<Order> getPastOrders() {
+    public List<Order> getPastOrders() {
         return pastOrders;
     }
 
@@ -74,7 +77,7 @@ public Customer(int stateId, String name, String mobile, String email, String ci
         this.email = email;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(int mobile) {
         this.mobile = mobile;
     }
 
@@ -102,9 +105,34 @@ public Customer(int stateId, String name, String mobile, String email, String ci
         this.activeOrders = activeOrder;
     }
 
-    public ArrayList<Order> getActiveOrders() {
+    public List<Order> getActiveOrders() {
         return activeOrders;
     }
+
+
+    public boolean checkIfOrderPlacedByCustomer(Order order) {
+     return this.activeOrders.contains(order);
+      
+    }
+
+    void addToPastOrders(Order order) {
+        this.pastOrders.add(order);
+     }
+    void addToActiveOrders(Order order) {
+        this.activeOrders.add(order);
+     }
+    
+            
+ void removeFromActiveOrdersOfCustomer(Order order) {
+ int index = 0;
+    for (Order ord : this.activeOrders) {
+         if (ord.getOrderId() == order.getOrderId()) {
+         this.activeOrders.remove(index);
+         return;
+           }
+      index++;
+    }
+     }
 
   
 }

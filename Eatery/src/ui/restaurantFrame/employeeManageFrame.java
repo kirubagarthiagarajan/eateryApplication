@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 
 /**
@@ -19,6 +20,7 @@ public class employeeManageFrame extends javax.swing.JFrame {
     private int currentRestarauntId;
     public employeeManageFrame(EateryEnterprise eatery,int restarauntId) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         this.currentRestarauntId=restarauntId;
     }

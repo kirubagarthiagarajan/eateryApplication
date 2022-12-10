@@ -4,7 +4,8 @@
  */
 package ui.customerFrame;
 
-import model.eateryEnterprise;
+import javax.swing.JFrame;
+import model.EateryEnterprise;
 
 /**
  *
@@ -15,9 +16,10 @@ public class CustomerLogin extends javax.swing.JFrame {
     /**
      * Creates new form CustomerLogin
      */
-    private eateryEnterprise eatery;
-    public CustomerLogin(eateryEnterprise eatery) {
+    private EateryEnterprise eatery;
+    public CustomerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         
     }

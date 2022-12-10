@@ -4,7 +4,9 @@
  */
 package ui.systemAdmin;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.EateryEnterprise;
 
 /**
  *
@@ -16,8 +18,11 @@ public class systemAdminLogin extends javax.swing.JFrame {
      * Creates new form systemAdminLogin
      */
     private String passCode= "sysadmin@123";
-    public systemAdminLogin() {
+    private EateryEnterprise eatery;
+    public systemAdminLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.eatery=eatery;
     }
 
     /**
@@ -104,7 +109,7 @@ public class systemAdminLogin extends javax.swing.JFrame {
         {
             if(textPasscode.getText().equals(passCode))
             {
-                systemAdminFrame sysAdmin = new systemAdminFrame();
+                systemAdminFrame sysAdmin = new systemAdminFrame(eatery);
                 sysAdmin.setVisible(true);
                 this.dispose();
             }
