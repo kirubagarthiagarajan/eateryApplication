@@ -4,8 +4,9 @@
  */
 package ui.systemAdmin;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.eateryEnterprise;
+import model.EateryEnterprise;
 
 /**
  *
@@ -17,9 +18,10 @@ public class systemAdminLogin extends javax.swing.JFrame {
      * Creates new form systemAdminLogin
      */
     private String passCode= "sysadmin@123";
-    private eateryEnterprise eatery;
-    public systemAdminLogin(eateryEnterprise eatery) {
+    private EateryEnterprise eatery;
+    public systemAdminLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

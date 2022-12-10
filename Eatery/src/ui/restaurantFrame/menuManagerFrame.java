@@ -4,8 +4,9 @@
  */
 package ui.restaurantFrame;
 
-import model.Restaraunt;
-import model.eateryEnterprise;
+import javax.swing.JFrame;
+import model.Restaurant;
+import model.EateryEnterprise;
 
 /**
  *
@@ -17,14 +18,15 @@ public class menuManagerFrame extends javax.swing.JFrame {
      * Creates new form menuManagerFrame
      */
     
-    private eateryEnterprise eatery;
+    private EateryEnterprise eatery;
     private int currentRestarauntId;
-    private Restaraunt currentRestaraunt;
-    public menuManagerFrame(eateryEnterprise eatery,int currentRestarauntId) {
+    private Restaurant currentRestaraunt;
+    public menuManagerFrame(EateryEnterprise eatery,int currentRestarauntId) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         this.currentRestarauntId=currentRestarauntId;
-        this.currentRestaraunt=eatery.getRestarauntById(currentRestarauntId);
+        this.currentRestaraunt=eatery.getRestaurantById(currentRestarauntId);
     }
 
     /**

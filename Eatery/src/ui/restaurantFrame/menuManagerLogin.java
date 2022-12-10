@@ -4,9 +4,10 @@
  */
 package ui.restaurantFrame;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.Restaraunt;
-import model.eateryEnterprise;
+import model.Restaurant;
+import model.EateryEnterprise;
 import ui.systemAdmin.systemAdminFrame;
 
 /**
@@ -19,9 +20,10 @@ public class menuManagerLogin extends javax.swing.JFrame {
      * Creates new form foodManagerLogin
      */
     
-     private eateryEnterprise eatery;
-    public menuManagerLogin(eateryEnterprise eatery) {
+     private EateryEnterprise eatery;
+    public menuManagerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 
@@ -121,10 +123,10 @@ public class menuManagerLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!textRestarauntId.getText().equals("") && !textEmployeeId.getText().equals(""))
         {
-            Restaraunt res =eatery.employeeLogin("Menu Manager",Integer.parseInt(textEmployeeId.getText()),Integer.parseInt(textRestarauntId.getText()));
+            Restaurant res =eatery.employeeLogin("Menu Manager",Integer.parseInt(textEmployeeId.getText()),Integer.parseInt(textRestarauntId.getText()));
           if(res!=null)
           {
-              menuManagerFrame menuManageFrame = new menuManagerFrame(eatery,res.getRestarauntId());
+              menuManagerFrame menuManageFrame = new menuManagerFrame(eatery,res.getRestaurantId());
                 menuManageFrame.setVisible(true);
                 this.dispose();
           }

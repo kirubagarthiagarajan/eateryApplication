@@ -4,7 +4,8 @@
  */
 package ui.restaurantFrame;
 
-import model.eateryEnterprise;
+import javax.swing.JFrame;
+import model.EateryEnterprise;
 
 /**
  *
@@ -15,10 +16,11 @@ public class employeeManageFrame extends javax.swing.JFrame {
     /**
      * Creates new form employeeManageFrame
      */
-    private eateryEnterprise eatery;
+    private EateryEnterprise eatery;
     private int currentRestarauntId;
-    public employeeManageFrame(eateryEnterprise eatery,int restarauntId) {
+    public employeeManageFrame(EateryEnterprise eatery,int restarauntId) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         this.currentRestarauntId=restarauntId;
     }

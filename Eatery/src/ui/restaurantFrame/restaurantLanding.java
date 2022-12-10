@@ -4,7 +4,9 @@
  */
 package ui.restaurantFrame;
 
-import model.eateryEnterprise;
+import javax.swing.JFrame;
+import model.EateryEnterprise;
+import ui.systemAdmin.systemAdminLogin;
 
 /**
  *
@@ -15,10 +17,11 @@ public class restaurantLanding extends javax.swing.JFrame {
     /**
      * Creates new form restaurantLanding
      */
-     private eateryEnterprise eatery;
+     private EateryEnterprise eatery;
        
-    public restaurantLanding(eateryEnterprise eatery) {
+    public restaurantLanding(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 
@@ -34,6 +37,7 @@ public class restaurantLanding extends javax.swing.JFrame {
         btnMenuManagement = new javax.swing.JButton();
         btnEmployeeManagement = new javax.swing.JButton();
         btnOrderManagement = new javax.swing.JButton();
+        btnSystemAdminFrame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,28 +62,40 @@ public class restaurantLanding extends javax.swing.JFrame {
         btnOrderManagement.setBackground(new java.awt.Color(255, 255, 0));
         btnOrderManagement.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         btnOrderManagement.setText("ORDER DELIVERY MANAGEMENT");
+        btnOrderManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderManagementActionPerformed(evt);
+            }
+        });
+
+        btnSystemAdminFrame.setBackground(new java.awt.Color(255, 204, 204));
+        btnSystemAdminFrame.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnSystemAdminFrame.setText("SYSTEM ADMIN");
+        btnSystemAdminFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSystemAdminFrameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(btnOrderManagement))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(btnEmployeeManagement))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(391, 391, 391)
-                        .addComponent(btnMenuManagement)))
+                .addGap(340, 340, 340)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnOrderManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSystemAdminFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEmployeeManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMenuManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(349, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(202, Short.MAX_VALUE)
+                .addContainerGap(141, Short.MAX_VALUE)
+                .addComponent(btnSystemAdminFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnOrderManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnEmployeeManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,6 +118,18 @@ public class restaurantLanding extends javax.swing.JFrame {
         employeeManagerLogin empManageLogin = new employeeManagerLogin(eatery);
         empManageLogin.setVisible(true);
     }//GEN-LAST:event_btnEmployeeManagementActionPerformed
+
+    private void btnOrderManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderManagementActionPerformed
+        // TODO add your handling code here:
+        orderManagerLogin orderManager= new orderManagerLogin(eatery);
+        orderManager.setVisible(true);
+    }//GEN-LAST:event_btnOrderManagementActionPerformed
+
+    private void btnSystemAdminFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemAdminFrameActionPerformed
+        // TODO add your handling code here:
+        systemAdminLogin sysadminLogin= new systemAdminLogin(eatery);
+        sysadminLogin.setVisible(true);
+    }//GEN-LAST:event_btnSystemAdminFrameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,5 +170,6 @@ public class restaurantLanding extends javax.swing.JFrame {
     private javax.swing.JButton btnEmployeeManagement;
     private javax.swing.JButton btnMenuManagement;
     private javax.swing.JButton btnOrderManagement;
+    private javax.swing.JButton btnSystemAdminFrame;
     // End of variables declaration//GEN-END:variables
 }

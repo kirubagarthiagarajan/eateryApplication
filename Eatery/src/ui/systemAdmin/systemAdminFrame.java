@@ -4,7 +4,8 @@
  */
 package ui.systemAdmin;
 
-import model.eateryEnterprise;
+import javax.swing.JFrame;
+import model.EateryEnterprise;
 
 /**
  *
@@ -15,10 +16,11 @@ public class systemAdminFrame extends javax.swing.JFrame {
     /**
      * Creates new form systemAdminFrame
      */
-       private eateryEnterprise eatery;
+       private EateryEnterprise eatery;
        
-    public systemAdminFrame(eateryEnterprise eatery) {
+    public systemAdminFrame(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 

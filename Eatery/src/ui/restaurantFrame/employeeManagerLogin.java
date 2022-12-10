@@ -4,9 +4,10 @@
  */
 package ui.restaurantFrame;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.Restaraunt;
-import model.eateryEnterprise;
+import model.Restaurant;
+import model.EateryEnterprise;
 
 /**
  *
@@ -17,10 +18,11 @@ public class employeeManagerLogin extends javax.swing.JFrame {
     /**
      * Creates new form employeManagerLogin
      */
-    private eateryEnterprise eatery;
+    private EateryEnterprise eatery;
     private String passCode= "empMng";
-    public employeeManagerLogin(eateryEnterprise eatery) {
+    public employeeManagerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 
@@ -118,13 +120,13 @@ public class employeeManagerLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -136,10 +138,10 @@ public class employeeManagerLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(!textRestarauntId.getText().equals("") && !passcode.getText().equals(""))
         {
-            Restaraunt res =eatery.employeeLogin("Employee Manager",Integer.parseInt(textRestarauntId.getText()));
+            Restaurant res =eatery.employeeLogin("Employee Manager",Integer.parseInt(textRestarauntId.getText()));
             if(res!=null && passcode.getText().equals(passCode))
             {
-             employeeManageFrame empManage= new employeeManageFrame(eatery,res.getRestarauntId());
+             employeeManageFrame empManage= new employeeManageFrame(eatery,res.getRestaurantId());
                      empManage.setVisible(true);
                 this.dispose();
             }
