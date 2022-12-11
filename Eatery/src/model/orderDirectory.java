@@ -30,7 +30,7 @@ public class OrderDirectory {
         return orderList;
     }
      
-  public OrderDirectory(){
+     public OrderDirectory(){
     this.orderList=new ArrayList<Order>();
     populateOrderList();
 }  

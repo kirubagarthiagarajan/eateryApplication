@@ -38,10 +38,13 @@ public class EateryEnterprise {
     this.restaurantEnterprise = new RestaurantEnterprise();
     this.orderList = orderList;
     
+        populateOrderFoodListDb();
     
-     this.addGrocery(123, "rice", 15.00, 10);
-      this.addGrocery(456, "banana", 20.00, 20);
-       populateOrderFoodListDb();
+    
+    
+     //this.addGrocery(123, "rice", 15.00, 10);
+     // this.addGrocery(456, "banana", 20.00, 20);
+       
        //populateOrderDeliveryPersonDb();
 
   }
@@ -159,7 +162,48 @@ public class EateryEnterprise {
     {
          this.restaurantEnterprise.assingOrdertoRestaurant(order, order.getRestaurantId());
     }
-   
+   insertFoodOrderInDb(order);
+  }
+  public void insertFoodOrderInDb(Order order){
+    
+    
+     try {
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+         
+           
+              List<Food> foodlist=order.getOrderedFoodList();
+              if (foodlist != null)
+              {
+                  
+              for(Food f:foodlist )
+              {
+               
+              String InsertQuery="Insert into OrderFoodXref (OrderId,FoodId) values ('"+order.getOrderId()+"','"+f.getFoodId()+"')";
+              stmt.executeUpdate(InsertQuery);
+              }}
+              
+              List<Grocery> groceryList=order.getOrderedGroceryList();
+               if (groceryList != null)
+              {
+              
+              for (Grocery g:groceryList)
+              {
+                  System.out.print("vadamapla");
+               String InsertQuery1="Insert into OrderFoodXref (OrderId,FoodId) values ('"+order.getOrderId()+"','"+g.getGroceryId()+"')";
+               stmt.executeUpdate(InsertQuery1);
+              }
+              
+              
+          }
+          
+          stmt.close();
+          con.close();
+          populateOrderFoodListDb();
+      } catch (SQLException ex) {
+           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+
+      }
   }
 
   public Boolean checkIfRestaurantAcceptsOrder(int restaurantId) {
@@ -446,44 +490,49 @@ public class EateryEnterprise {
           String sql="select * from OrderFoodXref";
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
-              ArrayList<Food> foodList=new ArrayList<>();
-              ArrayList<Grocery> groceryist= new ArrayList<>();
+              
               for (Order o: this.orderList.getOrderList())
               {
-                  o.setOrderedFoodList(foodList);
-                  o.setOrderedGroceryList(groceryist);
+                 
+                  o.setOrderedFoodList(new ArrayList<>());
+                  o.setOrderedGroceryList(new ArrayList<>());
               }
           
           while(st.next())
              {
+                 
                  populaterForOrderFood(st.getInt("OrderId"),st.getInt("FoodId"));
              }
          ps.close();
           con.close();
       } catch (SQLException ex) {
           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
-     }
+      }
     }
          
          public void populaterForOrderFood(int orderId, int foodId){
-     
+
              if(! this.getOrderWithOrderId(orderId).isGroceryOrder())
              {
-               
+
                   this.getOrderWithOrderId(orderId).addToOrderList(this.restaurantEnterprise.getFoodById(foodId));
                   
-//                  System.out.print(this.getOrderWithOrderId(orderId).getOrderId()+"..."+this.getOrderWithOrderId(orderId).getOrderedFoodList().size());
+
             
              }
-         }
-         public void replaceOrderFoodListDb()
+         }       
+        /* public void replaceOrderFoodListDb()
          {
              try {
+          System.out.print("Inside replace replace Order Food db");
           Connection con=SQLConnection.dbconnector();
           Statement stmt=con.createStatement();
           String TruncQuery="delete from OrderFoodXref";
           stmt.executeUpdate(TruncQuery);
-          System.out.print("barathibaaaaaaaaa...."+this.orderList.getOrderList().size());
+          for(Order o: this.orderList.getOrderList())
+          {
+              System.out.print("lala"+o.getOrderId());
+          }
           for(Order o: this.orderList.getOrderList())
           {
            
@@ -516,7 +565,7 @@ public class EateryEnterprise {
            Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
 
       }
-         }
+         }*/
          public Boolean isDeliveryBoyIdUnique(int deliveryBoyId) {
     return this.deliveryEnterPrise.isDeliveryBoyIdUnique(deliveryBoyId);
          }

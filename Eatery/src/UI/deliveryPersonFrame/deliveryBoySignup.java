@@ -74,6 +74,8 @@ public class deliveryBoySignup extends javax.swing.JPanel {
         btnverify = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setText("NAME");
 
         jLabel2.setText("DELIVERYBOYID");
@@ -127,6 +129,7 @@ public class deliveryBoySignup extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setBackground(new java.awt.Color(0, 153, 204));
         jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("DELIVERY PERSON SIGNUP");
@@ -225,7 +228,6 @@ public class deliveryBoySignup extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)))
-                .addGap(18, 18, 18)
                 .addComponent(btncemail, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -234,7 +236,7 @@ public class deliveryBoySignup extends javax.swing.JPanel {
                     .addComponent(btnverify))
                 .addGap(35, 35, 35)
                 .addComponent(btnSignup)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

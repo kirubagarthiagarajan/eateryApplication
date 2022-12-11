@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 
 /**
@@ -20,6 +21,7 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
         initComponents();
         this.eatery=eatery;
         this.eatery.populateOrdersToGrocery();
+         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

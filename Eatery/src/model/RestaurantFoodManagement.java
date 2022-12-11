@@ -50,21 +50,20 @@ public void replaceFoodList()
           Statement stmt=con.createStatement();
           String TruncQuery="delete from Food";
           stmt.executeUpdate(TruncQuery);
-          
+           
           for (Food f: this.foodList)
           {
+              System.out.println(f.getName());
               String InsertQuery="Insert into Food (FoodId,FoodName,Price,RestaurantId) values ('"+f.getFoodId()+"','"+f.getName()+"','"+f.getPrice()+"','"+f.getRestaurantId()+"')";
               stmt.executeUpdate(InsertQuery);
           }
           stmt.close();
           con.close();
-          
-          
           populateFoodList();
       } catch (SQLException ex) {
           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
       }
-      populateFoodList();
+     
 }
 
 public void populateFoodList(){
@@ -73,7 +72,7 @@ public void populateFoodList(){
           String sql="select * from Food";
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
-          this.foodList=new ArrayList<>();
+          this.foodList=new ArrayList<Food>();
           while(st.next())
              {
                  int foodId=(st.getInt("FoodId"));

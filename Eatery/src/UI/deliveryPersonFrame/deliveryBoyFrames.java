@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.DeliveryPerson;
 import model.EateryEnterprise;
@@ -22,6 +23,7 @@ public class deliveryBoyFrames extends javax.swing.JFrame {
     DeliveryPerson currentDeliveryPerson;
     public deliveryBoyFrames(EateryEnterprise eatery,int deliveryBoyId) {
         initComponents();
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         currentDeliveryPerson = eatery.getDeliveryBoyById(deliveryBoyId);

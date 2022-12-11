@@ -46,7 +46,7 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
       String sql="select * from DeliveryPerson";
       PreparedStatement ps=con.prepareStatement(sql);
       ResultSet st=ps.executeQuery();
-       this.deliveryPersonDirectory = new ArrayList<>();
+      this.deliveryPersonDirectory=new ArrayList<DeliveryPerson>();
       while(st.next())
          {
             int stateId=st.getInt("DeliveryPersonId");

@@ -55,11 +55,11 @@ public class groceryManagerLogin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Please enter your assigned Employee Id and your Restaurant Id to Login");
+        jLabel3.setText("WELCOME! PLEASE ENTER YOUR GROCERY STOCK MANAGER PASSWORD!");
 
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("RESTAURANT ORDER MANAGER LOGIN");
+        jLabel2.setText("GROCERY STOCK MANAGER");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

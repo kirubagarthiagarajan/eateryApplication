@@ -68,6 +68,8 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
         txtCity = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+
         updatedeliveryboy.setBackground(new java.awt.Color(255, 255, 0));
         updatedeliveryboy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         updatedeliveryboy.setText("UPDATE DELIVERY BOY");
@@ -159,6 +161,7 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
 
         txtCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
 
+        jLabel1.setBackground(new java.awt.Color(0, 153, 204));
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

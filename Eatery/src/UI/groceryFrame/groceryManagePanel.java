@@ -70,15 +70,21 @@ public class groceryManagePanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         tfprices = new javax.swing.JTextField();
         btncupdate = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("GROCERY ID");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("GROCERY NAME");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("QUANTITY");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("PRICE");
 
+        btnaddgrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnaddgrocery.setText("ADD GROCERY");
         btnaddgrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +92,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("SEARCH");
 
         mngMenuTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,6 +116,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(mngMenuTable);
 
+        btndeletegrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btndeletegrocery.setText("DELETE GROCERY");
         btndeletegrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +124,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        btnupdategrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnupdategrocery.setText("UPDATE GROCERY");
         btnupdategrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +132,13 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("GROCERY ID");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("GROCERY NAME");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("QUANTITY");
 
         tfquantitys.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +147,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("PRICE");
 
         tfprices.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +156,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        btncupdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btncupdate.setText("CONFIRM UPDATE");
         btncupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,12 +164,17 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("SMART DELIVERY - ORDER MANAGER");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(259, 259, 259)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,8 +194,8 @@ public class groceryManagePanel extends javax.swing.JPanel {
                             .addComponent(tfgroceryid)
                             .addComponent(tfgroceryname)
                             .addComponent(tfquantity)
-                            .addComponent(btnaddgrocery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfprice)))
+                            .addComponent(btnaddgrocery)
+                            .addComponent(tfprice, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,12 +220,13 @@ public class groceryManagePanel extends javax.swing.JPanel {
                                         .addGap(42, 42, 42)
                                         .addComponent(btncupdate))))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(870, Short.MAX_VALUE))
+                .addGap(517, 517, 517))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfgroceryid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -255,7 +275,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(tfprices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(199, 199, 199))
+                .addGap(217, 217, 217))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -292,16 +312,16 @@ public class groceryManagePanel extends javax.swing.JPanel {
                 {
                     JOptionPane.showMessageDialog(this, "Quantity should be a number!");
                 }
-             if(!tfprices.getText().matches("[0-9]+"))
+             if(!tfprices.getText().matches("(-?\\d+\\.?\\d*)"))
                 {
-                    JOptionPane.showMessageDialog(this, "Price should be a number!");
+                    JOptionPane.showMessageDialog(this, "Price should be a double with decimals!");
                 }
            
-             if(tfquantitys.getText().matches("[0-9]+") && tfprices.getText().matches("[0-9]+"))
+             if(tfquantitys.getText().matches("[0-9]+") && tfprices.getText().matches("(-?\\d+\\.?\\d*)"))
                 {
         
                     eatery.updateGrocery(groceryId,tfgrocerynames.getText(),Double.parseDouble(tfprices.getText()),Integer.parseInt(tfquantitys.getText()));
-        
+                       JOptionPane.showMessageDialog(this, "Grocery Stock updated!");
         tfgroceryids.setText("");
          tfgrocerynames.setText("");
          tfquantitys.setText("");
@@ -428,6 +448,10 @@ public class groceryManagePanel extends javax.swing.JPanel {
          tfgrocerynames.setEnabled(false);
          tfquantitys.setEnabled(false);
          tfprices.setEnabled(false);
+         tfgroceryids.setText("");
+         tfgrocerynames.setText("");
+         tfquantitys.setText("");
+         tfprices.setText("");
          btncupdate.setEnabled(false);
          
          tfgroceryid.setText("");
@@ -458,6 +482,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
     private javax.swing.JButton btndeletegrocery;
     private javax.swing.JButton btnupdategrocery;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

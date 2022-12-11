@@ -35,7 +35,7 @@ public class RestaurantEnterprise {
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
           System.out.print("Inside populate Restaurant");
-          this.restaurantDirectory= new ArrayList<>();
+          this.restaurantDirectory=new ArrayList<Restaurant>();
           while(st.next())
              {
                  
@@ -59,6 +59,7 @@ public class RestaurantEnterprise {
           Connection con=SQLConnection.dbconnector();
           Statement stmt=con.createStatement();
           String TruncQuery="delete from Restaurant";
+          //this.restaurantDirectory=new ArrayList<Restaurant>();
           stmt.executeUpdate(TruncQuery);
           for (Restaurant res: this.restaurantDirectory)
           {
@@ -70,6 +71,8 @@ public class RestaurantEnterprise {
           
           
           populateRestaurantDb();
+         populateEmployeeInRestaurant();
+         populateDishesInRestaurant();
       } catch (SQLException ex) {
           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);}}
 
@@ -266,7 +269,9 @@ public class RestaurantEnterprise {
                     }
                 }
             }
-            
+           
+             
+           
             else
             {
             for(Restaurant res : this.restaurantDirectory)

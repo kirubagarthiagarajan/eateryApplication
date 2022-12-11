@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
 
@@ -21,6 +22,7 @@ public class groceryOrderManagerLogin extends javax.swing.JFrame {
     public groceryOrderManagerLogin(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
+         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

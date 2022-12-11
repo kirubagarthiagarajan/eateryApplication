@@ -97,7 +97,7 @@
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Please enter your assigned Employee Id and your Restaurant Id to Login"/>
+            <Property name="text" type="java.lang.String" value="WELCOME! PLEASE ENTER YOUR GROCERY STOCK MANAGER PASSWORD!"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -106,7 +106,7 @@
               <Font name="Bookman Old Style" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="RESTAURANT ORDER MANAGER LOGIN"/>
+            <Property name="text" type="java.lang.String" value="GROCERY STOCK MANAGER"/>
           </Properties>
         </Component>
       </SubComponents>

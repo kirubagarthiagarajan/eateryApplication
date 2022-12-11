@@ -42,6 +42,8 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("DELIVERY PERSON ID");
 
@@ -110,6 +112,7 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
                 .addContainerGap(273, Short.MAX_VALUE))
         );
 
+        jLabel9.setBackground(new java.awt.Color(0, 153, 204));
         jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("DELIVERY PERSON SIGNUP");
