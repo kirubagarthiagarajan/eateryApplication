@@ -15,7 +15,7 @@ import java.util.List;
 public class Customer {
 private int stateId;
 private String email;
-private int mobile;
+private String mobile;
 private String address;
 private String name;
 private String password;
@@ -23,7 +23,7 @@ private String city;
 private List<Order> pastOrders;
 private List<Order> activeOrders;
 
-public Customer(int stateId, String name, int mobile, String email, String city, String password, String address)
+public Customer(int stateId, String name, String mobile, String email, String city, String password, String address)
 {
     this.stateId=stateId;
     this.name=name;
@@ -45,7 +45,7 @@ public Customer(int stateId, String name, int mobile, String email, String city,
         return email;
     }
 
-    public int getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
@@ -77,7 +77,7 @@ public Customer(int stateId, String name, int mobile, String email, String city,
         this.email = email;
     }
 
-    public void setMobile(int mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
@@ -97,12 +97,12 @@ public Customer(int stateId, String name, int mobile, String email, String city,
         this.city = city;
     }
 
-    public void setPastOrders(ArrayList<Order> pastOrders) {
+    public void setPastOrders(List<Order> pastOrders) {
         this.pastOrders = pastOrders;
     }
 
-    public void setActiveOrders(ArrayList<Order> activeOrder) {
-        this.activeOrders = activeOrder;
+    public void setActiveOrders(List<Order> activeOrdersOfCustomer) {
+        this.activeOrders = activeOrdersOfCustomer;
     }
 
     public List<Order> getActiveOrders() {

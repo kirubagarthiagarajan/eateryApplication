@@ -70,15 +70,21 @@ public class groceryManagePanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         tfprices = new javax.swing.JTextField();
         btncupdate = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("GROCERY ID");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("GROCERY NAME");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("QUANTITY");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("PRICE");
 
+        btnaddgrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnaddgrocery.setText("ADD GROCERY");
         btnaddgrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +92,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("SEARCH");
 
         mngMenuTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,6 +116,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(mngMenuTable);
 
+        btndeletegrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btndeletegrocery.setText("DELETE GROCERY");
         btndeletegrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +124,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        btnupdategrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnupdategrocery.setText("UPDATE GROCERY");
         btnupdategrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +132,13 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("GROCERY ID");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("GROCERY NAME");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("QUANTITY");
 
         tfquantitys.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +147,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("PRICE");
 
         tfprices.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +156,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        btncupdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btncupdate.setText("CONFIRM UPDATE");
         btncupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,35 +164,40 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("SMART DELIVERY - ORDER MANAGER");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(592, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(266, 266, 266)
+                                .addGap(56, 56, 56)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(277, 277, 277)
+                                .addGap(67, 67, 67)
                                 .addComponent(jLabel5)))
                         .addGap(65, 65, 65)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(searchValue, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                .addComponent(tfgroceryid)
-                                .addComponent(tfgroceryname)
-                                .addComponent(tfquantity)
-                                .addComponent(tfprice))
-                            .addComponent(btnaddgrocery)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchValue)
+                            .addComponent(tfgroceryid)
+                            .addComponent(tfgroceryname)
+                            .addComponent(tfquantity)
+                            .addComponent(btnaddgrocery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfprice, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
+                        .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btndeletegrocery)
@@ -197,19 +216,17 @@ public class groceryManagePanel extends javax.swing.JPanel {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(tfgrocerynames)
                                             .addComponent(tfquantitys)
-                                            .addComponent(tfprices, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                                            .addComponent(tfprices, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(42, 42, 42)
-                                        .addComponent(btncupdate)))))))
-                .addContainerGap(169, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(161, 161, 161))
+                                        .addComponent(btncupdate))))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(523, 523, 523))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfgroceryid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,7 +275,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(tfprices, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97))
+                .addGap(169, 169, 169))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -461,6 +478,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
     private javax.swing.JButton btndeletegrocery;
     private javax.swing.JButton btnupdategrocery;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

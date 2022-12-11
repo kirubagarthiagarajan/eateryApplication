@@ -37,12 +37,20 @@ public class systemAdminFrame extends javax.swing.JFrame {
         togglePane = new javax.swing.JPanel();
         btnMngRestaraunt = new javax.swing.JButton();
         contentPane = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         btnMngRestaraunt.setBackground(new java.awt.Color(255, 255, 0));
         btnMngRestaraunt.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 12)); // NOI18N
-        btnMngRestaraunt.setText("MANAGE RESTARAUNT");
+        btnMngRestaraunt.setText("MANAGE RESTARAUNTS");
         btnMngRestaraunt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMngRestarauntActionPerformed(evt);
@@ -53,30 +61,55 @@ public class systemAdminFrame extends javax.swing.JFrame {
         togglePane.setLayout(togglePaneLayout);
         togglePaneLayout.setHorizontalGroup(
             togglePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, togglePaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnMngRestaraunt, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(togglePaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnMngRestaraunt, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         togglePaneLayout.setVerticalGroup(
             togglePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePaneLayout.createSequentialGroup()
-                .addGap(280, 280, 280)
+                .addGap(279, 279, 279)
                 .addComponent(btnMngRestaraunt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(587, Short.MAX_VALUE))
         );
 
         splittedPane.setLeftComponent(togglePane);
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("RESTAURANT ADMINISTRATOR");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Please click the 'MANAGE RESTAURANTS' button, to continue further!");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("WELCOME! RESTAURANT ADMINISTRATOR!");
 
         javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 812, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(contentPaneLayout.createSequentialGroup()
+                .addGap(425, 425, 425)
+                .addGroup(contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(contentPaneLayout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jLabel4)))
+                .addContainerGap(478, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 629, Short.MAX_VALUE)
+            .addGroup(contentPaneLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 570, Short.MAX_VALUE))
         );
 
         splittedPane.setRightComponent(contentPane);
@@ -85,7 +118,7 @@ public class systemAdminFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splittedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
+            .addComponent(splittedPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,6 +133,11 @@ public class systemAdminFrame extends javax.swing.JFrame {
         restarauntManagePanel restManage = new restarauntManagePanel(eatery);
         splittedPane.setRightComponent(restManage);
     }//GEN-LAST:event_btnMngRestarauntActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.eatery.replaceRestaurantDb();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -139,6 +177,9 @@ public class systemAdminFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMngRestaraunt;
     private javax.swing.JPanel contentPane;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JSplitPane splittedPane;
     private javax.swing.JPanel togglePane;
     // End of variables declaration//GEN-END:variables

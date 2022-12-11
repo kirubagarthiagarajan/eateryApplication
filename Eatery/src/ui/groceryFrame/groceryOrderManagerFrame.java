@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import javax.swing.JFrame;
 import model.EateryEnterprise;
 
 /**
@@ -19,6 +20,8 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
     public groceryOrderManagerFrame(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
+        this.eatery.populateOrdersToGrocery();
+         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -47,6 +50,11 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
         jLabel4.setText("Welcome to the Menu Management Portal. Please click 'MANAGE MENU' to continue.");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         splittedPane.setDividerLocation(135);
 
@@ -69,9 +77,9 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
+                .addGap(288, 288, 288)
                 .addComponent(mngOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(579, Short.MAX_VALUE))
         );
 
         splittedPane.setLeftComponent(jPanel1);
@@ -88,7 +96,7 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1455, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -97,9 +105,9 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151)
+                .addGap(227, 227, 227)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 208, Short.MAX_VALUE))
+                .addGap(0, 557, Short.MAX_VALUE))
         );
 
         splittedPane.setRightComponent(jPanel2);
@@ -123,6 +131,12 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
 groceryOrderManagePanel grocerOrderMngPanel = new groceryOrderManagePanel(eatery);
 splittedPane.setRightComponent(grocerOrderMngPanel);
     }//GEN-LAST:event_mngOrderActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.eatery.replaceOrderDb();
+      //order food list venum
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

@@ -4,8 +4,16 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.SQLConnection.SQLConnection;
 
 /**
  *
@@ -18,6 +26,7 @@ public class EateryEnterprise {
   private DeliveryPartnerEnterprise deliveryEnterPrise;
   private OrderDirectory orderList;
   private GroceryEnterprise groceryEnterprise;
+  int i=0;
 
   public EateryEnterprise(EateryCustomerManagement eatCusManage,
       RestaurantEnterprise restaurantManagement, DeliveryPartnerEnterprise deliveryEnterPrise,
@@ -29,12 +38,18 @@ public class EateryEnterprise {
     this.restaurantEnterprise = new RestaurantEnterprise();
     this.orderList = orderList;
     
-     this.addGrocery(123, "rice", 15.00, 10);
-      this.addGrocery(456, "banana", 20.00, 20);
+        populateOrderFoodListDb();
+    
+    
+    
+     //this.addGrocery(123, "rice", 15.00, 10);
+     // this.addGrocery(456, "banana", 20.00, 20);
+       
+       //populateOrderDeliveryPersonDb();
 
   }
 
-  public void addCustomer(int stateId, String name, int mobile, String email, String city,
+  public void addCustomer(int stateId, String name, String mobile, String email, String city,
       String password, String address) {
     Customer cust = new Customer(stateId, name, mobile, email, city, password, address);
     this.eatCusManage.addNewCustomer(cust);
@@ -76,7 +91,7 @@ public class EateryEnterprise {
   }
 
   
-  public ArrayList<Food> getFoodList() {
+  public List<Food> getFoodList() {
     return this.restaurantEnterprise.getFoodList();
   }
 
@@ -88,7 +103,7 @@ public class EateryEnterprise {
     this.restaurantEnterprise.removeFood(restaurantId, foodId);
   }
 
-  public ArrayList<Food> getFoodListByRestaurant(int restaurantId) {
+  public List<Food> getFoodListByRestaurant(int restaurantId) {
     return this.restaurantEnterprise.getFoodByRestaurant(restaurantId);
   }
 
@@ -118,7 +133,7 @@ public class EateryEnterprise {
     return this.restaurantEnterprise.loginEmployee(role, employeeId, restaurantId);
   }
 
-  public ArrayList<Employee> getEmployeesByRestaurant(int restaurantId) {
+  public List<Employee> getEmployeesByRestaurant(int restaurantId) {
     return this.restaurantEnterprise.getEmployeeByRestaurant(restaurantId);
   }
 
@@ -147,7 +162,48 @@ public class EateryEnterprise {
     {
          this.restaurantEnterprise.assingOrdertoRestaurant(order, order.getRestaurantId());
     }
-   
+   insertFoodOrderInDb(order);
+  }
+  public void insertFoodOrderInDb(Order order){
+    
+    
+     try {
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+         
+           
+              List<Food> foodlist=order.getOrderedFoodList();
+              if (foodlist != null)
+              {
+                  
+              for(Food f:foodlist )
+              {
+               
+              String InsertQuery="Insert into OrderFoodXref (OrderId,FoodId) values ('"+order.getOrderId()+"','"+f.getFoodId()+"')";
+              stmt.executeUpdate(InsertQuery);
+              }}
+              
+              List<Grocery> groceryList=order.getOrderedGroceryList();
+               if (groceryList != null)
+              {
+              
+              for (Grocery g:groceryList)
+              {
+                  System.out.print("vadamapla");
+               String InsertQuery1="Insert into OrderFoodXref (OrderId,FoodId) values ('"+order.getOrderId()+"','"+g.getGroceryId()+"')";
+               stmt.executeUpdate(InsertQuery1);
+              }
+              
+              
+          }
+          
+          stmt.close();
+          con.close();
+          populateOrderFoodListDb();
+      } catch (SQLException ex) {
+           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+
+      }
   }
 
   public Boolean checkIfRestaurantAcceptsOrder(int restaurantId) {
@@ -155,7 +211,7 @@ public class EateryEnterprise {
   }
 
 
-  public void addDeliveryPerson(int stateId, String email, int mobile, String address, String name,
+  public void addDeliveryPerson(int stateId, String email, String mobile, String address, String name,
       String password, String city) {
     DeliveryPerson delPer = new DeliveryPerson(stateId, name, mobile, address, city, password,
         address);
@@ -197,7 +253,7 @@ public class EateryEnterprise {
     return this.eatCusManage.isCustomerIdUnique(CustomerId);
   }
 
-  public void updateCustomer(int CustomerId, String name, int mobile, String email, String City,
+  public void updateCustomer(int CustomerId, String name, String mobile, String email, String City,
       String password, String address) {
     this.eatCusManage.updateCustomer(CustomerId, name, mobile, email, City, password, address);
 
@@ -212,7 +268,7 @@ public class EateryEnterprise {
     this.eatCusManage.removeCustomer(Cust);
   }
 
-  public ArrayList<Customer> getCustomerList() {
+  public List<Customer> getCustomerList() {
     return this.eatCusManage.getCustomerDirectory();
   }
 
@@ -298,7 +354,7 @@ public class EateryEnterprise {
    
   }
 
-  public ArrayList<DeliveryPerson> getAllDeliveryPerson() {
+  public List<DeliveryPerson> getAllDeliveryPerson() {
     return this.deliveryEnterPrise.getDeliveryPersonDirectory();
   }
 
@@ -310,7 +366,7 @@ public class EateryEnterprise {
     this.deliveryEnterPrise.deleteDeliveryPerson(deliveryBoyId);
   }
 
-  public void updateDeliveryBoy(int deliveryBoyId, String name, String city, int phno, String email,
+  public void updateDeliveryBoy(int deliveryBoyId, String name, String city, String phno, String email,
       String address) {
     this.deliveryEnterPrise.updateDeliveryBoy(deliveryBoyId, name, city, phno, email, address);
   }
@@ -366,6 +422,11 @@ public class EateryEnterprise {
 
   public void replaceOrderDb() {
     this.orderList.replaceOrderListInDB();
+    this.populateOrderFoodListDb();
+  }
+  
+  public void replaceGroceryDb(){
+      this.groceryEnterprise.replaceGrocerDb();
   }
 
   public List<Order> getPastOrdersOfCustomer(int custId) {
@@ -404,5 +465,117 @@ public class EateryEnterprise {
   public void sendQueryToCustomer(String query,  int deliveryPersonId) {
     this.deliveryEnterPrise.sendQueryToCustomer(deliveryPersonId,  query);
   }
+  
+  public void populateOrdersToCustomer(int customerId) {
+    List<Order> pastOrdersOfCustomer =  this.orderList.getPastOrdersOfCustomer(customerId);
+    List<Order> activeOrdersOfCustomer =  this.orderList.getActiveOrdersOfCustomer(customerId);
+    this.eatCusManage.populatePastAndActiveOrdersOfCustomer(customerId,pastOrdersOfCustomer, activeOrdersOfCustomer);
+    
+  }
+  public void populateOrdersToRestaurant(int restaurantId) {
+    List<Order> ordersOfRestaurant =  this.orderList.getOrdersFromRestaurant(restaurantId);
+   
+    this.restaurantEnterprise.populateOrdersInRestaurant(restaurantId ,ordersOfRestaurant);
+  }
+  public void populateOrdersToGrocery() {
+    List<Order> ordersOfGrocery =  this.orderList.getOrdersFromGrocery();
+    
+    this.groceryEnterprise.setCurrentOrders(ordersOfGrocery);
+  }
+  
+         public void populateOrderFoodListDb()
+    {
+         try {
+          Connection con=SQLConnection.dbconnector();
+          String sql="select * from OrderFoodXref";
+          PreparedStatement ps=con.prepareStatement(sql);
+          ResultSet st=ps.executeQuery();
+              
+              for (Order o: this.orderList.getOrderList())
+              {
+                 
+                  o.setOrderedFoodList(new ArrayList<>());
+                  o.setOrderedGroceryList(new ArrayList<>());
+              }
+          
+          while(st.next())
+             {
+                 
+                 populaterForOrderFood(st.getInt("OrderId"),st.getInt("FoodId"));
+             }
+         ps.close();
+          con.close();
+      } catch (SQLException ex) {
+          Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+         
+         public void populaterForOrderFood(int orderId, int foodId){
+
+             if(! this.getOrderWithOrderId(orderId).isGroceryOrder())
+             {
+
+                  this.getOrderWithOrderId(orderId).addToOrderList(this.restaurantEnterprise.getFoodById(foodId));
+                  
+
+            
+             }
+         }       
+        /* public void replaceOrderFoodListDb()
+         {
+             try {
+          System.out.print("Inside replace replace Order Food db");
+          Connection con=SQLConnection.dbconnector();
+          Statement stmt=con.createStatement();
+          String TruncQuery="delete from OrderFoodXref";
+          stmt.executeUpdate(TruncQuery);
+          for(Order o: this.orderList.getOrderList())
+          {
+              System.out.print("lala"+o.getOrderId());
+          }
+          for(Order o: this.orderList.getOrderList())
+          {
+           
+              List<Food> foodlist=o.getOrderedFoodList();
+              if (!foodlist.isEmpty())
+              {
+              for(Food f:foodlist )
+              {
+                
+              String InsertQuery="Insert into OrderFoodXref (OrderId,FoodId) values ('"+o.getOrderId()+"','"+f.getFoodId()+"')";
+              stmt.executeUpdate(InsertQuery);
+              }
+              List<Grocery> groceryList=o.getOrderedGroceryList();
+               if (!groceryList.isEmpty())
+              {
+              
+              for (Grocery g:groceryList)
+              {
+               String InsertQuery1="Insert into OrderFoodXref (OrderId,FoodId) values ('"+o.getOrderId()+"','"+g.getGroceryId()+"')";
+               stmt.executeUpdate(InsertQuery1);
+              }
+              }
+              }
+          }
+          
+          stmt.close();
+          con.close();
+          populateOrderFoodListDb();
+      } catch (SQLException ex) {
+           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
+
+      }
+         }*/
+         public Boolean isDeliveryBoyIdUnique(int deliveryBoyId) {
+    return this.deliveryEnterPrise.isDeliveryBoyIdUnique(deliveryBoyId);
+         }
+         public Order populateOrdersToDeliveryBoy(int deliveryBoyId)
+  {
+      return this.orderList.getOrdersForDeliveryBoy(deliveryBoyId);}
+         public void populateOrderDeliveryPersonDb(int DeliveryBoyId)
+         {
+             ArrayList<Order> orderList=this.orderList.getOrderList();
+             this.deliveryEnterPrise.populateOrderDeliveryBoyDb(DeliveryBoyId,orderList);
+         }
 
 }

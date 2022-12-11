@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -100,12 +101,15 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         assignOrder = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Delivery Person Available");
+        jLabel1.setText("DELIVERY PERSONS AVAILABLE IN THE CITY");
 
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Manage Menu ");
+        jLabel2.setText("SMART DELIVERY - ORDER MANAGER");
 
         tblOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,10 +121,30 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
             new String [] {
                 "Order Id", "Restaraunt/Grocery Store Id", "Customer Id", "City"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblOrders);
 
-        getFreeDelivery.setText("Get Free Delivery Person in this City");
+        getFreeDelivery.setBackground(new java.awt.Color(102, 102, 102));
+        getFreeDelivery.setForeground(new java.awt.Color(255, 255, 255));
+        getFreeDelivery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delivery.png"))); // NOI18N
+        getFreeDelivery.setText("GET FREE DELIVERY PERSON IN ORDER'S CITY");
+        getFreeDelivery.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getFreeDelivery.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                getFreeDeliveryMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                getFreeDeliveryMouseExited(evt);
+            }
+        });
         getFreeDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getFreeDeliveryActionPerformed(evt);
@@ -137,16 +161,36 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
             new String [] {
                 "Delivery Person Id", "Name", "City", "Address"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblDeliveryBoy);
         if (tblDeliveryBoy.getColumnModel().getColumnCount() > 0) {
             tblDeliveryBoy.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Orders waiting to be delivered");
+        jLabel3.setText("ORDERS YET TO BE ASSIGNED TO A DELIERY PERSON");
 
-        assignOrder.setText("Assign Order");
+        assignOrder.setBackground(new java.awt.Color(102, 102, 102));
+        assignOrder.setForeground(new java.awt.Color(255, 255, 255));
+        assignOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courier.png"))); // NOI18N
+        assignOrder.setText("ASSIGN ORDER");
+        assignOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        assignOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                assignOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                assignOrderMouseExited(evt);
+            }
+        });
         assignOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignOrderActionPerformed(evt);
@@ -157,46 +201,49 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(636, 636, 636)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(getFreeDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(671, 671, 671)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(getFreeDelivery)
-                        .addGap(364, 364, 364))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(392, 392, 392))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(192, 192, 192))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(403, 403, 403))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(98, 98, 98))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(413, 413, 413))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(assignOrder)
-                        .addGap(430, 430, 430))))
+                        .addGap(743, 743, 743))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(61, 61, 61)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(getFreeDelivery)
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
+                .addComponent(getFreeDelivery, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(assignOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -248,6 +295,26 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
            }
         
     }//GEN-LAST:event_assignOrderActionPerformed
+
+    private void getFreeDeliveryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_getFreeDeliveryMouseEntered
+        // TODO add your handling code here:
+        getFreeDelivery.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_getFreeDeliveryMouseEntered
+
+    private void getFreeDeliveryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_getFreeDeliveryMouseExited
+        // TODO add your handling code here:
+        getFreeDelivery.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_getFreeDeliveryMouseExited
+
+    private void assignOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignOrderMouseEntered
+        // TODO add your handling code here:
+        assignOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_assignOrderMouseEntered
+
+    private void assignOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assignOrderMouseExited
+        // TODO add your handling code here:
+         assignOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_assignOrderMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

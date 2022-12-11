@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class DeliveryPerson {
 private int stateId;
 private String email;
-private int mobile;
+private String mobile;
 private String address;
 private String name;
 private String password;
 private String city;
 private Order activeOrder;
 
-public DeliveryPerson(int stateId, String name, int mobile, String email, String city, String password, String address)
+public DeliveryPerson(int stateId, String name, String  mobile, String email, String city, String password, String address)
 {
     this.stateId=stateId;
     this.name=name;
@@ -39,7 +39,7 @@ public DeliveryPerson(int stateId, String name, int mobile, String email, String
         return email;
     }
 
-    public int getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
@@ -66,7 +66,7 @@ public DeliveryPerson(int stateId, String name, int mobile, String email, String
         this.email = email;
     }
 
-    public void setMobile(int mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 

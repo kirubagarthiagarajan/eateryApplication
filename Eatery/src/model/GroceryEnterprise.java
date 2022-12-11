@@ -174,8 +174,7 @@ return false;
                 double price=st.getDouble("Price");
                 Grocery g= new Grocery(groceryId, groceryName,price,quantity);
                 this.groceryDirectory.add(g);
-                 
-                 
+
              }
       } catch (SQLException ex) {
           Logger.getLogger(RestaurantFoodManagement.class.getName()).log(Level.SEVERE, null, ex);
@@ -185,14 +184,14 @@ return false;
   {
       try
       {
-       System.out.print("Inside replace customer db");
+       System.out.print("Inside replace grocery db");
           Connection con=SQLConnection.dbconnector();
           Statement stmt=con.createStatement();
           String TruncQuery="delete from Grocery";
           stmt.executeUpdate(TruncQuery);
           for(Grocery g: this.groceryDirectory)
           {
-              String InsertQuery="Insert into Grocery (Name,GroceryId,Price,Quantity) values ('"+g.getGroceryId()+"','"+g.getGroceryName()+"','"+g.getPrice()+"','"+g.getQuantity()+"')";
+              String InsertQuery="Insert into Grocery (GroceryId,Name,Price,Quantity) values ('"+g.getGroceryId()+"','"+g.getGroceryName()+"','"+g.getPrice()+"','"+g.getQuantity()+"')";
               stmt.executeUpdate(InsertQuery);
           }
           stmt.close();
@@ -203,5 +202,6 @@ return false;
 
       }
   }
+  
 
 }
