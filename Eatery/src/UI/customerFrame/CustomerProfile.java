@@ -27,6 +27,7 @@ public class CustomerProfile extends javax.swing.JPanel {
         txtCity.setEnabled(false);
         txtAddress.setEnabled(false);
         txtPassword.setEnabled(false);
+        txtCpassword.setEnabled(false);
         txtCustomerId.setEnabled(false);
         txtNumber.setEnabled(false);
         this.customer=cust;
@@ -67,8 +68,9 @@ public class CustomerProfile extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
         btnSave = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
-        txtCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose City", "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
+        txtCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
 
         jLabel1.setText("Name");
 
@@ -104,12 +106,17 @@ public class CustomerProfile extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("MANAGE PROFILE");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(624, 624, 624)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
@@ -117,7 +124,7 @@ public class CustomerProfile extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
                 .addGap(29, 29, 29)
@@ -129,19 +136,20 @@ public class CustomerProfile extends javax.swing.JPanel {
                         .addComponent(btnSave))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtCpassword)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(txtName)
                         .addComponent(txtNumber)
                         .addComponent(txtEmail)
                         .addComponent(txtCustomerId)
-                        .addComponent(txtPassword))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,7 +185,7 @@ public class CustomerProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnSave))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -189,25 +197,53 @@ public class CustomerProfile extends javax.swing.JPanel {
         txtCity.setEnabled(true);
         txtAddress.setEnabled(true);
         txtPassword.setEnabled(true);
-        //txtCustomerId.setEnabled(true);
         txtNumber.setEnabled(true);
+        
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:    
-        int stateid=Integer.parseInt(txtCustomerId.getText());
-        String name=txtName.getText();
-        String email=txtEmail.getText();
-        String Address=txtAddress.getText();
-        String city=txtCity.getSelectedItem().toString();
-        int number=Integer.parseInt(txtNumber.getText());
-        String password=txtPassword.getText();
         
-        
+          if(!txtCustomerId.getText().equals("") && !txtName.getText().equals("") && !txtEmail.getText().equals("") 
+                  && !txtAddress.getText().equals("") && !txtNumber.getText().equals("") && !txtPassword.getText().equals("") && txtCity.getSelectedItem()!=null)
+        {
+      String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
+        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+       if(!txtPassword.getText().equals(txtCpassword.getText()))
+        {
+             JOptionPane.showMessageDialog(this, "Password doesn't match", "Password Error", HEIGHT);
 
-            eatery.updateCustomer(stateid, name, number, email, city, password, Address);
+        }
+         if(!txtName.getText().matches("^[a-zA-Z]+ [a-zA-Z]+$"))
+        {
+            JOptionPane.showMessageDialog(this, "Enter a Valid Full Name", "Invalid Name", HEIGHT);
+
+        }
+        if(!txtNumber.getText().matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"))
+        {
+            JOptionPane.showMessageDialog(this, "Enter a Valid Phone Number", "Invalid Phone Number", HEIGHT);
+
+        }
+         if(!txtEmail.getText().matches(regexPattern))
+        {
+            JOptionPane.showMessageDialog(this, "Enter a Valid Email", "Invalid Email", HEIGHT);
+
+        }
+         if(txtPassword.getText().equals(txtCpassword.getText()) && txtName.getText().matches("^[a-zA-Z]+ [a-zA-Z]+$") && txtNumber.getText().matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$") && txtEmail.getText().matches(regexPattern))
+       
+             eatery.updateCustomer(Integer.parseInt(txtCustomerId.getText()), txtName.getText(), txtNumber.getText(), txtEmail.getText(), txtCity.getSelectedItem().toString(), txtPassword.getText(), txtAddress.getText());
             JOptionPane.showMessageDialog(this, "Updated Successfully", "Success", HEIGHT);
+            
+        }
+         
+               else
+        {
+             JOptionPane.showMessageDialog(this, "Enter all fields", "Fields", HEIGHT);
+        
+          }
+        
+            
 
         
         
@@ -225,6 +261,7 @@ public class CustomerProfile extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JComboBox<String> txtCity;

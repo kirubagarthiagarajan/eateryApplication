@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,9 +15,9 @@ public class Restaurant {
   private int restaurantId;
   private String restaurantName;
   private String city;
-  private ArrayList<Food> dishes;
-  private ArrayList<Order> currentOrders;
-  private ArrayList<Employee> employeeList;
+  private List<Food> dishes;
+  private List<Order> currentOrders;
+  private List<Employee> employeeList;
   private  Boolean acceptingOrders;
   private int rating=0;
 
@@ -72,7 +73,7 @@ public class Restaurant {
     return city;
   }
 
-  public ArrayList<Employee> getEmployeeList() {
+  public List<Employee> getEmployeeList() {
     return employeeList;
   }
 
@@ -93,14 +94,17 @@ public class Restaurant {
 
   }
 
-  public ArrayList<Food> getDishes() {
+  public List<Food> getDishes() {
     return dishes;
   }
 
-  public ArrayList<Order> getCurrentOrders() {
+  public List<Order> getCurrentOrders() {
     return currentOrders;
   }
 
+  public void setCurrentOrders(List<Order> currentOrders) {
+    this.currentOrders =  currentOrders;
+  }
   public void addToEmployeeList(Employee emp) {
     this.employeeList.add(emp);
   }
@@ -117,7 +121,7 @@ public class Restaurant {
     }
   }
 
-  public void setEmployeeList(ArrayList<Employee> employeeList) {
+  public void setEmployeeList(List<Employee> employeeList) {
     this.employeeList = employeeList;
   }
 
@@ -146,7 +150,7 @@ public class Restaurant {
     }
   }
 
-  public void setDishes(ArrayList<Food> dishes) {
+  public void setDishes(List<Food> dishes) {
     this.dishes = dishes;
   }
 

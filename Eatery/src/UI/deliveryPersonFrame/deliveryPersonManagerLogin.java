@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ui.systemAdmin;
+package ui.deliveryPersonFrame;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,16 +12,16 @@ import model.EateryEnterprise;
  *
  * @author ktkir
  */
-public class systemAdminLogin extends javax.swing.JFrame {
+public class deliveryPersonManagerLogin extends javax.swing.JFrame {
 
     /**
-     * Creates new form systemAdminLogin
+     * Creates new form deliveryPersonManagerLogin
      */
-    private String passCode= "sysadmin@123";
-    private EateryEnterprise eatery;
-    public systemAdminLogin(EateryEnterprise eatery) {
+    EateryEnterprise eatery;
+    String passCode="delPerMng";
+    public deliveryPersonManagerLogin(EateryEnterprise eatery) {
         initComponents();
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
 
@@ -34,26 +34,13 @@ public class systemAdminLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btnPatientLogin = new javax.swing.JButton();
         passcode = new javax.swing.JLabel();
         textPasscode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        btnPatientLogin = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RESTAURANT ADMINISTRATOR LOGIN");
-
-        passcode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        passcode.setText("PASSCODE");
-
-        textPasscode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Please enter your Restaraunt Administrator PassCode");
 
         btnPatientLogin.setBackground(new java.awt.Color(255, 255, 0));
         btnPatientLogin.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -64,6 +51,20 @@ public class systemAdminLogin extends javax.swing.JFrame {
             }
         });
 
+        passcode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        passcode.setText("PASSCODE");
+
+        textPasscode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Please enter your Deliver Person Manager PassCode");
+
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SYSTEM ADMINISTRATOR LOGIN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,13 +72,13 @@ public class systemAdminLogin extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(629, Short.MAX_VALUE)
                 .addComponent(passcode, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(60, 60, 60)
                 .addComponent(textPasscode, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(673, 673, 673))
+                .addGap(712, 712, 712))
             .addGroup(layout.createSequentialGroup()
-                .addGap(747, 747, 747)
+                .addGap(725, 725, 725)
                 .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -87,13 +88,13 @@ public class systemAdminLogin extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(155, 155, 155)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passcode, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textPasscode, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 564, Short.MAX_VALUE))
+                .addGap(0, 556, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,8 +106,8 @@ public class systemAdminLogin extends javax.swing.JFrame {
         {
             if(textPasscode.getText().equals(passCode))
             {
-                systemAdminFrame sysAdmin = new systemAdminFrame(eatery);
-                sysAdmin.setVisible(true);
+                deliveryBoyManageFrame delPerMngFrame = new deliveryBoyManageFrame(eatery);
+                delPerMngFrame.setVisible(true);
                 this.dispose();
             }
             else
@@ -137,20 +138,20 @@ public class systemAdminLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(systemAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryPersonManagerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(systemAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryPersonManagerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(systemAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryPersonManagerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(systemAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryPersonManagerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new systemAdminLogin().setVisible(true);
+//                new deliveryPersonManagerLogin().setVisible(true);
             }
         });
     }

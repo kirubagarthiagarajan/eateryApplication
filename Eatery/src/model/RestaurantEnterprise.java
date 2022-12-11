@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.sql.*;
 import java.util.logging.*;
 import model.SQLConnection.SQLConnection;
@@ -23,6 +24,7 @@ public class RestaurantEnterprise {
        this.employeeList=new RestaurantEmployeeManagement();
        populateDishesInRestaurant();
        populateRestaurantDb();
+       populateEmployeeInRestaurant();
   }
        
        public void populateRestaurantDb()
@@ -33,6 +35,7 @@ public class RestaurantEnterprise {
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
           System.out.print("Inside populate Restaurant");
+          this.restaurantDirectory= new ArrayList<>();
           while(st.next())
              {
                  
@@ -216,7 +219,7 @@ public class RestaurantEnterprise {
        //food ends
        
          //employee starts 
-     public void populateEmployeeInRestaurant(){
+         public void populateEmployeeInRestaurant(){
        
        if(this.employeeList.getEmployeeList().size() > 0 )
        {
@@ -263,16 +266,7 @@ public class RestaurantEnterprise {
                     }
                 }
             }
-            else if (role=="Order Manager")
-            {
-             for(Restaurant res: this.restaurantDirectory)
-                {
-                    if(res.getRestaurantId()==restaurantId)
-                    {
-                        return res;
-                    }
-                }   
-            }
+            
             else
             {
             for(Restaurant res : this.restaurantDirectory)
@@ -281,7 +275,7 @@ public class RestaurantEnterprise {
                 {
                     for(Employee emp : res.getEmployeeList())
                     {
-                        if(emp.getEmployeeId()==employeeId && emp.getRole()==role )
+                        if(emp.getEmployeeId()==employeeId && emp.getRole().equals(role) )
                         {
                             return res;
                         }
@@ -292,7 +286,7 @@ public class RestaurantEnterprise {
             return null;
         }
         
-        public ArrayList<Employee> getEmployeeByRestaurant(int restaurantId)
+        public List<Employee> getEmployeeByRestaurant(int restaurantId)
         {
            
             for(Restaurant res :this.restaurantDirectory)
@@ -414,6 +408,18 @@ public class RestaurantEnterprise {
     public void replacefoodDb(){
         this.foodDirect.replaceFoodList();  
     }
+
+    public void populateOrdersInRestaurant(int restaurantId, List<Order> ordersOfRestaurant) {
+      for(Restaurant res: this.restaurantDirectory) {
+        if(res.getRestaurantId() == restaurantId) {
+        res.setCurrentOrders(ordersOfRestaurant);
+        return;
+        }
+        
+      }
+      
+    }
+
      
   
     

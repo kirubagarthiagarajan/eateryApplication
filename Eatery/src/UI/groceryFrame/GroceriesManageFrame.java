@@ -41,6 +41,11 @@ public class GroceriesManageFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         btngroceries.setText("MANAGE GROCERIES");
         btngroceries.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +117,11 @@ public class GroceriesManageFrame extends javax.swing.JFrame {
         jSplitPane1.setRightComponent(groceriesmanagement);
         
     }//GEN-LAST:event_btngroceriesActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.eatery.replaceGroceryDb();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

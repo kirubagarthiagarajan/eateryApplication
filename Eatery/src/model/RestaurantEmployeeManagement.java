@@ -27,6 +27,7 @@ public void populateEmployeeListDb(){
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
           System.out.print("Inside populate Employee");
+           this.employeeList=new ArrayList<>();
           while(st.next())
              {
                  
@@ -51,6 +52,7 @@ public void replaceEmployeeDb()
           Statement stmt=con.createStatement();
           String TruncQuery="delete from Employee";
           stmt.executeUpdate(TruncQuery);
+          System.out.print("....barathi...."+this.employeeList.size());
           for (Employee e:this.employeeList)
           {
               String InsertQuery="Insert into Employee (Name,EmployeeId,RestaurantId,Role) values ('"+e.getName()+"','"+e.getEmployeeId()+"','"+e.getRestaurantId()+"','"+e.getRole()+"')";

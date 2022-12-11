@@ -11,7 +11,7 @@ import model.EateryEnterprise;
 import model.GroceryEnterprise;
 import model.OrderDirectory;
 import model.RestaurantEnterprise;
-import ui.customerFrame.CustomerLogin;
+import ui.customerFrame.CustomerLanding;
 import ui.customerFrame.CustomerManageFrame;
 import ui.deliveryPersonFrame.deliveryLanding;
 import ui.groceryFrame.groceryLanding;
@@ -95,7 +95,7 @@ public class mainFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1588, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +118,10 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +133,7 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void btnCustomerFrame1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerFrame1ActionPerformed
         // TODO add your handling code here:
-        CustomerLogin cl=new CustomerLogin(eatery);
+        CustomerLanding cl=new CustomerLanding(eatery);
         cl.setVisible(true);
     }//GEN-LAST:event_btnCustomerFrame1ActionPerformed
 

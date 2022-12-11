@@ -50,6 +50,7 @@ public void replaceFoodList()
           Statement stmt=con.createStatement();
           String TruncQuery="delete from Food";
           stmt.executeUpdate(TruncQuery);
+          
           for (Food f: this.foodList)
           {
               String InsertQuery="Insert into Food (FoodId,FoodName,Price,RestaurantId) values ('"+f.getFoodId()+"','"+f.getName()+"','"+f.getPrice()+"','"+f.getRestaurantId()+"')";
@@ -72,6 +73,7 @@ public void populateFoodList(){
           String sql="select * from Food";
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
+          this.foodList=new ArrayList<>();
           while(st.next())
              {
                  int foodId=(st.getInt("FoodId"));

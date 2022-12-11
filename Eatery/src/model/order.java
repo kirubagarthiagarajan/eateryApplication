@@ -4,8 +4,15 @@
  */
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.SQLConnection.SQLConnection;
 
 /**
  *
@@ -44,6 +51,23 @@ public class Order {
           this.isGroceryOrder = isGroceryOrder;
           this.orderedGroceryList = orderedGroceryList;
           this.deliveryPersonId=-1;
+      }
+      public Order(int orderId, int customerId, int restaurantId, OrderStatus status, String devlieryAddress, String deliveryInstructions,int totalPrice, String city, boolean  isGroceryOrder,int deliveryPersonId,String queryFromDeliveryBoy)
+      {
+          this.orderId=orderId;
+          this.customerId=customerId;
+          this.status=status;
+          this.devlieryAddress=devlieryAddress;
+          this.deliveryInstructions=deliveryInstructions;
+          this.totalPrice=totalPrice;
+          //this.orderedFoodList=foodList;
+          this.restaurantId=restaurantId;
+          this.city=city;
+          this.queryFromDeliveryBoy = queryFromDeliveryBoy;
+          this.isGroceryOrder = isGroceryOrder;
+          this.orderedGroceryList = new ArrayList<>();
+          this.deliveryPersonId=deliveryPersonId;
+          this.orderedFoodList=new ArrayList<>();
       }
 
     public void setCity(String city) {
@@ -89,6 +113,7 @@ public class Order {
  
 
     public List<Food> getOrderedFoodList() {
+        System.out.println(this.orderedFoodList.size());
         return orderedFoodList;
     }
 
@@ -124,6 +149,16 @@ public class Order {
     public void setOrderedFoodList(List<Food> orderedFoodList) {
         this.orderedFoodList = orderedFoodList;
     }
+    
+    public void addToOrderList(Food food)
+    {
+        this.orderedFoodList.add(food);
+    }
+    
+    public void addToGroceryList(Grocery G)
+    {
+        this.orderedGroceryList.add(G);
+    }
 
     public String getCity() {
       return this.city;
@@ -152,6 +187,8 @@ public class Order {
     public void setOrderedGroceryList(List<Grocery> orderedGroceryList) {
       this.orderedGroceryList = orderedGroceryList;
     }
+  
+
     
   
 }

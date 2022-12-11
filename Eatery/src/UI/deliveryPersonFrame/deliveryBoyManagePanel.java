@@ -5,6 +5,7 @@
 package ui.deliveryPersonFrame;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -24,13 +25,14 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
      * Creates new form deliveryBoyManagePanel
      */
     private EateryEnterprise eatery;
-    ArrayList<DeliveryPerson> a;
+    List<DeliveryPerson> a;
     
     public deliveryBoyManagePanel(EateryEnterprise eatery) {
         initComponents();
         this.eatery=eatery;
         a=eatery.getAllDeliveryPerson();
         displayDeliverBoy();
+        txtCity.setSelectedItem(null);
         
     }
 
@@ -49,22 +51,22 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         mngdbTable = new javax.swing.JTable();
         searchValue = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         deletedeliveryboy = new javax.swing.JButton();
         confirmUpdate = new javax.swing.JButton();
-        tfcity = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tfname = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         tfdbid = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        tfphno = new javax.swing.JTextField();
+        txtNumber = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        tfemail = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        tfaddress = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        txtCity = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         updatedeliveryboy.setBackground(new java.awt.Color(255, 255, 0));
         updatedeliveryboy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -102,10 +104,6 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("MANAGE DELIVERY BOY");
-
         deletedeliveryboy.setBackground(new java.awt.Color(255, 255, 0));
         deletedeliveryboy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         deletedeliveryboy.setText("DELETE DELIVERY BOY");
@@ -125,23 +123,16 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
             }
         });
 
-        tfcity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
-        tfcity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfcityActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("PHONE NUMBER");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("NAME");
 
-        tfname.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        tfname.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfnameActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
@@ -160,21 +151,28 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("ADDRESS");
 
+        txtAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddressActionPerformed(evt);
+            }
+        });
+
+        txtCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
+
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("SMART DELIVERY - DELIVERY PERSON MANAGER");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(388, 388, 388)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(searchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(304, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(540, 540, 540)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -187,13 +185,13 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
                                         .addComponent(updatedeliveryboy))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(94, 94, 94)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tfdbid, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfphno, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(120, 120, 120)
@@ -202,21 +200,27 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(230, 230, 230))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(confirmUpdate)
-                        .addGap(387, 387, 387))))
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(563, 563, 563)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(717, 717, 717)
+                .addComponent(confirmUpdate)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(searchValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(searchValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -225,7 +229,7 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -233,43 +237,33 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tfphno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(confirmUpdate)
-                .addGap(34, 34, 34))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(confirmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 668, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(48, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -288,27 +282,28 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
        int col= 1;
         int row=mngdbTable.getSelectedRow();
         
-        int dbId= Integer.parseInt(mngdbTable.getModel().getValueAt(row, col).toString());
+       
         if(row < 0)
         {
             JOptionPane.showMessageDialog(this, "Select a row to update!");
         }
         else
         {
-             tfname.setEnabled(true);
-             tfcity.setEnabled(true);
-             tfphno.setEnabled(true);
-             tfemail.setEnabled(true);
-              tfaddress.setEnabled(true);
-              confirmUpdate.setEnabled(true);
+             int dbId= Integer.parseInt(mngdbTable.getModel().getValueAt(row, col).toString());
+             txtName.setEnabled(true);
+             txtCity.setEnabled(true);
+             txtNumber.setEnabled(true);
+             txtEmail.setEnabled(true);
+             txtAddress.setEnabled(true);
+             confirmUpdate.setEnabled(true);
               
               DeliveryPerson a =eatery.getDeliveryBoyById(dbId);
-              tfname.setText(a.getName());
+              txtName.setText(a.getName());
               tfdbid.setText(String.valueOf( a.getStateId()));
-              tfcity.setSelectedItem(a.getCity());
-              tfphno.setText(String.valueOf(a.getMobile()));
-              tfemail.setText(a.getEmail());
-              tfaddress.setText(a.getAddress());
+              txtCity.setSelectedItem(a.getCity());
+              txtNumber.setText(String.valueOf(a.getMobile()));
+              txtEmail.setText(a.getEmail());
+              txtAddress.setText(a.getAddress());
               
               
         }
@@ -332,14 +327,12 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int col=1;
         int row=mngdbTable.getSelectedRow();
-        int dbId= Integer.parseInt(mngdbTable.getModel().getValueAt(row, col).toString());
+       
 
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "You should select atleast 1 row to delete!");
         } else {
-            
-         //   eatery.deleteDeliveryPerson(int deliveryBoyId);
-     //    System.out.println("Function executed");
+             int dbId= Integer.parseInt(mngdbTable.getModel().getValueAt(row, col).toString());
                eatery.deleteDeliveryPerson(dbId);
                 a=eatery.getAllDeliveryPerson();
                 displayDeliverBoy();
@@ -353,54 +346,70 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
         int col= 1;
         int row=mngdbTable.getSelectedRow();
             int dbId= Integer.parseInt(mngdbTable.getModel().getValueAt(row, col).toString());
-        String city=String.valueOf(tfcity.getSelectedItem());
-        int phno=Integer.parseInt(tfphno.getText());
+        String city=String.valueOf(txtCity.getSelectedItem());
+        String phno=txtNumber.getText();
         if(row < 0)
         {
             JOptionPane.showMessageDialog(this, "Select a row to update!");
         }
-        else
+          String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        if(txtCity.getSelectedItem()!=null && !txtName.getText().equals("") && !txtEmail.getText().equals("") && !txtAddress.getText().equals("") && !txtNumber.getText().equals(""))
         {
-            eatery.updateDeliveryBoy(dbId,tfname.getText(),city,phno,tfemail.getText(),tfaddress.getText());
+          
+            if(!txtName.getText().matches("^[a-zA-Z]+ [a-zA-Z]+$"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter a Valid Full Name", "Invalid Name", HEIGHT);
+
+            }
+            if(!txtNumber.getText().matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter a Valid Phone Number", "Invalid Phone Number", HEIGHT);
+
+            }
+            if(!txtEmail.getText().matches(regexPattern))
+            {
+                JOptionPane.showMessageDialog(this, "Enter a Valid Email", "Invalid Email", HEIGHT);
+
+            }
+            if( txtName.getText().matches("^[a-zA-Z]+ [a-zA-Z]+$") && txtNumber.getText().matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$") && txtEmail.getText().matches(regexPattern))
+            {
+            eatery.updateDeliveryBoy(dbId,txtName.getText(),city,phno,txtEmail.getText(),txtAddress.getText());
          JOptionPane.showMessageDialog(this, "Delivery Boy updated!");
          displayDeliverBoy();
-        }
-     /*   if(!tfname.getText().equals("") && tfcity.getSelectedItem()!=null)
-        {
-            eatery.updateRestaraunt(restarauntId, tfname.getText(), tfcity.getSelectedItem().toString());
-            tfname.setText("");
-            tfname.setEnabled(false);
-            tfcity.setSelectedItem(null);
-            tfcity.setEnabled(false);
-            tfname.setEnabled(false);
-            displayDeliverBoy();
-
+            }
         }
         else
-        JOptionPane.showMessageDialog(this, "Fill all the details to update City");
-        */
+        {    
+        JOptionPane.showMessageDialog(this, "Fill all the details to update the Delivery Person profile");
+        }       
     }//GEN-LAST:event_confirmUpdateActionPerformed
 
-    private void tfcityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfcityActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfcityActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void tfnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfnameActionPerformed
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfnameActionPerformed
+    }//GEN-LAST:event_txtAddressActionPerformed
 
  private void displayDeliverBoy() 
      {
-         tfname.setEnabled(false);
-         tfdbid.setEnabled(false);
-         tfcity.setSelectedItem(null);
-         tfphno.setEnabled(false);
-         tfemail.setEnabled(false);
-         tfaddress.setEnabled(false);
-         System.out.println("Populate fun worked");
          
-        
-       
+     
+         txtName.setEnabled(false);
+         txtName.setText("");
+         tfdbid.setEnabled(false);
+         tfdbid.setText("");
+         txtNumber.setEnabled(false);
+         txtNumber.setText("");
+         txtEmail.setEnabled(false);
+         txtEmail.setText("");
+         txtAddress.setEnabled(false);
+         txtAddress.setText("");
+         txtCity.setEnabled(false);
+         txtCity.setSelectedItem(null);
          mngdbTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultTableModel tableModel = (DefaultTableModel) mngdbTable.getModel();
         tableModel.setRowCount(0);
@@ -452,12 +461,12 @@ public class deliveryBoyManagePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable mngdbTable;
     private javax.swing.JTextField searchValue;
-    private javax.swing.JTextField tfaddress;
-    private javax.swing.JComboBox<String> tfcity;
     private javax.swing.JTextField tfdbid;
-    private javax.swing.JTextField tfemail;
-    private javax.swing.JTextField tfname;
-    private javax.swing.JTextField tfphno;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JComboBox<String> txtCity;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNumber;
     private javax.swing.JButton updatedeliveryboy;
     // End of variables declaration//GEN-END:variables
 }

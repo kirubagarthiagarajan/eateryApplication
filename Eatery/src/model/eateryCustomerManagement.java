@@ -16,7 +16,7 @@ import model.SQLConnection.SQLConnection;
  */
 
 public class EateryCustomerManagement {
-  private ArrayList<Customer> customerDirectory;  
+  private List<Customer> customerDirectory;  
   
   public EateryCustomerManagement(){
       
@@ -24,7 +24,7 @@ public class EateryCustomerManagement {
       populateCustomerFromDb();
   }
 
-    public ArrayList<Customer> getCustomerDirectory() {
+    public List<Customer> getCustomerDirectory() {
         return customerDirectory;
     }
 
@@ -68,7 +68,7 @@ public class EateryCustomerManagement {
         }
         return true;
     }
-    public void updateCustomer(int CustomerId,String name,int mobile,String email,String City,String password,String address)
+    public void updateCustomer(int CustomerId,String name,String mobile,String email,String City,String password,String address)
     {
         for (Customer c: this.customerDirectory)
         {
@@ -92,11 +92,12 @@ public class EateryCustomerManagement {
           String sql="select * from Customer";
           PreparedStatement ps=con.prepareStatement(sql);
           ResultSet st=ps.executeQuery();
+          this.customerDirectory=new ArrayList<Customer>();
           while(st.next())
              {
                 int stateId=st.getInt("CustomerId");
                 String email=st.getString("Email");
-                int mobile=st.getInt("Number");
+                String mobile=st.getString("Number");
                 String address=st.getString("Address");
                 String name=st.getString("CustomerName");
                 String password=st.getString("Password");
@@ -197,5 +198,19 @@ public class EateryCustomerManagement {
             }
         }
             }
+
+        public void populatePastAndActiveOrdersOfCustomer(int customerId,
+            List<Order> pastOrdersOfCustomer, List<Order> activeOrdersOfCustomer) {
+          
+          
+          for(Customer cust: this.customerDirectory){
+            if(cust.getStateId() == customerId){
+                cust.setActiveOrders(activeOrdersOfCustomer);
+                cust.setPastOrders(pastOrdersOfCustomer);
+                return;
+            }
+        }
+          
+        }
 
 }
