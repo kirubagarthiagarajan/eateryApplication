@@ -98,6 +98,8 @@ public class customerFoodOrder extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         btnpdf = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Choose City");
 
@@ -121,7 +123,15 @@ public class customerFoodOrder extends javax.swing.JPanel {
             new String [] {
                 "Restaraunt Id", "Restaraunt Name", "City"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(restarauntsTable);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -137,9 +147,19 @@ public class customerFoodOrder extends javax.swing.JPanel {
             new String [] {
                 "Food Id", "Food Name", "Food Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(foodTable);
 
+        chooseRestaraunt.setBackground(new java.awt.Color(102, 102, 102));
+        chooseRestaraunt.setForeground(new java.awt.Color(255, 255, 255));
         chooseRestaraunt.setText("Choose Restaraunt");
         chooseRestaraunt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +167,9 @@ public class customerFoodOrder extends javax.swing.JPanel {
             }
         });
 
+        addToCart.setBackground(new java.awt.Color(102, 102, 102));
+        addToCart.setForeground(new java.awt.Color(255, 255, 255));
+        addToCart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart.png"))); // NOI18N
         addToCart.setText("Add to Cart");
         addToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,9 +190,20 @@ public class customerFoodOrder extends javax.swing.JPanel {
             new String [] {
                 "Food Name", "Food Price", "Quantity"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(orderTable);
 
+        placeOrder.setBackground(new java.awt.Color(102, 102, 102));
+        placeOrder.setForeground(new java.awt.Color(255, 255, 255));
+        placeOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         placeOrder.setText("Checkout");
         placeOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +214,9 @@ public class customerFoodOrder extends javax.swing.JPanel {
         labelConfirmAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelConfirmAddress.setText("Address in selected City");
 
+        confirmOrder.setBackground(new java.awt.Color(102, 102, 102));
+        confirmOrder.setForeground(new java.awt.Color(255, 255, 255));
+        confirmOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         confirmOrder.setText("Confirm and Place Order");
         confirmOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,10 +240,15 @@ public class customerFoodOrder extends javax.swing.JPanel {
 
         jLabel8.setText("Coupons");
 
-        jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel9.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 204, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("ORDER YOUR FOOD");
 
+        btnpdf.setBackground(new java.awt.Color(102, 102, 102));
+        btnpdf.setForeground(new java.awt.Color(255, 255, 255));
+        btnpdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pdf.png"))); // NOI18N
         btnpdf.setText("DOWNLOAD BILL AS PDF");
         btnpdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,7 +298,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textDeliveryInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -296,8 +338,8 @@ public class customerFoodOrder extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
-                        .addComponent(chooseRestaraunt))
-                    .addComponent(addToCart))
+                        .addComponent(chooseRestaraunt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addToCart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -311,8 +353,8 @@ public class customerFoodOrder extends javax.swing.JPanel {
                     .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(12, 12, 12)
-                .addComponent(placeOrder)
-                .addGap(18, 18, 18)
+                .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -426,7 +468,10 @@ public class customerFoodOrder extends javax.swing.JPanel {
                                             
         int col= 0;
         int row=restarauntsTable.getSelectedRow();
-        int restarauntId= Integer.parseInt(restarauntsTable.getModel().getValueAt(row, col).toString());
+           if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+        } else {
+               int restarauntId= Integer.parseInt(restarauntsTable.getModel().getValueAt(row, col).toString());
         currentRestarautId=restarauntId;
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
@@ -434,6 +479,8 @@ public class customerFoodOrder extends javax.swing.JPanel {
          this.currentFoodList=eatery.getFoodListByRestaurant(restarauntId);
          populateFoodTable();
         }
+           }
+    
     }//GEN-LAST:event_chooseRestarauntActionPerformed
 
     
@@ -488,18 +535,10 @@ public class customerFoodOrder extends javax.swing.JPanel {
     }
     private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
         // TODO add your handling code here:
-        if(orderTotalprice==-1)
-        {
-            int price=0;
-        for(Food f : orderFoodList)
-        {
-            price+=(f.getPrice()* f.getQuantity());
-        }
-
+        couponChecker();
     
-        orderTotalprice=price;
         textOrderTotal.setText(String.valueOf(orderTotalprice)); 
-        }
+         
        
          if(!currentCustomer.getCity().equals(cityDropDown.getSelectedItem().toString()))
         {
@@ -562,7 +601,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
         Document doc = new Document();
         
         try {
-            PdfWriter.getInstance(doc, new FileOutputStream(path+"order123.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream(path+"Order.pdf"));
             
             doc.open();
             
@@ -599,8 +638,6 @@ public class customerFoodOrder extends javax.swing.JPanel {
                 tb1.addCell(Foodname);
                 tb1.addCell(Foodprice);
                 tb1.addCell(Quantity);
-                
-                
             }
             doc.add(tb1);
             doc.add(tb3);
@@ -610,7 +647,18 @@ public class customerFoodOrder extends javax.swing.JPanel {
         } catch (DocumentException ex) {
             Logger.getLogger(customerFoodOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        this.currentFoodList=new ArrayList<>();
+        this.currentRestaruntList=new ArrayList<>();
+        this.orderFoodList= new ArrayList<>();
+        displayRestarauntTable();
+        populateFoodTable();
+        populateOrderTable();
+        cityDropDown.setSelectedItem(null);
+        textDeliveryInstructions.setText("");
+        orderTotalprice=-1;
+        quantity.setText("");
+        textOrderTotal.setText("");
+        btnpdf.setVisible(false);
         doc.close();
             
     }//GEN-LAST:event_btnpdfActionPerformed
@@ -626,13 +674,8 @@ public void placeOrder(String deliveryAddress){
     if(eatery.checkIfRestaurantAcceptsOrder(currentRestarautId)){
          JOptionPane.showMessageDialog(this, "Your total order price is $"+orderTotalprice +"!");
          eatery.placeOrder(ord); 
-//        this.currentRestaruntList=new ArrayList<>();
-//        this.currentFoodList=new ArrayList<>();
-//        this.orderFoodList=new ArrayList<>();
-//        displayRestarauntTable();
-//        populateFoodTable();
-//        populateOrderTable();
-//        cityDropDown.setSelectedItem(null);
+          confirmOrder.setEnabled(false);
+            placeOrder.setEnabled(false);
          btnpdf.setVisible(true);
     
     }
