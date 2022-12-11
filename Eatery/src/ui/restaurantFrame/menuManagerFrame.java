@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.Restaurant;
 import model.EateryEnterprise;
@@ -23,8 +24,10 @@ public class menuManagerFrame extends javax.swing.JFrame {
     private Restaurant currentRestaraunt;
     public menuManagerFrame(EateryEnterprise eatery,int currentRestarauntId) {
         initComponents();
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
+         this.eatery.populateOrdersToRestaurant(currentRestarauntId);
         this.currentRestarauntId=currentRestarauntId;
         this.currentRestaraunt=eatery.getRestaurantById(currentRestarauntId);
     }
@@ -46,11 +49,27 @@ public class menuManagerFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-        splittedPane.setDividerLocation(150);
+        splittedPane.setDividerLocation(180);
 
+        btnManageMenu.setBackground(new java.awt.Color(102, 102, 102));
         btnManageMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnManageMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/recycle.png"))); // NOI18N
         btnManageMenu.setText("MANAGE MENU");
+        btnManageMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnManageMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnManageMenuMouseExited(evt);
+            }
+        });
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -63,15 +82,15 @@ public class menuManagerFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(283, 283, 283)
                 .addComponent(btnManageMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(375, Short.MAX_VALUE))
+                .addContainerGap(584, Short.MAX_VALUE))
         );
 
         splittedPane.setLeftComponent(jPanel1);
@@ -89,20 +108,20 @@ public class menuManagerFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1403, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(404, 404, 404)
                 .addComponent(jLabel2)
-                .addGap(47, 47, 47))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191)
+                .addGap(211, 211, 211)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 323, Short.MAX_VALUE))
+                .addGap(0, 573, Short.MAX_VALUE))
         );
 
         splittedPane.setRightComponent(jPanel2);
@@ -126,6 +145,22 @@ public class menuManagerFrame extends javax.swing.JFrame {
         menuManagePanel menuManage = new menuManagePanel(eatery,currentRestarauntId);
         splittedPane.setRightComponent(menuManage);
     }//GEN-LAST:event_btnManageMenuActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.eatery.replacefoodDb();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnManageMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageMenuMouseEntered
+        // TODO add your handling code here:
+        btnManageMenu.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_btnManageMenuMouseEntered
+
+    private void btnManageMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageMenuMouseExited
+        // TODO add your handling code here:
+        btnManageMenu.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnManageMenuMouseExited
 
     /**
      * @param args the command line arguments

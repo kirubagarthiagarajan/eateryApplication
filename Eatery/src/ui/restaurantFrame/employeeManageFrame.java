@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.EateryEnterprise;
 
@@ -22,6 +23,8 @@ public class employeeManageFrame extends javax.swing.JFrame {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
+         this.eatery.populateOrdersToRestaurant(restarauntId);
+         this.getContentPane().setBackground(new Color(0,153,204));
         this.currentRestarauntId=restarauntId;
     }
 
@@ -42,8 +45,13 @@ public class employeeManageFrame extends javax.swing.JFrame {
         btnManageMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-        splittedPane.setDividerLocation(160);
+        splittedPane.setDividerLocation(190);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Welcome to the Employee Management Portal. Please click 'MANAGE EMPLOYEES' to continue.");
@@ -56,27 +64,36 @@ public class employeeManageFrame extends javax.swing.JFrame {
         displayPane.setLayout(displayPaneLayout);
         displayPaneLayout.setHorizontalGroup(
             displayPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPaneLayout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(42, 42, 42))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1405, Short.MAX_VALUE)
+            .addGroup(displayPaneLayout.createSequentialGroup()
+                .addGap(366, 366, 366)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         displayPaneLayout.setVerticalGroup(
             displayPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPaneLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 205, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 770, Short.MAX_VALUE))
         );
 
         splittedPane.setRightComponent(displayPane);
 
+        btnManageMenu.setBackground(new java.awt.Color(102, 102, 102));
         btnManageMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnManageMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/team-management.png"))); // NOI18N
         btnManageMenu.setText("MANAGE EMPLOYEES");
+        btnManageMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnManageMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnManageMenuMouseExited(evt);
+            }
+        });
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -87,16 +104,17 @@ public class employeeManageFrame extends javax.swing.JFrame {
         togglePAne.setLayout(togglePAneLayout);
         togglePAneLayout.setHorizontalGroup(
             togglePAneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, togglePAneLayout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
-                .addComponent(btnManageMenu))
+            .addGroup(togglePAneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnManageMenu)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         togglePAneLayout.setVerticalGroup(
             togglePAneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePAneLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                .addGap(306, 306, 306)
                 .addComponent(btnManageMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(561, Short.MAX_VALUE))
         );
 
         splittedPane.setLeftComponent(togglePAne);
@@ -105,7 +123,7 @@ public class employeeManageFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splittedPane)
+            .addComponent(splittedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +138,24 @@ public class employeeManageFrame extends javax.swing.JFrame {
         employeeManagePanel menuManage = new employeeManagePanel(eatery,currentRestarauntId);
         splittedPane.setRightComponent(menuManage);
     }//GEN-LAST:event_btnManageMenuActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.eatery.replaceEmployeeDb();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnManageMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageMenuMouseEntered
+        // TODO add your handling code here:
+         btnManageMenu.setBackground(new Color(255,204,0));
+
+
+    }//GEN-LAST:event_btnManageMenuMouseEntered
+
+    private void btnManageMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageMenuMouseExited
+        // TODO add your handling code here:
+        btnManageMenu.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_btnManageMenuMouseExited
 
     /**
      * @param args the command line arguments

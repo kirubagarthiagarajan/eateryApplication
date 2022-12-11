@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -38,6 +39,7 @@ public class orderManagerPanel extends javax.swing.JFrame {
         this.orderedFood=new ArrayList<>();
          btnProcessOrder.setVisible(false);
             btnCancelOrder.setVisible(false);
+            this.getContentPane().setBackground(new Color(0,153,204));
         populateOrders();
     }
 
@@ -72,9 +74,21 @@ public class orderManagerPanel extends javax.swing.JFrame {
             new String [] {
                 "Food Name", "Price", "Quantity Placed"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblFood);
 
+        btnProcessOrder.setBackground(new java.awt.Color(102, 102, 102));
+        btnProcessOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnProcessOrder.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcessOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/order-processed.png"))); // NOI18N
         btnProcessOrder.setText("Process Order");
         btnProcessOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +96,10 @@ public class orderManagerPanel extends javax.swing.JFrame {
             }
         });
 
+        btnCancelOrder.setBackground(new java.awt.Color(102, 102, 102));
+        btnCancelOrder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelOrder.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/order.png"))); // NOI18N
         btnCancelOrder.setText("Cancel Order");
         btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +114,22 @@ public class orderManagerPanel extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Current Orders");
 
+        btnViewFood.setBackground(new java.awt.Color(102, 102, 102));
+        btnViewFood.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnViewFood.setForeground(new java.awt.Color(255, 255, 255));
+        btnViewFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png"))); // NOI18N
         btnViewFood.setText("View Ordered Food");
+        btnViewFood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnViewFoodMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnViewFoodMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnViewFoodMouseExited(evt);
+            }
+        });
         btnViewFood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewFoodActionPerformed(evt);
@@ -113,50 +146,56 @@ public class orderManagerPanel extends javax.swing.JFrame {
             new String [] {
                 "OrderId", "Price", "Customer Id"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblOrders);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(542, 542, 542)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(341, 341, 341)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
+                        .addGap(184, 184, 184)
                         .addComponent(btnViewFood))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnProcessOrder)
-                                .addGap(299, 299, 299)
-                                .addComponent(btnCancelOrder))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(150, Short.MAX_VALUE))
+                        .addComponent(btnCancelOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnProcessOrder))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(jLabel2)))
+                .addContainerGap(541, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(122, 122, 122)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(btnViewFood, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProcessOrder)
-                    .addComponent(btnCancelOrder))
-                .addGap(22, 22, 22))
+                    .addComponent(btnCancelOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProcessOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,6 +256,22 @@ public class orderManagerPanel extends javax.swing.JFrame {
          
         }
     }//GEN-LAST:event_btnViewFoodActionPerformed
+
+    private void btnViewFoodMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewFoodMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewFoodMouseClicked
+
+    private void btnViewFoodMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewFoodMouseEntered
+        // TODO add your handling code here:
+        btnViewFood.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_btnViewFoodMouseEntered
+
+    private void btnViewFoodMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewFoodMouseExited
+        // TODO add your handling code here:
+        btnViewFood.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_btnViewFoodMouseExited
 private void populateOrders() 
      {
     
