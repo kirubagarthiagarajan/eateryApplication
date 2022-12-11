@@ -58,7 +58,11 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         splittedPane.setDividerLocation(220);
+=======
+        splittedPane.setDividerLocation(200);
+>>>>>>> 5813668b04e95e75b21217166e8ff368e7687c1d
 
         displayPanel.setBackground(new java.awt.Color(0, 153, 204));
 

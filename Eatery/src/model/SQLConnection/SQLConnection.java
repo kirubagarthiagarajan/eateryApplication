@@ -18,7 +18,7 @@ public class SQLConnection {
         try
         {
             Class.forName("org.sqlite.JDBC");
-            Connection con=DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ktkir\\Eatery.db");
+            Connection con=DriverManager.getConnection("jdbc:sqlite:C:\\Users\\BARATHI\\Eatery.db");
             return con;
             
         }

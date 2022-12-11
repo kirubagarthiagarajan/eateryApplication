@@ -53,7 +53,11 @@
       <SubComponents>
         <Container class="javax.swing.JSplitPane" name="splittedPane">
           <Properties>
+<<<<<<< HEAD
             <Property name="dividerLocation" type="int" value="220"/>
+=======
+            <Property name="dividerLocation" type="int" value="200"/>
+>>>>>>> 5813668b04e95e75b21217166e8ff368e7687c1d
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>

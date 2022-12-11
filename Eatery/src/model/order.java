@@ -113,6 +113,7 @@ public class Order {
  
 
     public List<Food> getOrderedFoodList() {
+       // System.out.println(this.orderedFoodList.size());
         return orderedFoodList;
     }
 
