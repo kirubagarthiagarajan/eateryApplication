@@ -4,9 +4,18 @@
  */
 package ui.customerFrame;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +39,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
     
     EateryEnterprise eatery;
     List<Restaurant> currentRestaruntList;
-    ArrayList<Food> currentFoodList;
+    List<Food> currentFoodList;
     Customer currentCustomer;
     ArrayList<Food> orderFoodList;
     int currentRestarautId;
@@ -47,7 +56,10 @@ public class customerFoodOrder extends javax.swing.JPanel {
         quantity.setText("");
         labelConfirmAddress.setVisible(false);
         textConfirmAddress.setVisible(false);
+        confirmOrder.setVisible(false);
         couponsDropdown.setSelectedItem(null);
+        
+        btnpdf.setVisible(false);
     }
 
     /**
@@ -74,8 +86,6 @@ public class customerFoodOrder extends javax.swing.JPanel {
         orderTable = new javax.swing.JTable();
         placeOrder = new javax.swing.JButton();
         labelConfirmAddress = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        textConfirmAddress = new javax.swing.JTextArea();
         confirmOrder = new javax.swing.JButton();
         quantity = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -85,6 +95,9 @@ public class customerFoodOrder extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         couponsDropdown = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        textConfirmAddress = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btnpdf = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Choose City");
@@ -168,10 +181,6 @@ public class customerFoodOrder extends javax.swing.JPanel {
         labelConfirmAddress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labelConfirmAddress.setText("Address in selected City");
 
-        textConfirmAddress.setColumns(20);
-        textConfirmAddress.setRows(5);
-        jScrollPane4.setViewportView(textConfirmAddress);
-
         confirmOrder.setText("Confirm and Place Order");
         confirmOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +198,17 @@ public class customerFoodOrder extends javax.swing.JPanel {
         couponsDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "50OFF", "25OFF" }));
 
         jLabel8.setText("Coupons");
+
+        jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("ORDER YOUR FOOD");
+
+        btnpdf.setText("GENERATE PDF");
+        btnpdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpdfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -221,39 +241,42 @@ public class customerFoodOrder extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(79, 79, 79)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textDeliveryInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGap(17, 17, 17))
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(79, 79, 79)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textDeliveryInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(186, 186, 186)
+                                        .addComponent(btnpdf))))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(confirmOrder))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelConfirmAddress)
-                                    .addComponent(confirmOrder))
-                                .addGap(45, 45, 45)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 348, Short.MAX_VALUE))
+                                .addComponent(labelConfirmAddress)
+                                .addGap(18, 18, 18)
+                                .addComponent(textConfirmAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 724, Short.MAX_VALUE))
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cityDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -276,7 +299,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(textDeliveryInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -284,20 +307,29 @@ public class customerFoodOrder extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(couponsDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(12, 12, 12)
-                .addComponent(placeOrder)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelConfirmAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(confirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                        .addGap(12, 12, 12)
+                        .addComponent(placeOrder)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textOrderTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(confirmOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelConfirmAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textConfirmAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnpdf)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -317,7 +349,13 @@ public class customerFoodOrder extends javax.swing.JPanel {
         if(quantity.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Please enter the quantity of the selected food item, to add it toi your cart!");
-        }else if(!quantity.getText().equals(""))
+        }
+        
+         if(!quantity.getText().matches("[0-9]+"))
+        {
+            JOptionPane.showMessageDialog(this, "The quantity should be a number!");
+        }
+        else if(!quantity.getText().equals(""))
         {
               changefoodQuantity(foo,Integer.parseInt(quantity.getText()));
               populateOrderTable();
@@ -426,7 +464,7 @@ public class customerFoodOrder extends javax.swing.JPanel {
         }
         orderTotalprice=price;
         textOrderTotal.setText(String.valueOf(orderTotalprice));
-        if(currentCustomer.getCity()!=cityDropDown.getSelectedItem().toString())
+        if(!currentCustomer.getCity().equals(cityDropDown.getSelectedItem().toString()))
         {
             JOptionPane.showMessageDialog(this, "The chosen City, does not match with your registered city. Please enter an alternate address in the chosen city!");
             labelConfirmAddress.setVisible(true);
@@ -462,7 +500,91 @@ public class customerFoodOrder extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Order Placed in restaraunt!");
             placeOrder(textConfirmAddress.getText().toString());
         }
+        
+        btnpdf.setVisible(true);
+        
     }//GEN-LAST:event_confirmOrderActionPerformed
+
+    private void btnpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpdfActionPerformed
+        // TODO add your handling code here:
+        String path="";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x=j.showSaveDialog(this);
+        
+        if(x==JFileChooser.APPROVE_OPTION)
+        {
+            path=j.getSelectedFile().getPath();
+            
+        }
+        
+        Document doc = new Document();
+        
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path+"order123.pdf"));
+            
+            doc.open();
+            
+            
+             PdfPTable tb1 = new PdfPTable(3);
+             PdfPTable tb2 = new PdfPTable(2);
+              PdfPTable tb3 = new PdfPTable(2);
+              
+             tb1.setSpacingAfter(10f);
+              tb2.setSpacingAfter(10f);
+              tb3.setSpacingAfter(10f);
+              
+             tb1.addCell("Food Name");
+            tb1.addCell("Food Price");
+            tb1.addCell("Quantity");
+            
+            tb3.addCell("Offer Applied");
+            if(couponsDropdown.getSelectedItem()==null)
+            {
+                 tb3.addCell("No Coupons applied!");
+            }else 
+            {
+                tb3.addCell(couponsDropdown.getSelectedItem().toString());
+            }
+            
+              tb2.addCell("Total Amount");
+            tb2.addCell(textOrderTotal.getText());
+            //tb2.addCell("");
+          
+           // tb2.addCell(image);
+            for(int i=0;i<orderTable.getRowCount();i++)
+            {
+                String Foodname = orderTable.getValueAt(i,0).toString();
+                String Foodprice = orderTable.getValueAt(i,1).toString();
+                String Quantity = orderTable.getValueAt(i,2).toString();
+                
+                tb1.addCell(Foodname);
+                tb1.addCell(Foodprice);
+                tb1.addCell(Quantity);
+                
+                
+            }
+            doc.add(tb1);
+            doc.add(tb3);
+            doc.add(tb2);
+            
+            
+            
+            //  tb2.addCell("Bill");
+          
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(customerFoodOrder.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(customerFoodOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+           
+        
+           
+            doc.close();
+    }//GEN-LAST:event_btnpdfActionPerformed
 public void placeOrder(String deliveryAddress){
     Random random = new Random();
         int randomOrderId = random.nextInt(900) + 100;
@@ -475,6 +597,16 @@ public void placeOrder(String deliveryAddress){
     if(eatery.checkIfRestaurantAcceptsOrder(currentRestarautId)){
          JOptionPane.showMessageDialog(this, "Your total order price is $"+orderTotalprice +"!");
          eatery.placeOrder(ord); 
+         
+         //PDF CODE
+         
+         btnpdf.setVisible(true);
+         
+         
+         //CODE DONE
+         
+         
+         
     }
     else
     {
@@ -516,6 +648,7 @@ public void placeOrder(String deliveryAddress){
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToCart;
+    private javax.swing.JButton btnpdf;
     private javax.swing.JButton chooseRestaraunt;
     private javax.swing.JComboBox<String> cityDropDown;
     private javax.swing.JButton confirmOrder;
@@ -529,16 +662,16 @@ public void placeOrder(String deliveryAddress){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelConfirmAddress;
     private javax.swing.JTable orderTable;
     private javax.swing.JButton placeOrder;
     private javax.swing.JTextField quantity;
     private javax.swing.JTable restarauntsTable;
-    private javax.swing.JTextArea textConfirmAddress;
+    private javax.swing.JTextField textConfirmAddress;
     private javax.swing.JTextField textDeliveryInstructions;
     private javax.swing.JTextField textOrderTotal;
     // End of variables declaration//GEN-END:variables
