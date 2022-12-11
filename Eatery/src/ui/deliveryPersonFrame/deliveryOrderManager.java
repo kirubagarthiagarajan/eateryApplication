@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.EateryEnterprise;
 import ui.restaurantFrame.menuManagePanel;
@@ -37,12 +38,35 @@ public class deliveryOrderManager extends javax.swing.JFrame {
         togglePane = new javax.swing.JPanel();
         mngOrders = new javax.swing.JButton();
         displayPane = new javax.swing.JPanel();
+        welcomeLabel = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         splittedPane.setDividerLocation(150);
 
+        togglePane.setBackground(new java.awt.Color(0, 153, 204));
+
+        mngOrders.setBackground(new java.awt.Color(102, 102, 102));
+        mngOrders.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        mngOrders.setForeground(new java.awt.Color(255, 255, 255));
+        mngOrders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project-management.png"))); // NOI18N
         mngOrders.setText("MANAGE ORDERS");
+        mngOrders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mngOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mngOrdersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mngOrdersMouseExited(evt);
+            }
+        });
         mngOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mngOrdersActionPerformed(evt);
@@ -56,27 +80,57 @@ public class deliveryOrderManager extends javax.swing.JFrame {
             .addGroup(togglePaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mngOrders)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         togglePaneLayout.setVerticalGroup(
             togglePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePaneLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(mngOrders)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addGap(280, 280, 280)
+                .addComponent(mngOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(576, Short.MAX_VALUE))
         );
 
         splittedPane.setLeftComponent(togglePane);
+
+        displayPane.setBackground(new java.awt.Color(0, 153, 204));
+
+        welcomeLabel.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        welcomeLabel.setForeground(new java.awt.Color(255, 204, 0));
+        welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeLabel.setText("DELIVERY PERSON PORTAL");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("WELCOME TO THE SMART DELIVERY EXPERIENCE!");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("PLEASE LOGIN IF YOU ARE ALREADY A SMART DELIVERY EMPLOYEE, OR SIGN UP IF YOU ARE A NEW USER!");
 
         javax.swing.GroupLayout displayPaneLayout = new javax.swing.GroupLayout(displayPane);
         displayPane.setLayout(displayPaneLayout);
         displayPaneLayout.setHorizontalGroup(
             displayPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 742, Short.MAX_VALUE)
+            .addGroup(displayPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(displayPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPaneLayout.createSequentialGroup()
+                        .addGap(533, 533, 533)
+                        .addComponent(jLabel4)
+                        .addGap(540, 540, 540))
+                    .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 1463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(displayPaneLayout.createSequentialGroup()
+                        .addGap(437, 437, 437)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         displayPaneLayout.setVerticalGroup(
             displayPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 543, Short.MAX_VALUE)
+            .addGroup(displayPaneLayout.createSequentialGroup()
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(232, 232, 232)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 518, Short.MAX_VALUE))
         );
 
         splittedPane.setRightComponent(displayPane);
@@ -100,6 +154,21 @@ public class deliveryOrderManager extends javax.swing.JFrame {
                deliveryOrderManagerPanel deliveryOrderManagerPanel = new deliveryOrderManagerPanel(eatery);
         splittedPane.setRightComponent(deliveryOrderManagerPanel);
     }//GEN-LAST:event_mngOrdersActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.eatery.replaceOrderDb();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void mngOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mngOrdersMouseEntered
+        // TODO add your handling code here:
+        mngOrders.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_mngOrdersMouseEntered
+
+    private void mngOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mngOrdersMouseExited
+        // TODO add your handling code here:
+         mngOrders.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_mngOrdersMouseExited
 
     /**
      * @param args the command line arguments
@@ -138,8 +207,11 @@ public class deliveryOrderManager extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel displayPane;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton mngOrders;
     private javax.swing.JSplitPane splittedPane;
     private javax.swing.JPanel togglePane;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
@@ -22,6 +23,7 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
     String passcodeString= "delMng@123";
     public deliveryOrderManagerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
@@ -45,9 +47,20 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
 
         passCode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        btnPatientLogin.setBackground(new java.awt.Color(255, 255, 0));
+        btnPatientLogin.setBackground(new java.awt.Color(102, 102, 102));
         btnPatientLogin.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnPatientLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnPatientLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         btnPatientLogin.setText("LOGIN");
+        btnPatientLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPatientLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPatientLoginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPatientLoginMouseExited(evt);
+            }
+        });
         btnPatientLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPatientLoginActionPerformed(evt);
@@ -62,7 +75,7 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
         jLabel3.setText("Please enter your Delivery Order Manager Passcode to login");
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 204, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("EMPLOYEE MANAGER LOGIN");
 
@@ -70,18 +83,16 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(285, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(passCode, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(350, 350, 350))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(398, 398, 398)
-                .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passCode, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(664, 664, 664))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +104,9 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passCode, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 194, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 545, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +134,16 @@ public class deliveryOrderManagerLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Enter the passCodee to login!");
         }
     }//GEN-LAST:event_btnPatientLoginActionPerformed
+
+    private void btnPatientLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseEntered
+        // TODO add your handling code here:
+        btnPatientLogin.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnPatientLoginMouseEntered
+
+    private void btnPatientLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseExited
+        // TODO add your handling code here:
+        btnPatientLogin.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnPatientLoginMouseExited
 
     /**
      * @param args the command line arguments

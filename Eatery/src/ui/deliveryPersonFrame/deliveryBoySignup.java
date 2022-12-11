@@ -4,6 +4,15 @@
  */
 package ui.deliveryPersonFrame;
 
+import java.awt.Color;
+import java.util.Properties;
+import java.util.concurrent.ThreadLocalRandom;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
 
@@ -19,9 +28,16 @@ public class deliveryBoySignup extends javax.swing.JPanel {
     /**
      * Creates new form Deliverpersonsignup
      */
+    int randomNumber;
     public deliveryBoySignup(EateryEnterprise eatery) {
         initComponents();
             this.eatery=eatery;
+              btnSignup.setVisible(false);
+          tfvemail.setVisible(false);
+          lbvemail.setVisible(false);
+           btnverify.setVisible(false);
+           txtCity.setSelectedItem(null);
+           randomNumber=ThreadLocalRandom.current().nextInt(1000, 9998 + 1);
       
        
     }
@@ -38,29 +54,36 @@ public class deliveryBoySignup extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        tfname = new javax.swing.JTextField();
-        tfstateid = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtStateId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfphno = new javax.swing.JTextField();
+        txtNumber = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tfemail = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        tfaddress = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        tfpswd = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
-        tfcpswd = new javax.swing.JPasswordField();
-        btnsignup = new javax.swing.JButton();
+        txtCpassword = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
-        tfcity = new javax.swing.JComboBox<>();
+        txtCity = new javax.swing.JComboBox<>();
+        btncemail = new javax.swing.JButton();
+        lbvemail = new javax.swing.JLabel();
+        tfvemail = new javax.swing.JTextField();
+        btnSignup = new javax.swing.JButton();
+        btnverify = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel1.setText("NAME");
 
         jLabel2.setText("DELIVERYBOYID");
 
-        tfname.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfnameActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
@@ -72,100 +95,193 @@ public class deliveryBoySignup extends javax.swing.JPanel {
 
         jLabel6.setText("PASSWORD");
 
-        jLabel7.setText("CONFIRM PASSWORD");
-
-        btnsignup.setText("SIGNUP");
-        btnsignup.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsignupActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
 
+        jLabel7.setText("CONFIRM PASSWORD");
+
         jLabel8.setText("CITY");
 
-        tfcity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHOOSE CITY", "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
+        txtCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CHOOSE CITY", "BOSTON", "NEW YORK", "VIRGINIA", "NEW JERSEY", "BUFFALO" }));
+
+        btncemail.setBackground(new java.awt.Color(102, 102, 102));
+        btncemail.setForeground(new java.awt.Color(255, 255, 255));
+        btncemail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
+        btncemail.setText("CONFIRM DETAILS");
+        btncemail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncemail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btncemailMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btncemailMouseExited(evt);
+            }
+        });
+        btncemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncemailActionPerformed(evt);
+            }
+        });
+
+        lbvemail.setText("VERIFY EMAIL");
+
+        btnSignup.setBackground(new java.awt.Color(102, 102, 102));
+        btnSignup.setForeground(new java.awt.Color(255, 255, 255));
+        btnSignup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-user.png"))); // NOI18N
+        btnSignup.setText("Sign Up");
+        btnSignup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSignup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSignupMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSignupMouseExited(evt);
+            }
+        });
+        btnSignup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignupActionPerformed(evt);
+            }
+        });
+
+        btnverify.setBackground(new java.awt.Color(102, 102, 102));
+        btnverify.setForeground(new java.awt.Color(255, 255, 255));
+        btnverify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/check-mail.png"))); // NOI18N
+        btnverify.setText("VERIFY EMAIL");
+        btnverify.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnverify.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnverifyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnverifyMouseExited(evt);
+            }
+        });
+        btnverify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnverifyActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 204, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("DELIVERY PERSON SIGNUP");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                        .addGap(487, 487, 487)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addComponent(lbvemail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                .addComponent(tfvemail, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62)
+                                .addComponent(btnverify))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnsignup)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(tfpswd)
-                                    .addComponent(tfcpswd)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfaddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfemail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfphno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfcity, 0, 143, Short.MAX_VALUE)
-                                    .addComponent(tfname, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                    .addComponent(tfstateid))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(378, 378, 378))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel8))
+                                        .addGap(62, 62, 62)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtStateId, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3))
+                                        .addGap(58, 58, 58)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(589, 589, 589)
+                        .addComponent(btnSignup)))
+                .addGap(691, 691, 691))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(626, 626, 626)
+                .addComponent(btncemail)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tfstateid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStateId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(tfcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel4)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel5)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(tfphno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(tfemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(tfaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtCpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)))
+                .addGap(17, 17, 17)
+                .addComponent(btncemail, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tfpswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(tfcpswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(btnsignup)
-                .addContainerGap(53, Short.MAX_VALUE))
+                    .addComponent(tfvemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbvemail)
+                    .addComponent(btnverify))
+                .addGap(35, 35, 35)
+                .addComponent(btnSignup)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -176,39 +292,180 @@ public class deliveryBoySignup extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfnameActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfnameActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void btnsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsignupActionPerformed
+    private void btncemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncemailActionPerformed
         // TODO add your handling code here:
-        String name=tfname.getText();
-        int deliveryboyid=Integer.parseInt(tfstateid.getText());
-        int phoneno=Integer.parseInt(tfphno.getText());
-        String email = tfemail.getText();
-        String address = tfaddress.getText();
-        String city = tfcity.getSelectedItem().toString();
-        String password = tfpswd.getText();
-        String cpassword = tfcpswd.getText();
-        
-     //   eatery.addDeliveryPerson(name,deliveryboyid,phoneno,email,address,city,password,cpassword);
-// (int stateId, String email, int mobile, String address, String name, String password, String city)
 
-        eatery.addDeliveryPerson(deliveryboyid,email,phoneno,address,name,password,city);
-        
-        
-        JOptionPane.showMessageDialog(this, "Delivery person profile created");
-        
-        
-    }//GEN-LAST:event_btnsignupActionPerformed
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+
+        if(txtCity.getSelectedItem()!=null && !txtName.getText().equals("") && !txtEmail.getText().equals("") && !txtAddress.getText().equals("") && !txtNumber.getText().equals("") && !txtPassword.getText().equals("") && !txtCpassword.getText().equals("") )
+        {
+            if(!txtStateId.getText().matches("[1-9]{1}[0-9]+"))
+            {
+                JOptionPane.showMessageDialog(this, "Delivery Boy Id should Number", "Delivery Boy Id", HEIGHT);
+
+            }
+
+            if(!eatery.isDeliveryBoyIdUnique(Integer.parseInt(txtStateId.getText())))
+            {
+                JOptionPane.showMessageDialog(this, "Delivery Person Id should be unique", "Customer Id", HEIGHT);
+
+            }
+            if(!txtPassword.getText().equals(txtCpassword.getText()))
+            {
+                JOptionPane.showMessageDialog(this, "Password doesn't match", "Password Error", HEIGHT);
+
+            }
+            if(!txtName.getText().matches("^[a-zA-Z]+ [a-zA-Z]+$"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter a Valid Full Name", "Invalid Name", HEIGHT);
+
+            }
+            if(!txtNumber.getText().matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$"))
+            {
+                JOptionPane.showMessageDialog(this, "Enter a Valid Phone Number", "Invalid Phone Number", HEIGHT);
+
+            }
+            if(!txtEmail.getText().matches(regexPattern))
+            {
+                JOptionPane.showMessageDialog(this, "Enter a Valid Email", "Invalid Email", HEIGHT);
+
+            }
+            if(txtStateId.getText().matches("[1-9]{1}[0-9]+") && eatery.isCustomerIdUnique(Integer.parseInt(txtStateId.getText())) && txtPassword.getText().equals(txtCpassword.getText()) && txtName.getText().matches("^[a-zA-Z]+ [a-zA-Z]+$") && txtNumber.getText().matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$") && txtEmail.getText().matches(regexPattern))
+            {
+
+                tfvemail.setVisible(true);
+                lbvemail.setVisible(true);
+                btnSignup.setVisible(false);
+                btnverify.setVisible(true);
+                String ToEmail = txtEmail.getText();
+                String FromEmail = "vaithyannhk@gmail.com";//studyviral2@gmail.com
+                String FromEmailPassword = "cvciuvsihnrlpdeg";//You email Password from you want to send email
+
+                Properties properties = new Properties();
+                properties.put("mail.smtp.auth","true");
+                properties.put("mail.smtp.starttls.enable","true");
+                properties.put("mail.smtp.host","smtp.gmail.com");
+                properties.put("mail.smtp.port","587");
+                properties.put("mail.smtp.starttls.required", "true");
+                properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+                properties.put("mail.debug", "true");
+
+                Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication(){
+                        return new PasswordAuthentication(FromEmail, FromEmailPassword);
+                    }
+
+                });
+                try{
+                    MimeMessage message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(FromEmail));
+                    message.addRecipient(Message.RecipientType.TO, new InternetAddress(ToEmail));
+                    message.setSubject("Eatery Delivery Person E-mail Verfication!");
+
+                    message.setText("\n" +"We are glad that your are beginning your Delivery Partner journey with us!.To continue to Sign up to our company, please use this passcode to verify you E-mail."+"\n"+"Passcode: "+randomNumber);
+                    Transport.send(message);
+
+                    JOptionPane.showMessageDialog(this, "Verification code sent to your E-mail! Please enter it to Sign up!");
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(this,ex);
+                }
+
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Enter all fields", "Fields", HEIGHT);
+        }
+    }//GEN-LAST:event_btncemailActionPerformed
+
+    private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
+
+        eatery.addDeliveryPerson(Integer.parseInt(txtStateId.getText()),txtEmail.getText(),txtNumber.getText(),txtAddress.getText(),txtName.getText(), 
+                txtPassword.getText(),txtCity.getSelectedItem().toString());
+
+        JOptionPane.showMessageDialog(this, "Delivery person signed up Sucessfully! Welcome "+txtName.getText()+"!", "Sign Up Sucess", HEIGHT);
+        txtName.setText("");
+        txtNumber.setText("");
+        txtEmail.setText("");
+        txtCity.setSelectedItem(null);
+        txtAddress.setText("");
+
+        txtStateId.setText("");
+        txtPassword.setText("");
+        txtCpassword.setText("");
+        txtAddress.setText("");
+        tfvemail.setText("");
+        tfvemail.setText("");
+        tfvemail.setVisible(false);
+        lbvemail.setVisible(false);
+        btnSignup.setVisible(false);
+        btnverify.setVisible(false);
+    }//GEN-LAST:event_btnSignupActionPerformed
+
+    private void btnverifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnverifyActionPerformed
+        // TODO add your handling code here:
+        int c=Integer.parseInt(tfvemail.getText());
+        if(randomNumber == c)
+        {
+            JOptionPane.showMessageDialog(this, "Email verified Successfully");
+            btnSignup.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please enter the correct verification code sent in mail!");
+        }
+
+    }//GEN-LAST:event_btnverifyActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btncemailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncemailMouseEntered
+        // TODO add your handling code here:
+        btncemail.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btncemailMouseEntered
+
+    private void btncemailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncemailMouseExited
+        // TODO add your handling code here:
+        btncemail.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btncemailMouseExited
+
+    private void btnverifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverifyMouseEntered
+        // TODO add your handling code here:
+        btnverify.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnverifyMouseEntered
+
+    private void btnverifyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverifyMouseExited
+        // TODO add your handling code here:
+         btnverify.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnverifyMouseExited
+
+    private void btnSignupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseEntered
+        // TODO add your handling code here:
+        btnSignup.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnSignupMouseEntered
+
+    private void btnSignupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseExited
+        // TODO add your handling code here:
+         btnSignup.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnSignupMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnsignup;
+    private javax.swing.JButton btnSignup;
+    private javax.swing.JButton btncemail;
+    private javax.swing.JButton btnverify;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -217,14 +474,17 @@ public class deliveryBoySignup extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField tfaddress;
-    private javax.swing.JComboBox<String> tfcity;
-    private javax.swing.JPasswordField tfcpswd;
-    private javax.swing.JTextField tfemail;
-    private javax.swing.JTextField tfname;
-    private javax.swing.JTextField tfphno;
-    private javax.swing.JPasswordField tfpswd;
-    private javax.swing.JTextField tfstateid;
+    private javax.swing.JLabel lbvemail;
+    private javax.swing.JTextField tfvemail;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JComboBox<String> txtCity;
+    private javax.swing.JPasswordField txtCpassword;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNumber;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtStateId;
     // End of variables declaration//GEN-END:variables
 }
