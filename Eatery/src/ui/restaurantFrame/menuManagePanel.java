@@ -4,7 +4,9 @@
  */
 package ui.restaurantFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -26,7 +28,7 @@ public class menuManagePanel extends javax.swing.JPanel {
     private EateryEnterprise eatery;
         private int currentRestarauntId;
     private Restaurant currentRestaraunt;
-    private ArrayList<Food> currentFoodList;
+    private List<Food> currentFoodList;
     public menuManagePanel(EateryEnterprise eatery,int currentRestarauntId) {
         initComponents();
         this.eatery=eatery;
@@ -65,6 +67,8 @@ public class menuManagePanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         searchValue.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         searchValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,27 +91,57 @@ public class menuManagePanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Menu ");
 
-        updateFood.setBackground(new java.awt.Color(255, 255, 0));
+        updateFood.setBackground(new java.awt.Color(102, 102, 102));
         updateFood.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        updateFood.setForeground(new java.awt.Color(255, 255, 255));
+        updateFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         updateFood.setText("Update Food");
+        updateFood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateFoodMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateFoodMouseExited(evt);
+            }
+        });
         updateFood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateFoodActionPerformed(evt);
             }
         });
 
-        deleteFood.setBackground(new java.awt.Color(255, 255, 0));
+        deleteFood.setBackground(new java.awt.Color(102, 102, 102));
         deleteFood.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        deleteFood.setForeground(new java.awt.Color(255, 255, 255));
+        deleteFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash-can.png"))); // NOI18N
         deleteFood.setText("Delete Food");
+        deleteFood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteFoodMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteFoodMouseExited(evt);
+            }
+        });
         deleteFood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteFoodActionPerformed(evt);
             }
         });
 
-        btnAddCity.setBackground(new java.awt.Color(255, 255, 0));
+        btnAddCity.setBackground(new java.awt.Color(102, 102, 102));
         btnAddCity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAddCity.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/online-order.png"))); // NOI18N
         btnAddCity.setText("Add Food to Menu");
+        btnAddCity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddCityMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddCityMouseExited(evt);
+            }
+        });
         btnAddCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddCityActionPerformed(evt);
@@ -123,10 +157,20 @@ public class menuManagePanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Food Id");
 
-        confirmUpdate.setBackground(new java.awt.Color(255, 255, 0));
+        confirmUpdate.setBackground(new java.awt.Color(102, 102, 102));
         confirmUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        confirmUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        confirmUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         confirmUpdate.setText("Confirm Update");
         confirmUpdate.setEnabled(false);
+        confirmUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmUpdateMouseExited(evt);
+            }
+        });
         confirmUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmUpdateActionPerformed(evt);
@@ -185,7 +229,7 @@ public class menuManagePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,8 +239,8 @@ public class menuManagePanel extends javax.swing.JPanel {
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(editFoodName, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(editFoodPrice)))
+                            .addComponent(editFoodName)
+                            .addComponent(editFoodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -217,7 +261,7 @@ public class menuManagePanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(textFoodName)
                             .addComponent(textFoodId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFoodPrice, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(textFoodPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(deleteFood)
@@ -226,13 +270,13 @@ public class menuManagePanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(confirmUpdate)))
-                .addGap(186, 186, 186))
+                .addGap(549, 549, 549))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFoodId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -266,7 +310,7 @@ public class menuManagePanel extends javax.swing.JPanel {
                     .addComponent(editFoodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(confirmUpdate)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -427,6 +471,51 @@ public class menuManagePanel extends javax.swing.JPanel {
     private void editFoodPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFoodPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editFoodPriceActionPerformed
+
+    private void btnAddCityMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddCityMouseExited
+        // TODO add your handling code here:
+        btnAddCity.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnAddCityMouseExited
+
+    private void btnAddCityMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddCityMouseEntered
+        // TODO add your handling code here:
+         btnAddCity.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_btnAddCityMouseEntered
+
+    private void deleteFoodMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteFoodMouseEntered
+        // TODO add your handling code here:
+        deleteFood.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_deleteFoodMouseEntered
+
+    private void deleteFoodMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteFoodMouseExited
+        // TODO add your handling code here:
+        deleteFood.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_deleteFoodMouseExited
+
+    private void updateFoodMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateFoodMouseEntered
+        // TODO add your handling code here:
+        updateFood.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_updateFoodMouseEntered
+
+    private void updateFoodMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateFoodMouseExited
+        // TODO add your handling code here:
+        updateFood.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_updateFoodMouseExited
+
+    private void confirmUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmUpdateMouseExited
+        // TODO add your handling code here:
+        confirmUpdate.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_confirmUpdateMouseExited
+
+    private void confirmUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmUpdateMouseEntered
+        // TODO add your handling code here:
+        confirmUpdate.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_confirmUpdateMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

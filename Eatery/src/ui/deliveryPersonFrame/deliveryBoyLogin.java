@@ -4,6 +4,7 @@
  */
 package ui.deliveryPersonFrame;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.DeliveryPerson;
 import model.EateryEnterprise;
@@ -56,9 +57,19 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
             }
         });
 
-        btnlogin.setBackground(new java.awt.Color(255, 255, 0));
+        btnlogin.setBackground(new java.awt.Color(102, 102, 102));
         btnlogin.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
+        btnlogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnlogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         btnlogin.setText("LOGIN");
+        btnlogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnloginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnloginMouseExited(evt);
+            }
+        });
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnloginActionPerformed(evt);
@@ -114,6 +125,7 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
 
         jLabel9.setBackground(new java.awt.Color(0, 153, 204));
         jLabel9.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 204, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("DELIVERY PERSON SIGNUP");
 
@@ -159,6 +171,16 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Login Failed");
         }
     }//GEN-LAST:event_btnloginActionPerformed
+
+    private void btnloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseEntered
+        // TODO add your handling code here:
+        btnlogin.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnloginMouseEntered
+
+    private void btnloginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseExited
+        // TODO add your handling code here:
+         btnlogin.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnloginMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

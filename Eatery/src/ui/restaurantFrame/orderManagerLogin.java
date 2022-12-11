@@ -4,6 +4,7 @@
  */
 package ui.restaurantFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
@@ -23,6 +24,7 @@ public class orderManagerLogin extends javax.swing.JFrame {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
+        this.getContentPane().setBackground(new Color(0,153,204));
         //String passCode="ordMng";
     }
 
@@ -37,15 +39,27 @@ public class orderManagerLogin extends javax.swing.JFrame {
 
         btnPatientLogin = new javax.swing.JButton();
         txtLabel = new javax.swing.JLabel();
-        passcode = new javax.swing.JTextField();
+        textEmployeeId = new javax.swing.JTextField();
         passcode1 = new javax.swing.JLabel();
         textRestarauntId = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnPatientLogin.setBackground(new java.awt.Color(255, 255, 0));
+        btnPatientLogin.setBackground(new java.awt.Color(102, 102, 102));
         btnPatientLogin.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnPatientLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnPatientLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         btnPatientLogin.setText("LOGIN");
+        btnPatientLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPatientLoginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPatientLoginMouseExited(evt);
+            }
+        });
         btnPatientLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPatientLoginActionPerformed(evt);
@@ -53,49 +67,65 @@ public class orderManagerLogin extends javax.swing.JFrame {
         });
 
         txtLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtLabel.setText("Passcode");
+        txtLabel.setText("Employee Id");
 
-        passcode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        textEmployeeId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         passcode1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         passcode1.setText("Restaraunt Id");
 
         textRestarauntId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Please enter your assigned Employee Id and your Restaurant Id to Login");
+
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("RESTAURANT ORDER MANAGER LOGIN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(646, 646, 646)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
-                        .addComponent(passcode, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(passcode1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)
                         .addComponent(textRestarauntId, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)))
-                .addGap(150, 150, 150))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(171, 171, 171)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passcode, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textRestarauntId, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passcode1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,25 +133,37 @@ public class orderManagerLogin extends javax.swing.JFrame {
 
     private void btnPatientLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientLoginActionPerformed
         // TODO add your handling code here:
-        if(!textRestarauntId.getText().equals("") && !passcode.getText().equals(""))
+        if(!textRestarauntId.getText().equals("") && !textEmployeeId.getText().equals(""))
         {
-            Restaurant res =eatery.employeeLogin("Order Manager",Integer.parseInt(textRestarauntId.getText()));
-            if(res!=null && passcode.getText().equals("ordMng"))
+            Restaurant res =eatery.employeeLogin("Order Manager",Integer.parseInt(textEmployeeId.getText()),Integer.parseInt(textRestarauntId.getText()));
+            if(res!=null )
             {
-                orderManagerPanel odm=new orderManagerPanel(eatery,res.getRestaurantId());
+                orderManagerFrame odm=new orderManagerFrame(eatery,res.getRestaurantId());
                 odm.setVisible(true);
                 this.dispose();
             }
             else
             {
-                JOptionPane.showMessageDialog(this, "Your pass code is wrong!");
+                JOptionPane.showMessageDialog(this, "Your Employee Id or Restaurant Id is wrong!");
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Enter the passCodee to login!");
+            JOptionPane.showMessageDialog(this, "Enter your Employee Id and Restaurant Id to login!");
         }
     }//GEN-LAST:event_btnPatientLoginActionPerformed
+
+    private void btnPatientLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseEntered
+        // TODO add your handling code here:
+        btnPatientLogin.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_btnPatientLoginMouseEntered
+
+    private void btnPatientLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseExited
+        // TODO add your handling code here:
+        btnPatientLogin.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_btnPatientLoginMouseExited
 
     /**
      * @param args the command line arguments
@@ -160,8 +202,10 @@ public class orderManagerLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPatientLogin;
-    private javax.swing.JTextField passcode;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel passcode1;
+    private javax.swing.JTextField textEmployeeId;
     private javax.swing.JTextField textRestarauntId;
     private javax.swing.JLabel txtLabel;
     // End of variables declaration//GEN-END:variables

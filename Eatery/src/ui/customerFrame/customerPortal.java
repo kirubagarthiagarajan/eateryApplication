@@ -25,6 +25,8 @@ public class customerPortal extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
         this.currentCustomer=customer;
+        this.eatery.populateOrdersToCustomer(customer.getStateId());
+        welcomeLabel.setText("Welcome! "+currentCustomer.getName());
     }
 
     /**
@@ -39,6 +41,9 @@ public class customerPortal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         splittedPane = new javax.swing.JSplitPane();
         displayPanel = new javax.swing.JPanel();
+        welcomeLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         togglePanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnPastOrders = new javax.swing.JButton();
@@ -47,24 +52,61 @@ public class customerPortal extends javax.swing.JFrame {
         btnGroceryOrder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-        splittedPane.setDividerLocation(180);
+        splittedPane.setDividerLocation(200);
+
+        displayPanel.setBackground(new java.awt.Color(0, 153, 204));
+
+        welcomeLabel.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Welcome to your portal. You can order your food, your groceries, view your past orders, current order details and also edit your profiel in this page.");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Why are you waiting get going!");
 
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 836, Short.MAX_VALUE)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addGap(1420, 1420, 1420)
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel3))
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addGap(420, 420, 420)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(252, 252, 252)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 450, Short.MAX_VALUE))
         );
 
         splittedPane.setRightComponent(displayPanel);
 
+        togglePanel.setBackground(new java.awt.Color(0, 153, 204));
         togglePanel.setPreferredSize(new java.awt.Dimension(300, 596));
 
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delivery.png"))); // NOI18N
         jButton1.setText("MAKE FOOD ORDER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +114,9 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
+        btnPastOrders.setBackground(new java.awt.Color(102, 102, 102));
+        btnPastOrders.setForeground(new java.awt.Color(255, 255, 255));
+        btnPastOrders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/past.png"))); // NOI18N
         btnPastOrders.setText("PAST ORDERS");
         btnPastOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +124,9 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
+        currentOrderScreen.setBackground(new java.awt.Color(102, 102, 102));
+        currentOrderScreen.setForeground(new java.awt.Color(255, 255, 255));
+        currentOrderScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flash.png"))); // NOI18N
         currentOrderScreen.setText("CURRENT ORDER");
         currentOrderScreen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +134,9 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
+        btnEditProfile.setBackground(new java.awt.Color(102, 102, 102));
+        btnEditProfile.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
         btnEditProfile.setText("EDIT PROFILE");
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +144,9 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
+        btnGroceryOrder.setBackground(new java.awt.Color(102, 102, 102));
+        btnGroceryOrder.setForeground(new java.awt.Color(255, 255, 255));
+        btnGroceryOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/grocery.png"))); // NOI18N
         btnGroceryOrder.setText("MAKE GROCERY ORDER");
         btnGroceryOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,22 +159,19 @@ public class customerPortal extends javax.swing.JFrame {
         togglePanelLayout.setHorizontalGroup(
             togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGroceryOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPastOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(currentOrderScreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(togglePanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(btnEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGroceryOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPastOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(currentOrderScreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         togglePanelLayout.setVerticalGroup(
             togglePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(togglePanelLayout.createSequentialGroup()
-                .addGap(149, 149, 149)
+                .addGap(263, 263, 263)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnGroceryOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,9 +179,9 @@ public class customerPortal extends javax.swing.JFrame {
                 .addComponent(btnPastOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(currentOrderScreen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEditProfile)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
 
         togglePanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditProfile, btnPastOrders, currentOrderScreen, jButton1});
@@ -141,7 +192,7 @@ public class customerPortal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splittedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
+            .addComponent(splittedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1642, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,36 +213,41 @@ public class customerPortal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        customerFoodOrder custOrder= new customerFoodOrder(eatery,currentCustomer);
-        splittedPane.setRightComponent(custOrder);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnGroceryOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroceryOrderActionPerformed
+        // TODO add your handling code here:
+        customerGroceryOrder custGrocery = new customerGroceryOrder(eatery,currentCustomer );
+        splittedPane.setRightComponent(custGrocery);
+    }//GEN-LAST:event_btnGroceryOrderActionPerformed
 
     private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
         // TODO add your handling code here:
         CustomerProfile cp=new CustomerProfile(eatery,currentCustomer);
         splittedPane.setRightComponent(cp);
-        
+
     }//GEN-LAST:event_btnEditProfileActionPerformed
-
-    private void btnGroceryOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGroceryOrderActionPerformed
-        // TODO add your handling code here:
-        customerGroceryOrder custGrocery = new customerGroceryOrder(eatery,currentCustomer );
-         splittedPane.setRightComponent(custGrocery);
-    }//GEN-LAST:event_btnGroceryOrderActionPerformed
-
-    private void btnPastOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPastOrdersActionPerformed
-        // TODO add your handling code here:
-        customerPastOrders custPast = new customerPastOrders(eatery,currentCustomer );
-         splittedPane.setRightComponent(custPast);
-    }//GEN-LAST:event_btnPastOrdersActionPerformed
 
     private void currentOrderScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentOrderScreenActionPerformed
         // TODO add your handling code here:
         customerCurrentOrder custCurrent = new customerCurrentOrder(eatery,currentCustomer);
         splittedPane.setRightComponent(custCurrent);
     }//GEN-LAST:event_currentOrderScreenActionPerformed
+
+    private void btnPastOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPastOrdersActionPerformed
+        // TODO add your handling code here:
+        customerPastOrders custPast = new customerPastOrders(eatery,currentCustomer );
+        splittedPane.setRightComponent(custPast);
+    }//GEN-LAST:event_btnPastOrdersActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        customerFoodOrder custOrder= new customerFoodOrder(eatery,currentCustomer);
+        splittedPane.setRightComponent(custOrder);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,8 +291,11 @@ public class customerPortal extends javax.swing.JFrame {
     private javax.swing.JButton currentOrderScreen;
     private javax.swing.JPanel displayPanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane splittedPane;
     private javax.swing.JPanel togglePanel;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

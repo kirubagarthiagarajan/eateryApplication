@@ -46,11 +46,12 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
       String sql="select * from DeliveryPerson";
       PreparedStatement ps=con.prepareStatement(sql);
       ResultSet st=ps.executeQuery();
+      this.deliveryPersonDirectory=new ArrayList<DeliveryPerson>();
       while(st.next())
          {
             int stateId=st.getInt("DeliveryPersonId");
             String email=st.getString("Email");
-            int mobile=st.getInt("Mobile");
+            String mobile=st.getString("Mobile");
             String address=st.getString("Address");
             String name=st.getString("Name");
             String password=st.getString("Password");
@@ -75,7 +76,7 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
         stmt.executeUpdate(TruncQuery);
         for (DeliveryPerson d: this.deliveryPersonDirectory)
         {
-            String InsertQuery="Insert into Customer (DeliveryPersonId,Name,Mobile,Password,Email,City,Address) values ('"+d.getStateId()+"','"+d.getName()+"','"+d.getMobile()+"','"+d.getPassword()+"','"+d.getEmail()+"','"+d.getCity()+"','"+d.getAddress()+"')";
+            String InsertQuery="Insert into DeliveryPerson (DeliveryPersonId,Name,Mobile,Password,Email,City,Address) values ('"+d.getStateId()+"','"+d.getName()+"','"+d.getMobile()+"','"+d.getPassword()+"','"+d.getEmail()+"','"+d.getCity()+"','"+d.getAddress()+"')";
             stmt.executeUpdate(InsertQuery);
         }
         stmt.close();
@@ -177,7 +178,7 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
         
     }
     
-    public void updateDeliveryBoy(int deliveryBoyId,String name,String city,int phno,String email,String address)
+    public void updateDeliveryBoy(int deliveryBoyId,String name,String city,String phno,String email,String address)
     {
          for (DeliveryPerson res:this.deliveryPersonDirectory) {
              
@@ -202,6 +203,17 @@ private ArrayList<DeliveryPerson> deliveryPersonDirectory;
             dp.sendQueryToCustomer(query);
         }
     }
+    }
+    public Boolean isDeliveryBoyIdUnique(int deliveryBoyId)
+    {
+        for(DeliveryPerson del : this.deliveryPersonDirectory)
+        {
+            if(del.getStateId()==deliveryBoyId)
+            {
+                return false;
+            }
+        }
+        return true;
     }
     
 }

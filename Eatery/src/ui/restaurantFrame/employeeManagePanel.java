@@ -4,7 +4,9 @@
  */
 package ui.restaurantFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -27,9 +29,10 @@ public class employeeManagePanel extends javax.swing.JPanel {
     private EateryEnterprise eatery;
     private int currentRestarauntId;
     private Restaurant currentRestaraunt;
-    private ArrayList<Employee> currentEmployeeList;
+    private List<Employee> currentEmployeeList;
     public employeeManagePanel(EateryEnterprise eatery,int restarauntId ) {
         initComponents();
+        
         this.eatery=eatery;
         this.currentRestarauntId=restarauntId;
         this.currentRestaraunt=eatery.getRestaurantById(restarauntId);
@@ -66,33 +69,65 @@ public class employeeManagePanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         editRole = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Employee");
 
         textEmployeeId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        updateFood.setBackground(new java.awt.Color(255, 255, 0));
+        updateFood.setBackground(new java.awt.Color(102, 102, 102));
         updateFood.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        updateFood.setForeground(new java.awt.Color(255, 255, 255));
+        updateFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         updateFood.setText("Update Employee");
+        updateFood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateFoodMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateFoodMouseExited(evt);
+            }
+        });
         updateFood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateFoodActionPerformed(evt);
             }
         });
 
-        deleteEmployee.setBackground(new java.awt.Color(255, 255, 0));
+        deleteEmployee.setBackground(new java.awt.Color(102, 102, 102));
         deleteEmployee.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        deleteEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        deleteEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remove-friend.png"))); // NOI18N
         deleteEmployee.setText("Delete Employee");
+        deleteEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteEmployeeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteEmployeeMouseExited(evt);
+            }
+        });
         deleteEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteEmployeeActionPerformed(evt);
             }
         });
 
-        btnAddEmployee.setBackground(new java.awt.Color(255, 255, 0));
+        btnAddEmployee.setBackground(new java.awt.Color(102, 102, 102));
         btnAddEmployee.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-user.png"))); // NOI18N
         btnAddEmployee.setText("Add Employee To Restaraunt");
+        btnAddEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddEmployeeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAddEmployeeMouseExited(evt);
+            }
+        });
         btnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddEmployeeActionPerformed(evt);
@@ -108,10 +143,20 @@ public class employeeManagePanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Employee Id");
 
-        confirmUpdate.setBackground(new java.awt.Color(255, 255, 0));
+        confirmUpdate.setBackground(new java.awt.Color(102, 102, 102));
         confirmUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        confirmUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        confirmUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         confirmUpdate.setText("Confirm Update");
         confirmUpdate.setEnabled(false);
+        confirmUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmUpdateMouseExited(evt);
+            }
+        });
         confirmUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmUpdateActionPerformed(evt);
@@ -175,7 +220,7 @@ public class employeeManagePanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Employee Name");
 
-        editRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Menu Manager", "Order Manager", "Employee Manager" }));
+        editRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Menu Manager", "Order Manager" }));
         editRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editRoleActionPerformed(evt);
@@ -186,9 +231,12 @@ public class employeeManagePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(477, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1588, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -218,7 +266,7 @@ public class employeeManagePanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(roleDropdown, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textEmployeeName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textEmployeeId, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(textEmployeeId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(deleteEmployee)
@@ -227,13 +275,13 @@ public class employeeManagePanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(confirmUpdate)))
-                .addGap(186, 186, 186))
+                .addGap(580, 580, 580))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -267,7 +315,7 @@ public class employeeManagePanel extends javax.swing.JPanel {
                     .addComponent(editRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(confirmUpdate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -412,6 +460,53 @@ public class employeeManagePanel extends javax.swing.JPanel {
     private void editRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editRoleActionPerformed
+
+    private void btnAddEmployeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmployeeMouseEntered
+        // TODO add your handling code here:
+        btnAddEmployee.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_btnAddEmployeeMouseEntered
+
+    private void btnAddEmployeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmployeeMouseExited
+        // TODO add your handling code here:
+         btnAddEmployee.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_btnAddEmployeeMouseExited
+
+    private void deleteEmployeeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteEmployeeMouseEntered
+        // TODO add your handling code here:
+          deleteEmployee.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_deleteEmployeeMouseEntered
+
+    private void deleteEmployeeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteEmployeeMouseExited
+        // TODO add your handling code here:
+        deleteEmployee.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_deleteEmployeeMouseExited
+
+    private void updateFoodMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateFoodMouseExited
+        // TODO add your handling code here:
+         updateFood.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_updateFoodMouseExited
+
+    private void updateFoodMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateFoodMouseEntered
+        // TODO add your handling code here:
+         updateFood.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_updateFoodMouseEntered
+
+    private void confirmUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmUpdateMouseEntered
+        // TODO add your handling code here:
+        confirmUpdate.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_confirmUpdateMouseEntered
+
+    private void confirmUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmUpdateMouseExited
+        // TODO add your handling code here:
+        confirmUpdate.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_confirmUpdateMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

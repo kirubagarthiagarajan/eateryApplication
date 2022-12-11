@@ -4,6 +4,7 @@
  */
 package ui;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.EateryEnterprise;
 import ui.customerFrame.CustomerManageFrame;
@@ -24,6 +25,7 @@ public class businessFrame extends javax.swing.JFrame {
     public businessFrame(EateryEnterprise eatery) {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.setExtendedState(MAXIMIZED_BOTH );
         this.eatery=eatery;
     }
@@ -40,81 +42,134 @@ public class businessFrame extends javax.swing.JFrame {
         btnRestarauntFrame = new javax.swing.JButton();
         btnDeliveryPersonFrame = new javax.swing.JButton();
         btnGrocery = new javax.swing.JButton();
-        btnCustomerFrame = new javax.swing.JButton();
+        btnEateryEnterprise = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnRestarauntFrame.setBackground(new java.awt.Color(255, 204, 204));
+        btnRestarauntFrame.setBackground(new java.awt.Color(102, 102, 102));
         btnRestarauntFrame.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         btnRestarauntFrame.setText("RESTARAUNT ENTERPRISE");
+        btnRestarauntFrame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRestarauntFrameMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRestarauntFrameMouseExited(evt);
+            }
+        });
         btnRestarauntFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRestarauntFrameActionPerformed(evt);
             }
         });
 
-        btnDeliveryPersonFrame.setBackground(new java.awt.Color(255, 204, 204));
+        btnDeliveryPersonFrame.setBackground(new java.awt.Color(102, 102, 102));
         btnDeliveryPersonFrame.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         btnDeliveryPersonFrame.setText("DELIVERY ENTERPRISE");
+        btnDeliveryPersonFrame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeliveryPersonFrameMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeliveryPersonFrameMouseExited(evt);
+            }
+        });
         btnDeliveryPersonFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveryPersonFrameActionPerformed(evt);
             }
         });
 
-        btnGrocery.setBackground(new java.awt.Color(255, 204, 204));
+        btnGrocery.setBackground(new java.awt.Color(102, 102, 102));
         btnGrocery.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
         btnGrocery.setText("GROCERY ENTERPRISE");
+        btnGrocery.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGroceryMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGroceryMouseExited(evt);
+            }
+        });
         btnGrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGroceryActionPerformed(evt);
             }
         });
 
-        btnCustomerFrame.setBackground(new java.awt.Color(255, 204, 204));
-        btnCustomerFrame.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
-        btnCustomerFrame.setText("EATERY ENTERPRISE");
-        btnCustomerFrame.addActionListener(new java.awt.event.ActionListener() {
+        btnEateryEnterprise.setBackground(new java.awt.Color(102, 102, 102));
+        btnEateryEnterprise.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnEateryEnterprise.setText("EATERY ENTERPRISE");
+        btnEateryEnterprise.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEateryEnterpriseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEateryEnterpriseMouseExited(evt);
+            }
+        });
+        btnEateryEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCustomerFrameActionPerformed(evt);
+                btnEateryEnterpriseActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel1.setBackground(new java.awt.Color(0, 153, 204));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 204, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BUSINESS ENTERPRISE PORTAL");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("WELCOME TO THE BUSINESS ENTERPRISE PORTAL. CLICK THE APPROPRIATE BUTTON, BASED ON YOUR ENTERPRISE");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/businessImage.gif"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(380, 380, 380))
             .addGroup(layout.createSequentialGroup()
-                .addGap(343, 343, 343)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnRestarauntFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeliveryPersonFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCustomerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(388, 388, 388)
+                        .addComponent(btnEateryEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRestarauntFrame)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeliveryPersonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(139, 139, 139)
-                .addComponent(btnCustomerFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRestarauntFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEateryEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRestarauntFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeliveryPersonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnDeliveryPersonFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,11 +193,53 @@ public class businessFrame extends javax.swing.JFrame {
         grocLanding.setVisible(true);
     }//GEN-LAST:event_btnGroceryActionPerformed
 
-    private void btnCustomerFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerFrameActionPerformed
+    private void btnEateryEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEateryEnterpriseActionPerformed
         // TODO add your handling code here:
-        CustomerManageFrame cm = new CustomerManageFrame(eatery);
+        eateryCustomerManageLogin cm = new eateryCustomerManageLogin(eatery);
         cm.setVisible(true);
-    }//GEN-LAST:event_btnCustomerFrameActionPerformed
+    }//GEN-LAST:event_btnEateryEnterpriseActionPerformed
+
+    private void btnEateryEnterpriseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEateryEnterpriseMouseExited
+        // TODO add your handling code here:
+            btnEateryEnterprise.setBackground(new Color(102,102,102));
+
+    }//GEN-LAST:event_btnEateryEnterpriseMouseExited
+
+    private void btnEateryEnterpriseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEateryEnterpriseMouseEntered
+        // TODO add your handling code here:
+          btnEateryEnterprise.setBackground(new Color(255,204,0));
+
+    }//GEN-LAST:event_btnEateryEnterpriseMouseEntered
+
+    private void btnRestarauntFrameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRestarauntFrameMouseExited
+        // TODO add your handling code here:
+        btnRestarauntFrame.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnRestarauntFrameMouseExited
+
+    private void btnRestarauntFrameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRestarauntFrameMouseEntered
+        // TODO add your handling code here:
+        btnRestarauntFrame.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnRestarauntFrameMouseEntered
+
+    private void btnDeliveryPersonFrameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeliveryPersonFrameMouseExited
+        // TODO add your handling code here:
+        btnDeliveryPersonFrame.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnDeliveryPersonFrameMouseExited
+
+    private void btnDeliveryPersonFrameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeliveryPersonFrameMouseEntered
+        // TODO add your handling code here:
+        btnDeliveryPersonFrame.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnDeliveryPersonFrameMouseEntered
+
+    private void btnGroceryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryMouseEntered
+        // TODO add your handling code here:
+         btnGrocery.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnGroceryMouseEntered
+
+    private void btnGroceryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryMouseExited
+        // TODO add your handling code here:
+        btnGrocery.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnGroceryMouseExited
 
     /**
      * @param args the command line arguments
@@ -180,10 +277,12 @@ public class businessFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCustomerFrame;
     private javax.swing.JButton btnDeliveryPersonFrame;
+    private javax.swing.JButton btnEateryEnterprise;
     private javax.swing.JButton btnGrocery;
     private javax.swing.JButton btnRestarauntFrame;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

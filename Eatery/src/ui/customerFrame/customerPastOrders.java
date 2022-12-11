@@ -6,6 +6,7 @@ package ui.customerFrame;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.Customer;
@@ -25,6 +26,7 @@ public class customerPastOrders extends javax.swing.JPanel {
     EateryEnterprise eatery;
     Customer currentCustomer;
     List<Order> pastOrders;
+    List<Food> orderedFood;
     public customerPastOrders(EateryEnterprise eatery,Customer currentCustomer) {
         initComponents();
         this.eatery=eatery;
@@ -32,6 +34,7 @@ public class customerPastOrders extends javax.swing.JPanel {
         this.pastOrders=new ArrayList<>();
         this.pastOrders=currentCustomer.getPastOrders();
         populatePastOrdersTable();
+        this.orderedFood=new ArrayList<>();
     }
 
     /**
@@ -46,6 +49,11 @@ public class customerPastOrders extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCurrentOrders = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        viewfood = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblFood = new javax.swing.JTable();
+
+        setBackground(new java.awt.Color(0, 153, 204));
 
         tblCurrentOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,33 +65,125 @@ public class customerPastOrders extends javax.swing.JPanel {
             new String [] {
                 "Order Id", "Restaraunt/Grocery Id", "Delivery Person Id", "Total Price", "Order Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblCurrentOrders);
 
-        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PAST ORDERS");
+
+        viewfood.setBackground(new java.awt.Color(102, 102, 102));
+        viewfood.setForeground(new java.awt.Color(255, 255, 255));
+        viewfood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png"))); // NOI18N
+        viewfood.setText("VIEW ORDERED FOOD");
+        viewfood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewfoodActionPerformed(evt);
+            }
+        });
+
+        tblFood.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Food Name", "Price", "Quantity Placed"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblFood);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(522, 522, 522))
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(707, 707, 707)
+                .addComponent(viewfood, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(465, 465, 465))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
+                .addGap(97, 97, 97)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(viewfood, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(332, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewfoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewfoodActionPerformed
+        // TODO add your handling code here:
+             int col= 0;
+        int row=tblCurrentOrders.getSelectedRow();
+        
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "You should select atleast 1 row to update!");
+        } else {
+         int OrderId= Integer.parseInt(tblCurrentOrders.getModel().getValueAt(row, col).toString());
+         Order order = eatery.getOrderWithOrderId(OrderId);
+         orderedFood=order.getOrderedFoodList();
+         if(orderedFood.size()>0)
+         {
+            populateFoodList();
+         }
+         
+        }
+    }//GEN-LAST:event_viewfoodActionPerformed
+
+    
+    private void populateFoodList() 
+     {
+    
+         tblFood.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        DefaultTableModel tableModel = (DefaultTableModel) tblFood.getModel();
+        tableModel.setRowCount(0);
+        if (orderedFood!=null) {
+            for (int i = 0; i < orderedFood.size(); i++) {
+                Food o = orderedFood.get(i);
+                Object[] tableRow = new Object[10];
+                tableRow[0] = o.getName();
+                tableRow[1]= o.getPrice();
+                tableRow[2] = o.getQuantity();
+                tableModel.addRow(tableRow);
+            }
+        }
+         
+     }
+    
     public void populatePastOrdersTable(){
         tblCurrentOrders.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultTableModel tableModel = (DefaultTableModel) tblCurrentOrders.getModel();
@@ -114,6 +214,9 @@ public class customerPastOrders extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblCurrentOrders;
+    private javax.swing.JTable tblFood;
+    private javax.swing.JButton viewfood;
     // End of variables declaration//GEN-END:variables
 }

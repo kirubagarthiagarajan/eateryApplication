@@ -54,7 +54,7 @@ public void addDeliveryPerson(DeliveryPerson delPer ){
   }
   
   
-   public ArrayList<DeliveryPerson> getDeliveryPersonDirectory()
+   public List<DeliveryPerson> getDeliveryPersonDirectory()
    {
        return this.deliveryPersonManagement.getDeliveryPersonDirectory();
    }
@@ -68,7 +68,7 @@ public void addDeliveryPerson(DeliveryPerson delPer ){
     {
         this.deliveryPersonManagement.deleteDeliveryPerson(deliveryBoyId);
     }
-    public void updateDeliveryBoy(int deliveryBoyId,String name,String city,int phno,String email,String address)
+    public void updateDeliveryBoy(int deliveryBoyId,String name,String city,String phno,String email,String address)
     {
         this.deliveryPersonManagement.updateDeliveryBoy(deliveryBoyId,name,city,phno,email,address);
     }
@@ -84,5 +84,20 @@ public void addDeliveryPerson(DeliveryPerson delPer ){
       
     }
     
+    public Boolean isDeliveryBoyIdUnique(int deliveryBoyId)
+    {
+       return this.deliveryPersonManagement.isDeliveryBoyIdUnique(deliveryBoyId);
+    }
+    public void populateOrderDeliveryBoyDb(int DeliveryBoyId,ArrayList<Order> orderList)
+    {
+        for (Order o:orderList)
+        {
+            if (o.getDeliveryPersonId()==DeliveryBoyId && o.getStatus().toString()=="OUT_FOR_DELIVERY")
+            {
+                DeliveryPerson dp=this.getDeliveryBoyById(DeliveryBoyId);
+                dp.setActiveOrder(o);
+            }
+        }
+    }
     
 }
