@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -84,6 +85,14 @@ public class customerCurrentOrder extends javax.swing.JPanel {
         btnGetStatus.setForeground(new java.awt.Color(255, 255, 255));
         btnGetStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/file.png"))); // NOI18N
         btnGetStatus.setText("GET DETAILS");
+        btnGetStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGetStatusMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGetStatusMouseExited(evt);
+            }
+        });
         btnGetStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGetStatusActionPerformed(evt);
@@ -94,6 +103,14 @@ public class customerCurrentOrder extends javax.swing.JPanel {
         btnCancelOrder.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cancel.png"))); // NOI18N
         btnCancelOrder.setText("CANCEL ORDER");
+        btnCancelOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelOrderMouseExited(evt);
+            }
+        });
         btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelOrderActionPerformed(evt);
@@ -114,18 +131,16 @@ public class customerCurrentOrder extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(400, 400, 400)
+                        .addGap(406, 406, 406)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
                                 .addComponent(btnGetStatus)
                                 .addGap(402, 402, 402)
                                 .addComponent(btnCancelOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(307, 307, 307))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(287, 287, 287)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(307, 307, 307))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(544, 544, 544)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,6 +151,10 @@ public class customerCurrentOrder extends javax.swing.JPanel {
                             .addComponent(deliveryMessage)
                             .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +209,7 @@ public class customerCurrentOrder extends javax.swing.JPanel {
         int row=tblCurrentOrders.getSelectedRow();
            if(row < 0)
         {
-            JOptionPane.showMessageDialog(this, "Select an order to cancel!");
+            JOptionPane.showMessageDialog(this, "Please select a Order!");
         }
         else
            {
@@ -214,6 +233,26 @@ public class customerCurrentOrder extends javax.swing.JPanel {
         
            }
     }//GEN-LAST:event_btnGetStatusActionPerformed
+
+    private void btnGetStatusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGetStatusMouseEntered
+        // TODO add your handling code here:
+        btnGetStatus.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnGetStatusMouseEntered
+
+    private void btnGetStatusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGetStatusMouseExited
+        // TODO add your handling code here:
+         btnGetStatus.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnGetStatusMouseExited
+
+    private void btnCancelOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelOrderMouseEntered
+        // TODO add your handling code here:
+        btnCancelOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnCancelOrderMouseEntered
+
+    private void btnCancelOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelOrderMouseExited
+        // TODO add your handling code here:
+          btnCancelOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnCancelOrderMouseExited
   public void populateCurrentOrdersTable(){
         tblCurrentOrders.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         DefaultTableModel tableModel = (DefaultTableModel) tblCurrentOrders.getModel();
@@ -223,7 +262,12 @@ public class customerCurrentOrder extends javax.swing.JPanel {
                 Order ord = currentOrderList.get(i);
                 Object[] tableRow = new Object[10];
                 tableRow[0] = ord.getOrderId();
-                tableRow[1] = ord.getRestaurantId();
+                if(ord.getRestaurantId()==-1)
+                {
+                   tableRow[1]= "GROCERY STORE BOSTON"; 
+                }
+                else tableRow[1]= ord.getRestaurantId();
+                
                 if(ord.getDeliveryPersonId()==-1)
                 {
                    tableRow[2]= "Not Assigned Yet"; 

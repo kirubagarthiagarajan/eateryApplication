@@ -210,11 +210,12 @@ public class deliveryPersonPanel extends javax.swing.JPanel {
 
         int col= 0;
         int row=ordersTable.getSelectedRow();
-        int orderId= Integer.parseInt(ordersTable.getModel().getValueAt(row, col).toString());
+        
 
         if (row < 0) {
             JOptionPane.showMessageDialog(this, "You should select atleast 1 row to send query to customer!");
         } else {
+            int orderId= Integer.parseInt(ordersTable.getModel().getValueAt(row, col).toString());
             if(!customerMessage.getText().equals(""))
             {
            eatery.sendQueryToCustomer(customerMessage.getText(), currentDeliveryPersonId);

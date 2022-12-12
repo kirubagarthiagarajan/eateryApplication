@@ -517,8 +517,10 @@ public class EateryEnterprise {
 
                   this.getOrderWithOrderId(orderId).addToOrderList(this.restaurantEnterprise.getFoodById(foodId));
                   
-
-            
+             }
+             else
+             {
+                this.getOrderWithOrderId(orderId).addToGroceryList(this.groceryEnterprise.getGroceryById(foodId));
              }
          }       
         /* public void replaceOrderFoodListDb()

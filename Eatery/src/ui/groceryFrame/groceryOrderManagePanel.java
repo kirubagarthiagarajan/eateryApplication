@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -56,6 +57,8 @@ public class groceryOrderManagePanel extends javax.swing.JPanel {
         btnProcessOrder = new javax.swing.JButton();
         btnCancelOrder = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANAGE  GROCERY ORDER");
@@ -70,13 +73,31 @@ public class groceryOrderManagePanel extends javax.swing.JPanel {
             new String [] {
                 "OrderId", "Price", "Customer Id"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblOrders);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Current Orders");
 
+        btnViewFood.setBackground(new java.awt.Color(102, 102, 102));
+        btnViewFood.setForeground(new java.awt.Color(255, 255, 255));
         btnViewFood.setText("View Ordered Groceries");
+        btnViewFood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnViewFoodMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnViewFoodMouseExited(evt);
+            }
+        });
         btnViewFood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewFoodActionPerformed(evt);
@@ -93,17 +114,45 @@ public class groceryOrderManagePanel extends javax.swing.JPanel {
             new String [] {
                 "Grocery Name", "Price", "Quantity Placed"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblGrocery);
 
+        btnProcessOrder.setBackground(new java.awt.Color(102, 102, 102));
+        btnProcessOrder.setForeground(new java.awt.Color(255, 255, 255));
         btnProcessOrder.setText("Process Order");
+        btnProcessOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnProcessOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnProcessOrderMouseExited(evt);
+            }
+        });
         btnProcessOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessOrderActionPerformed(evt);
             }
         });
 
+        btnCancelOrder.setBackground(new java.awt.Color(102, 102, 102));
+        btnCancelOrder.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelOrder.setText("Cancel Order");
+        btnCancelOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCancelOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelOrderMouseExited(evt);
+            }
+        });
         btnCancelOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelOrderActionPerformed(evt);
@@ -245,6 +294,36 @@ private void populateOrders()
         }
 
     }//GEN-LAST:event_btnCancelOrderActionPerformed
+
+    private void btnViewFoodMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewFoodMouseEntered
+        // TODO add your handling code here:
+        btnViewFood.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnViewFoodMouseEntered
+
+    private void btnViewFoodMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewFoodMouseExited
+        // TODO add your handling code here:
+         btnViewFood.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnViewFoodMouseExited
+
+    private void btnProcessOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcessOrderMouseEntered
+        // TODO add your handling code here:
+        btnProcessOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnProcessOrderMouseEntered
+
+    private void btnProcessOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProcessOrderMouseExited
+        // TODO add your handling code here:
+        btnProcessOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnProcessOrderMouseExited
+
+    private void btnCancelOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelOrderMouseEntered
+        // TODO add your handling code here:
+        btnCancelOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnCancelOrderMouseEntered
+
+    private void btnCancelOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelOrderMouseExited
+        // TODO add your handling code here:
+        btnCancelOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnCancelOrderMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

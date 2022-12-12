@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
@@ -44,9 +45,22 @@ public class groceryManagerLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setText("PASSCODE");
 
+        btnlogin.setBackground(new java.awt.Color(102, 102, 102));
+        btnlogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnlogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-user.png"))); // NOI18N
         btnlogin.setText("LOGIN");
+        btnlogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnloginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnloginMouseExited(evt);
+            }
+        });
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnloginActionPerformed(evt);
@@ -89,8 +103,8 @@ public class groceryManagerLogin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfpasscode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(550, Short.MAX_VALUE))
         );
 
@@ -129,6 +143,16 @@ public class groceryManagerLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Enter the Grocery admin passcode to login!");
         }
     }//GEN-LAST:event_btnloginActionPerformed
+
+    private void btnloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseEntered
+        // TODO add your handling code here:
+        btnlogin.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnloginMouseEntered
+
+    private void btnloginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseExited
+        // TODO add your handling code here:
+        btnlogin.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnloginMouseExited
 
     /**
      * @param args the command line arguments

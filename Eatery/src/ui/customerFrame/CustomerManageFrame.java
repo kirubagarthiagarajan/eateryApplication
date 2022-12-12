@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.EateryEnterprise;
 
@@ -56,6 +57,14 @@ public class CustomerManageFrame extends javax.swing.JFrame {
         btnManageMenu.setForeground(new java.awt.Color(255, 255, 255));
         btnManageMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project-management.png"))); // NOI18N
         btnManageMenu.setText("MANAGE CUSTOMERS");
+        btnManageMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnManageMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnManageMenuMouseExited(evt);
+            }
+        });
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -151,6 +160,16 @@ public class CustomerManageFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
             this.eatery.replaceCustomerDb();
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnManageMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageMenuMouseEntered
+        // TODO add your handling code here:
+        btnManageMenu.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnManageMenuMouseEntered
+
+    private void btnManageMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnManageMenuMouseExited
+        // TODO add your handling code here:
+        btnManageMenu.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnManageMenuMouseExited
 
     /**
      * @param args the command line arguments

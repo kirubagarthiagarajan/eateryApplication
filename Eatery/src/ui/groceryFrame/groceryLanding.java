@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.EateryEnterprise;
 
@@ -19,6 +20,7 @@ public class groceryLanding extends javax.swing.JFrame {
     EateryEnterprise eatery;
     public groceryLanding(EateryEnterprise eatery) {
         initComponents();
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.eatery=eatery;
     }
@@ -39,18 +41,36 @@ public class groceryLanding extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnGroceryOrder.setBackground(new java.awt.Color(255, 255, 0));
+        btnGroceryOrder.setBackground(new java.awt.Color(102, 102, 102));
         btnGroceryOrder.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnGroceryOrder.setForeground(new java.awt.Color(255, 255, 255));
         btnGroceryOrder.setText("GROCERY ORDER MANAGEMENT");
+        btnGroceryOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGroceryOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGroceryOrderMouseExited(evt);
+            }
+        });
         btnGroceryOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGroceryOrderActionPerformed(evt);
             }
         });
 
-        btnGroceryManagement.setBackground(new java.awt.Color(255, 255, 0));
+        btnGroceryManagement.setBackground(new java.awt.Color(102, 102, 102));
         btnGroceryManagement.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 14)); // NOI18N
+        btnGroceryManagement.setForeground(new java.awt.Color(255, 255, 255));
         btnGroceryManagement.setText("GROCERY MANAGEMENT");
+        btnGroceryManagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGroceryManagementMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGroceryManagementMouseExited(evt);
+            }
+        });
         btnGroceryManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGroceryManagementActionPerformed(evt);
@@ -88,11 +108,11 @@ public class groceryLanding extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(254, 254, 254)
+                .addGap(249, 249, 249)
                 .addComponent(btnGroceryManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGroceryOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(410, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,6 +129,26 @@ public class groceryLanding extends javax.swing.JFrame {
         groceryManagerLogin grocManageLogin = new groceryManagerLogin(eatery);
         grocManageLogin.setVisible(true);
     }//GEN-LAST:event_btnGroceryManagementActionPerformed
+
+    private void btnGroceryManagementMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryManagementMouseEntered
+        // TODO add your handling code here:
+        btnGroceryManagement.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnGroceryManagementMouseEntered
+
+    private void btnGroceryManagementMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryManagementMouseExited
+        // TODO add your handling code here:
+        btnGroceryManagement.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnGroceryManagementMouseExited
+
+    private void btnGroceryOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryOrderMouseEntered
+        // TODO add your handling code here:
+        btnGroceryOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnGroceryOrderMouseEntered
+
+    private void btnGroceryOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryOrderMouseExited
+        // TODO add your handling code here:
+        btnGroceryOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnGroceryOrderMouseExited
 
     /**
      * @param args the command line arguments

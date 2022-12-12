@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -86,6 +87,14 @@ public class customerPastOrders extends javax.swing.JPanel {
         viewfood.setForeground(new java.awt.Color(255, 255, 255));
         viewfood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png"))); // NOI18N
         viewfood.setText("VIEW ORDERED FOOD");
+        viewfood.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                viewfoodMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                viewfoodMouseExited(evt);
+            }
+        });
         viewfood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewfoodActionPerformed(evt);
@@ -163,6 +172,16 @@ public class customerPastOrders extends javax.swing.JPanel {
          
         }
     }//GEN-LAST:event_viewfoodActionPerformed
+
+    private void viewfoodMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewfoodMouseEntered
+        // TODO add your handling code here:
+        viewfood.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_viewfoodMouseEntered
+
+    private void viewfoodMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewfoodMouseExited
+        // TODO add your handling code here:
+        viewfood.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_viewfoodMouseExited
 
     
     private void populateFoodList() 

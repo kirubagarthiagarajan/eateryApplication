@@ -23,6 +23,7 @@ public class restaurantLanding extends javax.swing.JFrame {
     public restaurantLanding(EateryEnterprise eatery) {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.eatery=eatery;
     }
 

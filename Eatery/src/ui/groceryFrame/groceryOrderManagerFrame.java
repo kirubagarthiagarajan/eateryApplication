@@ -38,6 +38,7 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
         splittedPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         mngOrder = new javax.swing.JButton();
+        mngOrder1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,10 +59,25 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
 
         splittedPane.setDividerLocation(135);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
+        mngOrder.setBackground(new java.awt.Color(102, 102, 102));
+        mngOrder.setForeground(new java.awt.Color(255, 255, 255));
+        mngOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project-management.png"))); // NOI18N
         mngOrder.setText("MANAGE ORDERS");
         mngOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mngOrderActionPerformed(evt);
+            }
+        });
+
+        mngOrder1.setBackground(new java.awt.Color(102, 102, 102));
+        mngOrder1.setForeground(new java.awt.Color(255, 255, 255));
+        mngOrder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project-management.png"))); // NOI18N
+        mngOrder1.setText("MANAGE ORDERS");
+        mngOrder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mngOrder1ActionPerformed(evt);
             }
         });
 
@@ -71,6 +87,8 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(mngOrder1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(mngOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -78,11 +96,15 @@ public class groceryOrderManagerFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(288, 288, 288)
-                .addComponent(mngOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mngOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mngOrder1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(579, Short.MAX_VALUE))
         );
 
         splittedPane.setLeftComponent(jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,6 +160,12 @@ splittedPane.setRightComponent(grocerOrderMngPanel);
       //order food list venum
     }//GEN-LAST:event_formWindowClosed
 
+    private void mngOrder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mngOrder1ActionPerformed
+        // TODO add your handling code here:
+        groceryOrderManagePanel grocerOrderMngPanel = new groceryOrderManagePanel(eatery);
+splittedPane.setRightComponent(grocerOrderMngPanel);
+    }//GEN-LAST:event_mngOrder1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,6 +209,7 @@ splittedPane.setRightComponent(grocerOrderMngPanel);
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton mngOrder;
+    private javax.swing.JButton mngOrder1;
     private javax.swing.JSplitPane splittedPane;
     // End of variables declaration//GEN-END:variables
 }

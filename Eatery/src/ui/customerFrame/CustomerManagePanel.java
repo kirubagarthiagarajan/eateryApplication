@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -143,6 +144,14 @@ public class CustomerManagePanel extends javax.swing.JPanel {
         btnUpdateCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
         btnUpdateCustomer.setText("Update Customer");
+        btnUpdateCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateCustomerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateCustomerMouseExited(evt);
+            }
+        });
         btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateCustomerActionPerformed(evt);
@@ -154,6 +163,14 @@ public class CustomerManagePanel extends javax.swing.JPanel {
         btnDeleteCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remove-friend.png"))); // NOI18N
         btnDeleteCustomer.setText("Delete Customer");
+        btnDeleteCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeleteCustomerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeleteCustomerMouseExited(evt);
+            }
+        });
         btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteCustomerActionPerformed(evt);
@@ -179,6 +196,14 @@ public class CustomerManagePanel extends javax.swing.JPanel {
         btnConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow.png"))); // NOI18N
         btnConfirm.setText("Confirm Update");
         btnConfirm.setEnabled(false);
+        btnConfirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConfirmMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConfirmMouseExited(evt);
+            }
+        });
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
@@ -386,6 +411,36 @@ public class CustomerManagePanel extends javax.swing.JPanel {
         else
         JOptionPane.showMessageDialog(this, "Fill all the details to update Food");
     }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void btnDeleteCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteCustomerMouseEntered
+        // TODO add your handling code here:
+        btnDeleteCustomer.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnDeleteCustomerMouseEntered
+
+    private void btnDeleteCustomerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteCustomerMouseExited
+        // TODO add your handling code here:
+        btnDeleteCustomer.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnDeleteCustomerMouseExited
+
+    private void btnUpdateCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateCustomerMouseEntered
+        // TODO add your handling code here:
+        btnUpdateCustomer.setBackground(new Color(255,204,0)); 
+    }//GEN-LAST:event_btnUpdateCustomerMouseEntered
+
+    private void btnUpdateCustomerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateCustomerMouseExited
+        // TODO add your handling code here:
+         btnUpdateCustomer.setBackground(new Color(102,102,102)); 
+    }//GEN-LAST:event_btnUpdateCustomerMouseExited
+
+    private void btnConfirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmMouseEntered
+        // TODO add your handling code here:
+        btnConfirm.setBackground(new Color(255,204,0)); 
+    }//GEN-LAST:event_btnConfirmMouseEntered
+
+    private void btnConfirmMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmMouseExited
+        // TODO add your handling code here:
+         btnConfirm.setBackground(new Color(102,102,102)); 
+    }//GEN-LAST:event_btnConfirmMouseExited
     private void displayCustomerTable() 
      {
          txtCustomerName.setEnabled(false);

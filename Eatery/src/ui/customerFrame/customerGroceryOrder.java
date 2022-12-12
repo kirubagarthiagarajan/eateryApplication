@@ -22,6 +22,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -128,6 +129,14 @@ public class customerGroceryOrder extends javax.swing.JPanel {
         addToCart.setForeground(new java.awt.Color(255, 255, 255));
         addToCart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart.png"))); // NOI18N
         addToCart.setText("Add to Cart");
+        addToCart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addToCartMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addToCartMouseExited(evt);
+            }
+        });
         addToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToCartActionPerformed(evt);
@@ -180,6 +189,14 @@ public class customerGroceryOrder extends javax.swing.JPanel {
         btnpdf.setForeground(new java.awt.Color(255, 255, 255));
         btnpdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pdf.png"))); // NOI18N
         btnpdf.setText("DOWNLOAD BILL AS PDF");
+        btnpdf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnpdfMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnpdfMouseExited(evt);
+            }
+        });
         btnpdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnpdfActionPerformed(evt);
@@ -561,6 +578,26 @@ btnpdf.setVisible(true);
         doc.close();
 
     }//GEN-LAST:event_btnpdfActionPerformed
+
+    private void addToCartMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToCartMouseEntered
+        // TODO add your handling code here:
+        addToCart.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_addToCartMouseEntered
+
+    private void addToCartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToCartMouseExited
+        // TODO add your handling code here:
+        addToCart.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_addToCartMouseExited
+
+    private void btnpdfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpdfMouseEntered
+        // TODO add your handling code here:
+        btnpdf.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnpdfMouseEntered
+
+    private void btnpdfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpdfMouseExited
+        // TODO add your handling code here:
+        btnpdf.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnpdfMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

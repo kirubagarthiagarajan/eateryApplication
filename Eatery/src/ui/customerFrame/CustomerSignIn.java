@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -61,6 +62,14 @@ public class CustomerSignIn extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         jButton1.setText("LOGIN");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -138,6 +147,8 @@ public class CustomerSignIn extends javax.swing.JPanel {
        {
            customerPortal cp=new customerPortal(eatery,loggedCustomer);
            cp.setVisible(true);
+           txtStateId.setText("");
+           txtPassword.setText("");
            
        }
        else
@@ -149,6 +160,16 @@ public class CustomerSignIn extends javax.swing.JPanel {
        }
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_jButton1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

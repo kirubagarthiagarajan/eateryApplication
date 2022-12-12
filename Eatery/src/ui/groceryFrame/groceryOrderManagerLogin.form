@@ -38,8 +38,8 @@
                       <EmptySpace min="-2" pref="669" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnPatientLogin" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="750" max="-2" attributes="0"/>
+                      <Component id="btnPatientLogin" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="709" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -56,8 +56,8 @@
                   <Component id="txtLabel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="passcode" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="btnPatientLogin" min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnPatientLogin" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="511" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -82,14 +82,22 @@
     <Component class="javax.swing.JButton" name="btnPatientLogin">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="ff" red="ff" type="rgb"/>
+          <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="13" style="1"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/add-user.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="LOGIN"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPatientLoginMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPatientLoginMouseExited"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPatientLoginActionPerformed"/>
       </Events>
     </Component>

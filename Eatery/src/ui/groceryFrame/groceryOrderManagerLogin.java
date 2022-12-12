@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
 
@@ -20,6 +21,7 @@ public class groceryOrderManagerLogin extends javax.swing.JFrame {
     String passCode="grocOrdMng";
     public groceryOrderManagerLogin(EateryEnterprise eatery) {
         initComponents();
+        this.getContentPane().setBackground(new Color(0,153,204));
         this.eatery=eatery;
     }
 
@@ -45,9 +47,19 @@ public class groceryOrderManagerLogin extends javax.swing.JFrame {
 
         passcode.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        btnPatientLogin.setBackground(new java.awt.Color(255, 255, 0));
+        btnPatientLogin.setBackground(new java.awt.Color(102, 102, 102));
         btnPatientLogin.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnPatientLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnPatientLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-user.png"))); // NOI18N
         btnPatientLogin.setText("LOGIN");
+        btnPatientLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPatientLoginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPatientLoginMouseExited(evt);
+            }
+        });
         btnPatientLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPatientLoginActionPerformed(evt);
@@ -80,8 +92,8 @@ public class groceryOrderManagerLogin extends javax.swing.JFrame {
                         .addComponent(passcode, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(669, 669, 669))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(750, 750, 750))))
+                        .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(709, 709, 709))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,8 +105,8 @@ public class groceryOrderManagerLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passcode, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPatientLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 511, Short.MAX_VALUE))
         );
 
@@ -122,6 +134,16 @@ public class groceryOrderManagerLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Enter the passCodee to login!");
         }
     }//GEN-LAST:event_btnPatientLoginActionPerformed
+
+    private void btnPatientLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseEntered
+        // TODO add your handling code here:
+        btnPatientLogin.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnPatientLoginMouseEntered
+
+    private void btnPatientLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseExited
+        // TODO add your handling code here:
+         btnPatientLogin.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnPatientLoginMouseExited
 
     /**
      * @param args the command line arguments

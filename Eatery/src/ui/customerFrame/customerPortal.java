@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.Customer;
 import model.EateryEnterprise;
@@ -58,10 +59,7 @@ public class customerPortal extends javax.swing.JFrame {
             }
         });
 
-
-        splittedPane.setDividerLocation(220);
-
-
+        splittedPane.setDividerLocation(200);
 
         displayPanel.setBackground(new java.awt.Color(0, 153, 204));
 
@@ -111,6 +109,14 @@ public class customerPortal extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delivery.png"))); // NOI18N
         jButton1.setText("MAKE FOOD ORDER");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -121,6 +127,14 @@ public class customerPortal extends javax.swing.JFrame {
         btnPastOrders.setForeground(new java.awt.Color(255, 255, 255));
         btnPastOrders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/past.png"))); // NOI18N
         btnPastOrders.setText("PAST ORDERS");
+        btnPastOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPastOrdersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPastOrdersMouseExited(evt);
+            }
+        });
         btnPastOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPastOrdersActionPerformed(evt);
@@ -131,6 +145,14 @@ public class customerPortal extends javax.swing.JFrame {
         currentOrderScreen.setForeground(new java.awt.Color(255, 255, 255));
         currentOrderScreen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flash.png"))); // NOI18N
         currentOrderScreen.setText("CURRENT ORDER");
+        currentOrderScreen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                currentOrderScreenMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                currentOrderScreenMouseExited(evt);
+            }
+        });
         currentOrderScreen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 currentOrderScreenActionPerformed(evt);
@@ -141,6 +163,14 @@ public class customerPortal extends javax.swing.JFrame {
         btnEditProfile.setForeground(new java.awt.Color(255, 255, 255));
         btnEditProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profile.png"))); // NOI18N
         btnEditProfile.setText("EDIT PROFILE");
+        btnEditProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditProfileMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEditProfileMouseExited(evt);
+            }
+        });
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditProfileActionPerformed(evt);
@@ -151,6 +181,14 @@ public class customerPortal extends javax.swing.JFrame {
         btnGroceryOrder.setForeground(new java.awt.Color(255, 255, 255));
         btnGroceryOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/grocery.png"))); // NOI18N
         btnGroceryOrder.setText("MAKE GROCERY ORDER");
+        btnGroceryOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGroceryOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGroceryOrderMouseExited(evt);
+            }
+        });
         btnGroceryOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGroceryOrderActionPerformed(evt);
@@ -251,6 +289,56 @@ public class customerPortal extends javax.swing.JFrame {
         customerFoodOrder custOrder= new customerFoodOrder(eatery,currentCustomer);
         splittedPane.setRightComponent(custOrder);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void btnGroceryOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryOrderMouseEntered
+        // TODO add your handling code here:
+        btnGroceryOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnGroceryOrderMouseEntered
+
+    private void btnGroceryOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGroceryOrderMouseExited
+        // TODO add your handling code here:
+        btnGroceryOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnGroceryOrderMouseExited
+
+    private void btnPastOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPastOrdersMouseEntered
+        // TODO add your handling code here:
+        btnPastOrders.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnPastOrdersMouseEntered
+
+    private void btnPastOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPastOrdersMouseExited
+        // TODO add your handling code here:
+         btnPastOrders.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnPastOrdersMouseExited
+
+    private void currentOrderScreenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currentOrderScreenMouseEntered
+        // TODO add your handling code here:
+        currentOrderScreen.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_currentOrderScreenMouseEntered
+
+    private void currentOrderScreenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currentOrderScreenMouseExited
+        // TODO add your handling code here:
+         currentOrderScreen.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_currentOrderScreenMouseExited
+
+    private void btnEditProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditProfileMouseEntered
+        // TODO add your handling code here:
+        btnEditProfile.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnEditProfileMouseEntered
+
+    private void btnEditProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditProfileMouseExited
+        // TODO add your handling code here:
+        btnEditProfile.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnEditProfileMouseExited
 
     /**
      * @param args the command line arguments

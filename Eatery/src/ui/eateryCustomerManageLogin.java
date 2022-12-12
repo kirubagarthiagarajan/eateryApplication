@@ -5,6 +5,7 @@
 package ui;
 
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.EateryEnterprise;
 import ui.customerFrame.CustomerManageFrame;
@@ -22,6 +23,8 @@ public class eateryCustomerManageLogin extends javax.swing.JFrame {
     EateryEnterprise eatery;
     public eateryCustomerManageLogin(EateryEnterprise eatery) {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //this.getContentPane().setBackground(new Color(0,153,204));
         this.getContentPane().setBackground(new Color(0,153,204));
         this.eatery=eatery;
     }
@@ -43,8 +46,19 @@ public class eateryCustomerManageLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnlogin.setBackground(new java.awt.Color(102, 102, 102));
         btnlogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnlogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnlogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         btnlogin.setText("LOGIN");
+        btnlogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnloginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnloginMouseExited(evt);
+            }
+        });
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnloginActionPerformed(evt);
@@ -55,9 +69,11 @@ public class eateryCustomerManageLogin extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("WELCOME TO THE EATERY CUSTOMER MANAGEMENT PORTAL");
 
+        jLabel2.setBackground(new java.awt.Color(255, 204, 0));
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("GROCERY STOCK MANAGER");
+        jLabel2.setText("EATERY CUSTOMER MANAGER");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("PASSCODE");
@@ -77,8 +93,8 @@ public class eateryCustomerManageLogin extends javax.swing.JFrame {
                         .addComponent(tfpasscode, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(667, 667, 667))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(740, 740, 740))))
+                        .addComponent(btnlogin)
+                        .addGap(733, 733, 733))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,8 +107,8 @@ public class eateryCustomerManageLogin extends javax.swing.JFrame {
                     .addComponent(tfpasscode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 549, Short.MAX_VALUE))
+                .addComponent(btnlogin)
+                .addGap(0, 541, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +135,16 @@ public class eateryCustomerManageLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Enter the Grocery admin passcode to login!");
         }
     }//GEN-LAST:event_btnloginActionPerformed
+
+    private void btnloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseEntered
+        // TODO add your handling code here:
+        btnlogin.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnloginMouseEntered
+
+    private void btnloginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseExited
+        // TODO add your handling code here:
+         btnlogin.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnloginMouseExited
 
     /**
      * @param args the command line arguments

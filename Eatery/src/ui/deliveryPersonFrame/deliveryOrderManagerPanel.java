@@ -31,6 +31,7 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         initComponents();
         this.eatery=eatery;
         this.currentOrderList=eatery.getOrdersThatReadyForDelivery();
+        //JOptionPane.showMessageDialog(this, "orderLength"+currentOrderList.size());
         populateOrders();
     }
     public void populateOrders()
@@ -282,7 +283,7 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         //Order currentOrder=eatery.getOrderWithOrderId(orderId);
   
        
-             JOptionPane.showMessageDialog(this, "Assigned is "+eatery.assignOrderToDeliveryBoy(orderId,deliveryPersonId) );
+             //JOptionPane.showMessageDialog(this, "Assigned is "+eatery.assignOrderToDeliveryBoy(orderId,deliveryPersonId) );
             
         eatery.assignOrderToDeliveryBoy(orderId,deliveryPersonId);
         JOptionPane.showMessageDialog(this, "Order assigned to"+deliveryPersonName );

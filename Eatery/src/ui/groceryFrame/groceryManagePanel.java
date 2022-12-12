@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -72,6 +73,8 @@ public class groceryManagePanel extends javax.swing.JPanel {
         btncupdate = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("GROCERY ID");
 
@@ -84,8 +87,19 @@ public class groceryManagePanel extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("PRICE");
 
+        btnaddgrocery.setBackground(new java.awt.Color(102, 102, 102));
         btnaddgrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnaddgrocery.setForeground(new java.awt.Color(255, 255, 255));
+        btnaddgrocery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/order.png"))); // NOI18N
         btnaddgrocery.setText("ADD GROCERY");
+        btnaddgrocery.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnaddgroceryMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnaddgroceryMouseExited(evt);
+            }
+        });
         btnaddgrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaddgroceryActionPerformed(evt);
@@ -116,16 +130,38 @@ public class groceryManagePanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(mngMenuTable);
 
+        btndeletegrocery.setBackground(new java.awt.Color(102, 102, 102));
         btndeletegrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btndeletegrocery.setForeground(new java.awt.Color(255, 255, 255));
+        btndeletegrocery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash-can.png"))); // NOI18N
         btndeletegrocery.setText("DELETE GROCERY");
+        btndeletegrocery.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btndeletegroceryMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndeletegroceryMouseExited(evt);
+            }
+        });
         btndeletegrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndeletegroceryActionPerformed(evt);
             }
         });
 
+        btnupdategrocery.setBackground(new java.awt.Color(102, 102, 102));
         btnupdategrocery.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnupdategrocery.setForeground(new java.awt.Color(255, 255, 255));
+        btnupdategrocery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project-management.png"))); // NOI18N
         btnupdategrocery.setText("UPDATE GROCERY");
+        btnupdategrocery.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnupdategroceryMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnupdategroceryMouseExited(evt);
+            }
+        });
         btnupdategrocery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnupdategroceryActionPerformed(evt);
@@ -156,8 +192,19 @@ public class groceryManagePanel extends javax.swing.JPanel {
             }
         });
 
+        btncupdate.setBackground(new java.awt.Color(102, 102, 102));
         btncupdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btncupdate.setForeground(new java.awt.Color(255, 255, 255));
+        btncupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/project-management.png"))); // NOI18N
         btncupdate.setText("CONFIRM UPDATE");
+        btncupdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btncupdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btncupdateMouseExited(evt);
+            }
+        });
         btncupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncupdateActionPerformed(evt);
@@ -174,7 +221,7 @@ public class groceryManagePanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(592, Short.MAX_VALUE)
+                .addContainerGap(556, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,6 +470,46 @@ public class groceryManagePanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnupdategroceryActionPerformed
+
+    private void btnaddgroceryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnaddgroceryMouseEntered
+        // TODO add your handling code here:
+        btnaddgrocery.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnaddgroceryMouseEntered
+
+    private void btnaddgroceryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnaddgroceryMouseExited
+        // TODO add your handling code here:
+        btnaddgrocery.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnaddgroceryMouseExited
+
+    private void btndeletegroceryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndeletegroceryMouseEntered
+        // TODO add your handling code here:
+        btndeletegrocery.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btndeletegroceryMouseEntered
+
+    private void btndeletegroceryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndeletegroceryMouseExited
+        // TODO add your handling code here:
+        btndeletegrocery.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btndeletegroceryMouseExited
+
+    private void btnupdategroceryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnupdategroceryMouseEntered
+        // TODO add your handling code here:
+        btnupdategrocery.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnupdategroceryMouseEntered
+
+    private void btnupdategroceryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnupdategroceryMouseExited
+        // TODO add your handling code here:
+        btnupdategrocery.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnupdategroceryMouseExited
+
+    private void btncupdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncupdateMouseEntered
+        // TODO add your handling code here:
+        btncupdate.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btncupdateMouseEntered
+
+    private void btncupdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncupdateMouseExited
+        // TODO add your handling code here:
+         btncupdate.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btncupdateMouseExited
 
      private void searchValueKeyPressed(java.awt.event.KeyEvent evt) {                                       
         // TODO add your handling code here:

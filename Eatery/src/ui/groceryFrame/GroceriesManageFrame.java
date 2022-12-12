@@ -4,6 +4,7 @@
  */
 package ui.groceryFrame;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import model.EateryEnterprise;
 import ui.deliveryPersonFrame.deliveryBoyManagePanel;
@@ -50,8 +51,21 @@ public class GroceriesManageFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+
+        btngroceries.setBackground(new java.awt.Color(102, 102, 102));
         btngroceries.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btngroceries.setForeground(new java.awt.Color(255, 255, 255));
+        btngroceries.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courier.png"))); // NOI18N
         btngroceries.setText("MANAGE GROCERIES");
+        btngroceries.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btngroceriesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btngroceriesMouseExited(evt);
+            }
+        });
         btngroceries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btngroceriesActionPerformed(evt);
@@ -76,6 +90,8 @@ public class GroceriesManageFrame extends javax.swing.JFrame {
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("WELCOME GROCERY ORDER MANAGER.");
@@ -153,6 +169,16 @@ public class GroceriesManageFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.eatery.replaceGroceryDb();
     }//GEN-LAST:event_formWindowClosed
+
+    private void btngroceriesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btngroceriesMouseEntered
+        // TODO add your handling code here:
+        btngroceries.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btngroceriesMouseEntered
+
+    private void btngroceriesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btngroceriesMouseExited
+        // TODO add your handling code here:
+        btngroceries.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btngroceriesMouseExited
 
     /**
      * @param args the command line arguments
