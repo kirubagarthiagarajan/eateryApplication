@@ -133,6 +133,8 @@ public class orderManagerLogin extends javax.swing.JFrame {
 
     private void btnPatientLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientLoginActionPerformed
         // TODO add your handling code here:
+        if (isNumeric(textRestarauntId.getText())&& isNumeric(textEmployeeId.getText()))
+        {
         if(!textRestarauntId.getText().equals("") && !textEmployeeId.getText().equals(""))
         {
             Restaurant res =eatery.employeeLogin("Order Manager",Integer.parseInt(textEmployeeId.getText()),Integer.parseInt(textRestarauntId.getText()));
@@ -150,9 +152,29 @@ public class orderManagerLogin extends javax.swing.JFrame {
         else
         {
             JOptionPane.showMessageDialog(this, "Enter your Employee Id and Restaurant Id to login!");
+             textRestarauntId.setText("");
+            textEmployeeId.setText("");
+        }
+        }
+         else
+        {
+            JOptionPane.showMessageDialog(this, "Enter your Employee Id and Restaurant Id to login!");
+            textRestarauntId.setText("");
+            textEmployeeId.setText("");
         }
     }//GEN-LAST:event_btnPatientLoginActionPerformed
-
+    
+    public static boolean isNumeric(String strNum) {
+    if (strNum == null) {
+        return false;
+    }
+    try {
+        double d = Double.parseDouble(strNum);
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+    return true;
+}
     private void btnPatientLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPatientLoginMouseEntered
         // TODO add your handling code here:
         btnPatientLogin.setBackground(new Color(255,204,0));

@@ -155,6 +155,9 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here:
+        if(isNumeric(tfpid.getText()) && !tfpswd.getText().equals(""))
+        
+        {
         int id=Integer.parseInt(tfpid.getText());
         String pswd=tfpswd.getText();
         
@@ -170,8 +173,26 @@ public class deliveryBoyLogin extends javax.swing.JPanel {
         {
         JOptionPane.showMessageDialog(this, "Login Failed");
         }
+        }
+        else
+        {
+        JOptionPane.showMessageDialog(this, "Login Failed");
+        tfpid.setText("");
+        tfpswd.setText("");
+        }
     }//GEN-LAST:event_btnloginActionPerformed
 
+    public static boolean isNumeric(String strNum) {
+    if (strNum == null) {
+        return false;
+    }
+    try {
+        double d = Double.parseDouble(strNum);
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+    return true;
+}
     private void btnloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseEntered
         // TODO add your handling code here:
         btnlogin.setBackground(new Color(255,204,0));
