@@ -31,7 +31,7 @@ public class deliveryOrderManagerPanel extends javax.swing.JPanel {
         initComponents();
         this.eatery=eatery;
         this.currentOrderList=eatery.getOrdersThatReadyForDelivery();
-        JOptionPane.showMessageDialog(this, "orderLength"+currentOrderList.size());
+        //JOptionPane.showMessageDialog(this, "orderLength"+currentOrderList.size());
         populateOrders();
     }
     public void populateOrders()

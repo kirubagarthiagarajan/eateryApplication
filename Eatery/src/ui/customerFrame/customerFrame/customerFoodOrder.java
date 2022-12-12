@@ -8,6 +8,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -161,6 +162,14 @@ public class customerFoodOrder extends javax.swing.JPanel {
         chooseRestaraunt.setBackground(new java.awt.Color(102, 102, 102));
         chooseRestaraunt.setForeground(new java.awt.Color(255, 255, 255));
         chooseRestaraunt.setText("Choose Restaraunt");
+        chooseRestaraunt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                chooseRestarauntMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                chooseRestarauntMouseExited(evt);
+            }
+        });
         chooseRestaraunt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chooseRestarauntActionPerformed(evt);
@@ -171,6 +180,14 @@ public class customerFoodOrder extends javax.swing.JPanel {
         addToCart.setForeground(new java.awt.Color(255, 255, 255));
         addToCart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart.png"))); // NOI18N
         addToCart.setText("Add to Cart");
+        addToCart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addToCartMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addToCartMouseExited(evt);
+            }
+        });
         addToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToCartActionPerformed(evt);
@@ -205,6 +222,14 @@ public class customerFoodOrder extends javax.swing.JPanel {
         placeOrder.setForeground(new java.awt.Color(255, 255, 255));
         placeOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         placeOrder.setText("Checkout");
+        placeOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                placeOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                placeOrderMouseExited(evt);
+            }
+        });
         placeOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placeOrderActionPerformed(evt);
@@ -218,6 +243,14 @@ public class customerFoodOrder extends javax.swing.JPanel {
         confirmOrder.setForeground(new java.awt.Color(255, 255, 255));
         confirmOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         confirmOrder.setText("Confirm and Place Order");
+        confirmOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmOrderMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmOrderMouseExited(evt);
+            }
+        });
         confirmOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmOrderActionPerformed(evt);
@@ -250,6 +283,14 @@ public class customerFoodOrder extends javax.swing.JPanel {
         btnpdf.setForeground(new java.awt.Color(255, 255, 255));
         btnpdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pdf.png"))); // NOI18N
         btnpdf.setText("DOWNLOAD BILL AS PDF");
+        btnpdf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnpdfMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnpdfMouseExited(evt);
+            }
+        });
         btnpdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnpdfActionPerformed(evt);
@@ -662,6 +703,56 @@ public class customerFoodOrder extends javax.swing.JPanel {
         doc.close();
             
     }//GEN-LAST:event_btnpdfActionPerformed
+
+    private void chooseRestarauntMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chooseRestarauntMouseEntered
+        // TODO add your handling code here:
+        chooseRestaraunt.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_chooseRestarauntMouseEntered
+
+    private void chooseRestarauntMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chooseRestarauntMouseExited
+        // TODO add your handling code here:
+         chooseRestaraunt.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_chooseRestarauntMouseExited
+
+    private void addToCartMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToCartMouseEntered
+        // TODO add your handling code here:
+        addToCart.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_addToCartMouseEntered
+
+    private void addToCartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToCartMouseExited
+        // TODO add your handling code here:
+        addToCart.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_addToCartMouseExited
+
+    private void placeOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_placeOrderMouseEntered
+        // TODO add your handling code here:
+        placeOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_placeOrderMouseEntered
+
+    private void placeOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_placeOrderMouseExited
+        // TODO add your handling code here:
+        placeOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_placeOrderMouseExited
+
+    private void confirmOrderMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmOrderMouseEntered
+        // TODO add your handling code here:
+        confirmOrder.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_confirmOrderMouseEntered
+
+    private void confirmOrderMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmOrderMouseExited
+        // TODO add your handling code here:
+         confirmOrder.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_confirmOrderMouseExited
+
+    private void btnpdfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpdfMouseEntered
+        // TODO add your handling code here:
+        btnpdf.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnpdfMouseEntered
+
+    private void btnpdfMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpdfMouseExited
+        // TODO add your handling code here:
+         btnpdf.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnpdfMouseExited
 public void placeOrder(String deliveryAddress){
     Random random = new Random();
         int randomOrderId = random.nextInt(900) + 100;

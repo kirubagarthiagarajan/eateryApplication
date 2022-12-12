@@ -60,6 +60,14 @@ public class CustomerLanding extends javax.swing.JFrame {
         SignUp.setForeground(new java.awt.Color(255, 255, 255));
         SignUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-user.png"))); // NOI18N
         SignUp.setText("SIGNUP");
+        SignUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SignUpMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SignUpMouseExited(evt);
+            }
+        });
         SignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SignUpActionPerformed(evt);
@@ -70,6 +78,14 @@ public class CustomerLanding extends javax.swing.JFrame {
         btnSignIn.setForeground(new java.awt.Color(255, 255, 255));
         btnSignIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
         btnSignIn.setText("LOGIN");
+        btnSignIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSignInMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSignInMouseExited(evt);
+            }
+        });
         btnSignIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignInActionPerformed(evt);
@@ -194,6 +210,26 @@ public class CustomerLanding extends javax.swing.JFrame {
         this.eatery.replaceOrderDb();
       
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnSignInMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseEntered
+        // TODO add your handling code here:
+        btnSignIn.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnSignInMouseEntered
+
+    private void btnSignInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignInMouseExited
+        // TODO add your handling code here:
+        btnSignIn.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnSignInMouseExited
+
+    private void SignUpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpMouseEntered
+        // TODO add your handling code here:
+        SignUp.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_SignUpMouseEntered
+
+    private void SignUpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpMouseExited
+        // TODO add your handling code here:
+         SignUp.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_SignUpMouseExited
 
     /**
      * @param args the command line arguments

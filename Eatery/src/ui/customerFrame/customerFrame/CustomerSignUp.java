@@ -4,6 +4,7 @@
  */
 package ui.customerFrame;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -108,6 +109,14 @@ public class CustomerSignUp extends javax.swing.JPanel {
         btnSignup.setForeground(new java.awt.Color(255, 255, 255));
         btnSignup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-user.png"))); // NOI18N
         btnSignup.setText("Sign Up");
+        btnSignup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSignupMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSignupMouseExited(evt);
+            }
+        });
         btnSignup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignupActionPerformed(evt);
@@ -120,6 +129,14 @@ public class CustomerSignUp extends javax.swing.JPanel {
         btncemail.setForeground(new java.awt.Color(255, 255, 255));
         btncemail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/confirmation.png"))); // NOI18N
         btncemail.setText("CONFIRM DETAILS");
+        btncemail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btncemailMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btncemailMouseExited(evt);
+            }
+        });
         btncemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncemailActionPerformed(evt);
@@ -132,6 +149,14 @@ public class CustomerSignUp extends javax.swing.JPanel {
         btnverify.setForeground(new java.awt.Color(255, 255, 255));
         btnverify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/check-mail.png"))); // NOI18N
         btnverify.setText("VERIFY EMAIL");
+        btnverify.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnverifyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnverifyMouseExited(evt);
+            }
+        });
         btnverify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnverifyActionPerformed(evt);
@@ -371,6 +396,36 @@ public class CustomerSignUp extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnverifyActionPerformed
+
+    private void btncemailMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncemailMouseEntered
+        // TODO add your handling code here:
+        btncemail.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btncemailMouseEntered
+
+    private void btncemailMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncemailMouseExited
+        // TODO add your handling code here:
+        btncemail.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btncemailMouseExited
+
+    private void btnverifyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverifyMouseEntered
+        // TODO add your handling code here:
+        btnverify.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnverifyMouseEntered
+
+    private void btnverifyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnverifyMouseExited
+        // TODO add your handling code here:
+         btnverify.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnverifyMouseExited
+
+    private void btnSignupMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseEntered
+        // TODO add your handling code here:
+        btnSignup.setBackground(new Color(255,204,0));
+    }//GEN-LAST:event_btnSignupMouseEntered
+
+    private void btnSignupMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseExited
+        // TODO add your handling code here:
+        btnSignup.setBackground(new Color(102,102,102));
+    }//GEN-LAST:event_btnSignupMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
